@@ -1,5 +1,5 @@
 //const mssql = require('mssql')
-import mssql  from 'mssql'
+import mssql  from 'mssql';
 
 class Conection {
 	private connectDB:any
