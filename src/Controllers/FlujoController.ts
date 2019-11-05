@@ -1,7 +1,6 @@
 import { Request, Response, NextFunction } from 'express'
 import FlujoModels  from '../models/FlujoModels'
 import { Conections } from '../connet'
-//npm install express-validator@3.2.0
 
 class FlujoController {
 	private flujos:FlujoModels[]
@@ -31,6 +30,7 @@ class FlujoController {
 																LEFT JOIN [dbo].[CampoLista] cl ON ca.Id_Campo = cl.CodCampo`)
 			const data:any[] = result.recordset
 			console.log(data)
+			console.log(result)
 			res.send('hello world')
 		}catch(error){
 			console.log(error)
