@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express'
-import FlujoModels  from '../Models/FlujoModels'
+import FlujoModels  from '../models/FlujoModels'
 import { Conections } from '../connet'
 //npm install express-validator@3.2.0
 

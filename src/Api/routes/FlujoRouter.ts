@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { flujoController } from '../Controllers/FlujoController'
+import { flujoController } from '../../controllers/FlujoController'
 
 class FlujoRouter {
 	public router:Router

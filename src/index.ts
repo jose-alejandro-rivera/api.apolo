@@ -5,7 +5,7 @@ import expressValidator  from 'express-validator'
 import bodyParser from 'body-parser'
 import dotenv  from 'dotenv'
 
-import flujoRouter from './Routes/FlujoRouter'
+import flujoRouter from './api/routes/FlujoRouter'
 //const express = require('express')
 class Server{
 	public app: express.Application
