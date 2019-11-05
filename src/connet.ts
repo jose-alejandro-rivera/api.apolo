@@ -10,8 +10,8 @@ class Conection {
 	async getConnection() {
 		try{
 		this.connectDB = await  new mssql.ConnectionPool({
-			user: process.env.USER,
-      password: process.env.PASSWORD,
+			user: 'sa',
+            password: 'admin1234*',
 			server: 'localhost', 
 			database: 'Apolo',
 		}).connect()
