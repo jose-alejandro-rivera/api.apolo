@@ -1,7 +1,12 @@
 //const mssql = require('mssql')
 import mssql  from 'mssql';
+import { Singleton } from 'typescript-ioc';
 
-class Conection {
+/**
+ * @category Database
+ */
+@Singleton
+export default class Conection {
 	private connectDB:any
 	public request:any
 	constructor(){
@@ -11,9 +16,10 @@ class Conection {
 		try{
 		this.connectDB = await  new mssql.ConnectionPool({
 			user: 'sa',
-            password: 'admin1234*',
+      password: 'admin',
 			server: 'localhost', 
 			database: 'Apolo',
+			parseJSON: true,
 		}).connect()
 		
 		this.request = await this.connectDB.request()
@@ -25,5 +31,5 @@ class Conection {
 	}
 
 }
-
-export const Conections = new Conection()
+//export default new Conection()
+//export const Conections = new Conection()
