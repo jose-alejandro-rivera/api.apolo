@@ -17,9 +17,7 @@ export default class FlujoController {
 
 	 async getCategoriaFlujo():Promise<void>{
         try{
-			console.log("categorias flujo");
-            const result = await this.FlujoListDAO.getCategoriaFlujoList();
-			console.log(result);
+           const result = await this.FlujoListDAO.getCategoriaFlujoList();
            return result;
         }catch(error){
             console.log(error)
