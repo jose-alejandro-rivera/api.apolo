@@ -15,6 +15,24 @@ export default class FlujoController {
 		this.flujos =[]
 	}
 
+	 async getCategoriaFlujo():Promise<void>{
+        try{
+           const result = await this.FlujoListDAO.getCategoriaFlujoList();
+           return result;
+        }catch(error){
+            console.log(error)
+        }
+    }
+
+	async getFlujoPorCategoria(Id_CategoriaFlujo: number):Promise<void>{
+        try{
+           const result = await this.FlujoListDAO.getFlujosPorCategoria(Id_CategoriaFlujo);
+           return result;
+        }catch(error){
+            console.log(error)
+        }
+    }
+
 	async getSteps(request: any):Promise<void>{
 		try{
 			const responseDao = await this.FlujoListDAO.getFlujoList()

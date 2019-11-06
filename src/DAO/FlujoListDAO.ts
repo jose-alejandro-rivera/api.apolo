@@ -11,6 +11,17 @@ export class FlujoListDAO {
 	constructor(@Inject private databaseConnection: Conection) {
 		// code...
 	}
+
+	public async getFlujosPorCategoria(Id_CategoriaFlujo:number):Promise<void> {
+        try{
+            const sqlGetSteps = await this.databaseConnection.getPool()
+			console.log(Id_CategoriaFlujo);
+            const result = await sqlGetSteps.query(`SELECT Id_Flujo,NomFlujo,CodCategoriaFlujo,CodPaso_Inicial,Descripcion,Orden,Activo,Fecha,Usuario FROM Flujo where Activo=1 AND CodCategoriaFlujo=${Id_CategoriaFlujo}`);
+            return Object.assign(result.recordset);
+        }catch(error){
+            return error
+        }
+    }
   //OBTIENE EL LISTADO DE PASOS DE LA CONSULTA EN FORMATO JSON
 	public async getFlujoList():Promise<void> {
 		try{
@@ -59,6 +70,16 @@ export class FlujoListDAO {
 			return error
 		}
 	}
+
+	 public async getCategoriaFlujoList():Promise<void> {
+        try{
+            const sqlGetSteps = await this.databaseConnection.getPool()
+            const result = await sqlGetSteps.query(`SELECT Id_CategoriaFlujo ,NomCategoriaFlujo,Activo,Fecha,Usuario FROM categoriaFlujo where Activo=1`);
+            return Object.assign(result.recordset);
+        }catch(error){
+            return error
+        }
+    }
 }
 //const FlujoListDao = new FlujoListDAO()
 //export default new FlujoListDAO()
