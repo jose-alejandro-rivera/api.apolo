@@ -2,5 +2,5 @@ import express from 'express';
 import routes from '../api';
 
 export default ({ app }: { app: express.Application }) => {
-    app.use('/api', routes())
+    app.use('/api', routes)
 };

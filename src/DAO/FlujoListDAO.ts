@@ -1,4 +1,5 @@
 import   Conections  from "../connet"
+import Conection  from '../loaders/databaseLoader'
 import * as sql from 'mssql'
 import { Inject } from "typescript-ioc"
 /**
@@ -7,14 +8,15 @@ import { Inject } from "typescript-ioc"
  */
 export class FlujoListDAO {
 	
-	constructor(@Inject private databaseConnection: Conections) {
+	constructor(@Inject private databaseConnection: Conection) {
 		// code...
 	}
   //OBTIENE EL LISTADO DE PASOS DE LA CONSULTA EN FORMATO JSON
 	public async getFlujoList():Promise<void> {
 		try{
-			const sqlGetSteps = await this.databaseConnection.getConnection()
-			const result = await sqlGetSteps
+			console.log(this.databaseConnection)
+			const sqlGetSteps = await this.databaseConnection.getPool()
+			const result = await sqlGetSteps.request()
 			.query(`SELECT DISTINCT 
 						  p.Id_Paso as 'pasosProceso.Id_Paso'
 						  ,p.NomPaso  as 'pasosProceso.NomPaso'
@@ -50,7 +52,7 @@ export class FlujoListDAO {
 						,c.NomCuestionario
 						,c.Descripcion
 						FOR JSON PATH, ROOT('pasos')`)
-			return result
+			//return result
 
 		}catch(error){
 			return error

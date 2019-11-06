@@ -10,33 +10,22 @@ class FlujoRouter {
 		this.routes()
 	}
 	routes(){
-		    this.router.get(
-        '/flujo/controller/:id',
-        async (req: Request, res: Response, next: NextFunction) => {
-            try {
-                const flujoController: FlujoController = Container.get(FlujoController);
-                let responseModel = await flujoController.getSteps(req.param);
-                res.status(200).send(responseModel);
-            } catch(error) {
-            	console.log(error)
-                /*if(err instanceof ExceptionLogin) {
-                    let error = {
-                        IdMessage: err.codigo,
-                        Message: err.message
-                    };
-                    res.status(500).send(error);
-                } else {
-                    let error = {
-                        IdMessage: 0,
-                        Message: err
-                    };
-                    LoggerInstance.error('error: ', error);
-                    res.statusCode = 500;
-                    res.send(err);
-                }*/
-            }
+		this.router.get(
+      '/flujo/list/:id',
+      async (req: Request, res: Response, next: NextFunction) => {
+        try {
+          const flujoController: FlujoController = Container.get(FlujoController);
+          let responseModel = await flujoController.getSteps(req.param);
+          res.status(200).send(responseModel);
+        } catch(error) {
+          console.log(error)
         }
-    );
+      }
+    )
+
+    this.router.post(
+    	'/flujo/'
+    )
 	}
 }
 const FlujoRouters =  new FlujoRouter

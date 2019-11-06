@@ -31,5 +31,3 @@ export default class Conection {
 	}
 
 }
-//export default new Conection()
-//export const Conections = new Conection()
