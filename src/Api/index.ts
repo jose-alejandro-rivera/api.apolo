@@ -14,7 +14,7 @@ class FlujoRouter {
         this.router.use(morgan('dev'))
 	}
 	routes(){
-		    this.router.get(
+	this.router.get(
         '/flujo/list/:id',
         async (req: Request, res: Response, next: NextFunction) => {
             try {
@@ -41,6 +41,22 @@ class FlujoRouter {
             }
         }
     );
+
+
+    this.router.get(
+        '/flujo/categorias',
+        async (req: Request, res: Response, next: NextFunction) => {
+          try {
+            console.log("servicio index");
+            const flujoController: FlujoController = Container.get(FlujoController);
+            let responseModel = await flujoController.getCategoriaFlujo();
+            res.status(200).send(responseModel);
+          } catch(error) {
+            console.log(error)
+          }
+        }
+      );
+
 	}
 }
 const FlujoRouters =  new FlujoRouter

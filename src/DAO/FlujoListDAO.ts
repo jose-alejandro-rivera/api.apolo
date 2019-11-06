@@ -58,6 +58,16 @@ export class FlujoListDAO {
 			return error
 		}
 	}
+
+	 public async getCategoriaFlujoList():Promise<void> {
+        try{
+            const sqlGetSteps = await this.databaseConnection.getPool()
+            const result = await sqlGetSteps.query(`SELECT Id_CategoriaFlujo ,NomCategoriaFlujo,Activo,Fecha,Usuario FROM categoriaFlujo where Activo=1`);
+            return Object.assign(result.recordset);
+        }catch(error){
+            return error
+        }
+    }
 }
 //const FlujoListDao = new FlujoListDAO()
 //export default new FlujoListDAO()
