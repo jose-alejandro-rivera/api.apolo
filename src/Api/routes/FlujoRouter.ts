@@ -24,6 +24,19 @@ class FlujoRouter {
     )
 
     this.router.get(
+      '/flujos/por/categorias',
+      async (req: Request, res: Response, next: NextFunction) => {
+        try {
+          const flujoController: FlujoController = Container.get(FlujoController);
+          let responseModel = await flujoController.getFlujoPorCategoria(req.Id_CategoriaFlujo);
+          res.status(200).send(responseModel);
+        } catch(error) {
+          console.log(error)
+        }
+      }
+    )
+
+    this.router.get(
       '/flujo/categorias',
       async (req: Request, res: Response, next: NextFunction) => {
         try {
