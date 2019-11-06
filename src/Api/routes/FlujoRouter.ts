@@ -3,32 +3,31 @@ import FlujoController  from '../../controllers/FlujoController'
 import { Container } from "typescript-ioc";
 import { Request, Response, NextFunction } from 'express'
 
-class FlujoRouter {
-	public router:Router
-	constructor() {
-		this.router = Router()
-		this.routes()
-	}
-	routes(){
-		this.router.get(
+export default class FlujoRouter {
+  public app:Router
+  constructor(router:Router) {
+    this.app = router
+  }
+   router():void{
+    this.app.get(
       '/flujo/list/:id',
       async (req: Request, res: Response, next: NextFunction) => {
         try {
           const flujoController: FlujoController = Container.get(FlujoController);
-          let responseModel = await flujoController.getSteps(req.param);
-          res.status(200).send(responseModel);
+          let responseModel = await flujoController.getSteps(req.params);
+          res.status(200).json(responseModel);
         } catch(error) {
           console.log(error)
         }
       }
     )
 
-    this.router.get(
-      '/flujos/por/categorias',
+    this.app.get(
+      '/flujos/por/categorias/:id_categoriaFlujo',
       async (req: Request, res: Response, next: NextFunction) => {
         try {
           const flujoController: FlujoController = Container.get(FlujoController);
-          let responseModel = await flujoController.getFlujoPorCategoria(req.Id_CategoriaFlujo);
+          let responseModel = await flujoController.getFlujoPorCategoria(req.params.id_categoriaFlujo);
           res.status(200).send(responseModel);
         } catch(error) {
           console.log(error)
@@ -36,7 +35,7 @@ class FlujoRouter {
       }
     )
 
-    this.router.get(
+    this.app.get(
       '/flujo/categorias',
       async (req: Request, res: Response, next: NextFunction) => {
         try {
@@ -48,11 +47,5 @@ class FlujoRouter {
         }
       }
     )
-
-    this.router.post(
-    	'/flujo/'
-    )
-	}
+  }
 }
-const FlujoRouters =  new FlujoRouter
-export default FlujoRouters.router

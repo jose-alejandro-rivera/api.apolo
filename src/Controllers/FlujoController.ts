@@ -24,7 +24,7 @@ export default class FlujoController {
         }
     }
 
-	async getFlujoPorCategoria(Id_CategoriaFlujo: number):Promise<void>{
+	async getFlujoPorCategoria(Id_CategoriaFlujo: any):Promise<void>{
         try{
            const result = await this.FlujoListDAO.getFlujosPorCategoria(Id_CategoriaFlujo);
            return result;
