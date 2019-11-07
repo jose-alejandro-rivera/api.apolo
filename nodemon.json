@@ -6,5 +6,5 @@
 	"ignore": [
 		"src/**/*.spec.ts"
 	],
-	"exec": "SET NODE_ENV=test&& ts-node ./src/app.ts"
+	"exec": "SET NODE_ENV=test&& ts-node ./build/app.ts"
 }

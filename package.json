@@ -8,6 +8,7 @@
     "remove": "del build",
     "build": "tsc",
     "ts:node": "ts-node ./src/index.ts",
+    "start-prod": "SET NODE_ENV=test&& node ./build/src/app.js",
     "dev": "nodemon"
   },
   "keywords": [],
