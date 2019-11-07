@@ -4,7 +4,7 @@ import * as sql from 'mssql'
 import { Inject } from "typescript-ioc"
 /**
  * 
- * @FlujoListDAO DAO
+ * @category DAO
  */
 export class FlujoListDAO {
 	
