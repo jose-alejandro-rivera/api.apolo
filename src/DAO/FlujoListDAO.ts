@@ -1,7 +1,9 @@
 import   Conections  from "../connet"
 import Conection  from '../loaders/databaseLoader'
 import * as sql from 'mssql'
-import { Inject } from "typescript-ioc"
+import CategoriaFlujoModel  from '../Models/CategoriaFlujoModels'
+import {Container, Inject} from "typescript-ioc";
+
 /**
  * 
  * @category DAO
@@ -14,8 +16,7 @@ export class FlujoListDAO {
 
 	public async getFlujosPorCategoria(Id_CategoriaFlujo:number):Promise<void> {
         try{
-            const sqlGetSteps = await this.databaseConnection.getPool()
-			console.log(Id_CategoriaFlujo);
+            const sqlGetSteps = await this.databaseConnection.getPool();
             const result = await sqlGetSteps.query(`SELECT Id_Flujo,NomFlujo,CodCategoriaFlujo,CodPaso_Inicial,Descripcion,Orden,Activo,Fecha,Usuario FROM Flujo where Activo=1 AND CodCategoriaFlujo=${Id_CategoriaFlujo}`);
             return Object.assign(result.recordset);
         }catch(error){
@@ -71,11 +72,13 @@ export class FlujoListDAO {
 		}
 	}
 
-	 public async getCategoriaFlujoList():Promise<void> {
+	 public async getCategoriaFlujoList():Promise<CategoriaFlujoModel> {
         try{
-            const sqlGetSteps = await this.databaseConnection.getPool()
+	        let categoriaFlujoModel: CategoriaFlujoModel = Container.get(CategoriaFlujoModel);
+            const sqlGetSteps = await this.databaseConnection.getPool();
             const result = await sqlGetSteps.query(`SELECT Id_CategoriaFlujo ,NomCategoriaFlujo,Activo,Fecha,Usuario FROM categoriaFlujo where Activo=1`);
-            return Object.assign(result.recordset);
+            categoriaFlujoModel = Object.assign(categoriaFlujoModel, result.recordset);
+        	return categoriaFlujoModel;
         }catch(error){
             return error
         }

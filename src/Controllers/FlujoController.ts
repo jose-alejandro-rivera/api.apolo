@@ -4,6 +4,7 @@ import FlujoModels  from '../models/FlujoModels'
 import Conections  from '../connet'
 import Conection  from '../loaders/databaseLoader'
 import  { FlujoListDAO }  from '../DAO/FlujoListDAO'
+import CategoriaFlujoModel  from '../Models/CategoriaFlujoModels'
 
 
 export default class FlujoController {
@@ -15,10 +16,9 @@ export default class FlujoController {
 		this.flujos =[]
 	}
 
-	 async getCategoriaFlujo():Promise<void>{
+	 async getCategoriaFlujo(): Promise<any>{
         try{
-           const result = await this.FlujoListDAO.getCategoriaFlujoList();
-			console.log(result);
+           const result = await this.FlujoListDAO.getCategoriaFlujoList();
            return result;
         }catch(error){
             console.log(error)

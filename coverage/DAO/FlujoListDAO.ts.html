@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">39.13% </span>
+        <span class="strong">52% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>9/23</span>
+        <span class='fraction'>13/25</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -35,16 +35,16 @@
         <span class='fraction'>2/4</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">33.33% </span>
+        <span class="strong">47.83% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>7/21</span>
+        <span class='fraction'>11/23</span>
       </div>
     </div>
     <p class="quiet">
       Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
     </p>
   </div>
-  <div class='status-line low'></div>
+  <div class='status-line medium'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -130,7 +130,19 @@
 <a name='L82'></a><a href='#L82'>82</a>
 <a name='L83'></a><a href='#L83'>83</a>
 <a name='L84'></a><a href='#L84'>84</a>
-<a name='L85'></a><a href='#L85'>85</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L85'></a><a href='#L85'>85</a>
+<a name='L86'></a><a href='#L86'>86</a>
+<a name='L87'></a><a href='#L87'>87</a>
+<a name='L88'></a><a href='#L88'>88</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
@@ -138,14 +150,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -206,10 +210,12 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -217,7 +223,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import   Conections  from "../connet"
 import Conection  from '../loaders/databaseLoader'
 import * as sql from 'mssql'
-import { Inject } from "typescript-ioc"
+import CategoriaFlujoModel  from '../Models/CategoriaFlujoModels'
+import {Container, Inject} from "typescript-ioc";
+&nbsp;
 /**
  * 
  * @category DAO
@@ -230,8 +238,7 @@ export class FlujoListDAO {
 &nbsp;
 	public async <span class="fstat-no" title="function not covered" >getFlujosPorCategoria(</span>Id_CategoriaFlujo:number):Promise&lt;void&gt; {
 <span class="cstat-no" title="statement not covered" >        try{</span>
-            const sqlGetSteps = <span class="cstat-no" title="statement not covered" >await this.databaseConnection.getPool()</span>
-<span class="cstat-no" title="statement not covered" >			console.log(Id_CategoriaFlujo);</span>
+            const sqlGetSteps = <span class="cstat-no" title="statement not covered" >await this.databaseConnection.getPool();</span>
             const result = <span class="cstat-no" title="statement not covered" >await sqlGetSteps.query(`SELECT Id_Flujo,NomFlujo,CodCategoriaFlujo,CodPaso_Inicial,Descripcion,Orden,Activo,Fecha,Usuario FROM Flujo where Activo=1 AND CodCategoriaFlujo=${Id_CategoriaFlujo}`);</span>
 <span class="cstat-no" title="statement not covered" >            return Object.assign(result.recordset);</span>
         }catch(error){
@@ -287,13 +294,15 @@ export class FlujoListDAO {
 		}
 	}
 &nbsp;
-	 public async getCategoriaFlujoList():Promise&lt;void&gt; {
+	 public async getCategoriaFlujoList():Promise&lt;CategoriaFlujoModel&gt; {
         try{
-            const sqlGetSteps = await this.databaseConnection.getPool()
-            const result = <span class="cstat-no" title="statement not covered" >await sqlGetSteps.query(`SELECT Id_CategoriaFlujo ,NomCategoriaFlujo,Activo,Fecha,Usuario FROM categoriaFlujo where Activo=1`);</span>
-<span class="cstat-no" title="statement not covered" >            return Object.assign(result.recordset);</span>
+	        let categoriaFlujoModel: CategoriaFlujoModel = Container.get(CategoriaFlujoModel);
+            const sqlGetSteps = await this.databaseConnection.getPool();
+            const result = await sqlGetSteps.query(`SELECT Id_CategoriaFlujo ,NomCategoriaFlujo,Activo,Fecha,Usuario FROM categoriaFlujo where Activo=1`);
+            categoriaFlujoModel = Object.assign(categoriaFlujoModel, result.recordset);
+        	return categoriaFlujoModel;
         }catch(error){
-            return error
+<span class="cstat-no" title="statement not covered" >            return error</span>
         }
     }
 }
@@ -304,7 +313,7 @@ export class FlujoListDAO {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Thu Nov 07 2019 14:12:55 GMT-0500 (GMT-05:00)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Fri Nov 08 2019 11:48:33 GMT-0500 (GMT-05:00)
 </div>
 </div>
 <script src="..\prettify.js"></script>

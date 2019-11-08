@@ -11,9 +11,17 @@ test('should return false given external link', () => {
 });
 
 test('getCategoriasFlujo should return true', async () => {
-  /*Container.bind(DatabaseConnection).to(DatabaseConnection).scope(Scope.Local);
+  Container.bind(DatabaseConnection).to(DatabaseConnection).scope(Scope.Local);
   let flujoListDAO: FlujoListDAO = Container.get(FlujoListDAO);
   let data = await flujoListDAO.getCategoriaFlujoList();
-  console.log(data);*/
-  expect(1 == 1).toBe(true);
+  console.log(typeof(data));
+  console.log(data);
+  let obj = [{ 
+    "Id_CategoriaFlujo":1,
+    "NomCategoriaFlujo":"Instalacion",
+    "Activo":true,
+    "Fecha": "2019-10-30T10:04:00",
+    "Usuario":"soporte"
+  }];
+  expect.arrayContaining(obj);
 });
