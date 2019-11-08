@@ -35,7 +35,8 @@ export default {
     password: process.env.DB_PASSWORD || '',
     server: process.env.DB_HOST || '',
     database: process.env.DB_DATABASE || '',
-    port: Number.parseInt(process.env.DB_PORT || '') || 0
+    port: Number.parseInt(process.env.DB_PORT || '') || 0,
+    parseJSON: true,
   },
 
   serviceHeader: {
