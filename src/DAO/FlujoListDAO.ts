@@ -24,8 +24,7 @@ export class FlujoListDAO {
         }
     }
   //OBTIENE EL LISTADO DE PASOS DE LA CONSULTA EN FORMATO JSON
-	public async getFlujoList(request:any):Promise<void> {
-		console.log(request)
+	public async getFlujoList():Promise<void> {
 		try{
 			
 			const sqlGetSteps = await this.databaseConnection.getPool()
@@ -65,8 +64,10 @@ export class FlujoListDAO {
 						,c.NomCuestionario
 						,c.Descripcion
 						FOR JSON PATH, ROOT('pasos')`)
-			//console.log(result)
-			return  result.recordsets
+			let data:any = result.recordsets
+			return  data
+			console.log(result)
+
 		}catch(error){
 			return error
 		}
