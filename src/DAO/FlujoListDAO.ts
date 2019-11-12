@@ -114,7 +114,8 @@ export class FlujoListDAO {
 						,c.NomCuestionario
 						,c.Descripcion
 						FOR JSON PATH, ROOT('pasos')`)
-			return  result
+			let data:any = result.recordsets
+			return  data
 			console.log(result)
 
 		}catch(error){
