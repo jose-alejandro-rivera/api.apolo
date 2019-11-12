@@ -47,5 +47,18 @@ export default class FlujoRouter {
         }
       }
     )
+
+    this.app.get(
+      '/flujos/completos',
+      async (req: Request, res: Response, next: NextFunction) => {
+        try {
+          const flujoController: FlujoController = Container.get(FlujoController);
+          let responseModel = await flujoController.getFlujoListaCompleta();
+          res.status(200).send(responseModel);
+        } catch(error) {
+          console.log(error)
+        }
+      }
+    )
   }
 }

@@ -34,6 +34,15 @@ export default class FlujoController {
         }
     }
 
+	async getFlujoListaCompleta():Promise<void>{
+	        try{
+	           const result = await this.FlujoListDAO.getFlujosComplete();
+	           return result;
+	        }catch(error){
+	            console.log(error)
+	        }
+	    }
+
 	async getSteps(request: any):Promise<void>{
 		try{
 			const responseDao = await this.FlujoListDAO.getFlujoList()
