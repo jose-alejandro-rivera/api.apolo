@@ -16,10 +16,18 @@ export default class FlujoController {
 		this.flujos =[]
 	}
 
-	async getCategoriaFlujo(): Promise<any>{
+	async getCategoriaFlujo(req: Request, res: Response, next: NextFunction): Promise<any>{
   	try{
     	const result = await this.FlujoListDAO.getCategoriaFlujoList();
-      return result;
+		let categoriaFlujoModel: CategoriaFlujoModel = Container.get(CategoriaFlujoModel);
+		if (result.rowsAffected[0] == 0) {
+			console.log("lista sin registros");
+			return res.status(200).json({ 'status': 200, 'response': "no existen elementos creados para la consulta" });
+		} else {
+			categoriaFlujoModel = Object.assign(categoriaFlujoModel, result.recordset);
+			return categoriaFlujoModel;
+		}
+        return result;
     }catch(error){
       console.log(error)
     }

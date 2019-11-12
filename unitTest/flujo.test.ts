@@ -14,8 +14,6 @@ test('getCategoriasFlujo should return true', async () => {
   Container.bind(DatabaseConnection).to(DatabaseConnection).scope(Scope.Local);
   let flujoListDAO: FlujoListDAO = Container.get(FlujoListDAO);
   let data = await flujoListDAO.getCategoriaFlujoList();
-  console.log(typeof(data));
-  console.log(data);
   let obj = [{ 
     "Id_CategoriaFlujo":1,
     "NomCategoriaFlujo":"Instalacion",
@@ -24,4 +22,20 @@ test('getCategoriasFlujo should return true', async () => {
     "Usuario":"soporte"
   }];
   expect.arrayContaining(obj);
+});
+
+
+
+test('getCategoriasFlujo should return error', async () => {
+  Container.bind(DatabaseConnection).to(DatabaseConnection).scope(Scope.Local);
+  let flujoListDAO: FlujoListDAO = Container.get(FlujoListDAO);
+  let data = await flujoListDAO.getCategoriaFlujoList();
+  let obj = [{ 
+    "Id_CategoriaFlujo":1,
+    "NomCategoriaFlujo":"Cursos de Cocina",
+    "Activo":true,
+    "Fecha": "2019-10-30T10:04:00",
+    "Usuario":"soporte"
+  }];
+  expect.not.arrayContaining(obj);
 });

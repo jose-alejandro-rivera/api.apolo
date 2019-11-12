@@ -40,7 +40,7 @@ export default class FlujoRouter {
       async (req: Request, res: Response, next: NextFunction) => {
         try {
           const flujoController: FlujoController = Container.get(FlujoController);
-          let responseModel = await flujoController.getCategoriaFlujo();
+          let responseModel = await flujoController.getCategoriaFlujo(req, res, next);
           res.status(200).send(responseModel);
         } catch(error) {
           console.log(error)

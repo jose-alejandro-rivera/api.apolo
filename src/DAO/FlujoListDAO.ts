@@ -1,33 +1,33 @@
-import   Conections  from "../connet"
-import Conection  from '../loaders/databaseLoader'
+import Conections from "../connet"
+import Conection from '../loaders/databaseLoader'
 import * as sql from 'mssql'
-import CategoriaFlujoModel  from '../Models/CategoriaFlujoModels'
-import {Container, Inject} from "typescript-ioc";
+import CategoriaFlujoModel from '../Models/CategoriaFlujoModels'
+import { Container, Inject } from "typescript-ioc";
 
 /**
  * 
  * @category DAO
  */
 export class FlujoListDAO {
-	
+
 	constructor(@Inject private databaseConnection: Conection) {
 		// code...
 	}
 
-	public async getFlujosPorCategoria(Id_CategoriaFlujo:number):Promise<void> {
-        try{
-            const sqlGetSteps = await this.databaseConnection.getPool();
-            const result = await sqlGetSteps.query(`SELECT Id_Flujo,NomFlujo,CodCategoriaFlujo,CodPaso_Inicial,Descripcion,Orden,Activo,Fecha,Usuario FROM Flujo where Activo=1 AND CodCategoriaFlujo=${Id_CategoriaFlujo}`);
-            return Object.assign(result.recordset);
-        }catch(error){
-            return error
-        }
-    }
+	public async getFlujosPorCategoria(Id_CategoriaFlujo: number): Promise<void> {
+		try {
+			const sqlGetSteps = await this.databaseConnection.getPool();
+			const result = await sqlGetSteps.query(`SELECT Id_Flujo,NomFlujo,CodCategoriaFlujo,CodPaso_Inicial,Descripcion,Orden,Activo,Fecha,Usuario FROM Flujo where Activo=1 AND CodCategoriaFlujo=${Id_CategoriaFlujo}`);
+			return Object.assign(result.recordset);
+		} catch (error) {
+			return error
+		}
+	}
 
-	public async getFlujosComplete():Promise<void> {
-	        try{
-	            const sqlGetSteps = await this.databaseConnection.getPool();
-	            const result = await sqlGetSteps.request().query(`SELECT f.Id_Flujo,
+	public async getFlujosComplete(): Promise<void> {
+		try {
+			const sqlGetSteps = await this.databaseConnection.getPool();
+			const result = await sqlGetSteps.request().query(`SELECT f.Id_Flujo,
 														f.NomFlujo,
 													(SELECT cf.Id_CategoriaFlujo as 'Id_CategoriaFlujo',
 														cf.NomCategoriaFlujo as 'NomCategoriaFlujo',
@@ -68,18 +68,18 @@ export class FlujoListDAO {
 														f.Activo
 													FROM Flujo AS f
 													FOR JSON PATH, ROOT('flujo')`);
-	            return Object.assign(result.recordset);
-	        }catch(error){
-	            return error
-	        }
-	    }
-  //OBTIENE EL LISTADO DE PASOS DE LA CONSULTA EN FORMATO JSON
-	public async getFlujoList():Promise<void> {
-		try{
-			
+			return Object.assign(result.recordset);
+		} catch (error) {
+			return error
+		}
+	}
+	//OBTIENE EL LISTADO DE PASOS DE LA CONSULTA EN FORMATO JSON
+	public async getFlujoList(): Promise<void> {
+		try {
+
 			const sqlGetSteps = await this.databaseConnection.getPool()
-			let result:any = await sqlGetSteps.request()
-			.query(`SELECT DISTINCT 
+			let result: any = await sqlGetSteps.request()
+				.query(`SELECT DISTINCT 
 						  p.Id_Paso as 'pasosProceso.Id_Paso'
 						  ,p.NomPaso  as 'pasosProceso.NomPaso'
 						  ,p.Descripcion as 'pasosProceso.Descripcion'
@@ -114,26 +114,22 @@ export class FlujoListDAO {
 						,c.NomCuestionario
 						,c.Descripcion
 						FOR JSON PATH, ROOT('pasos')`)
-			let data:any = result.recordsets
-			return  data
+			let data: any = result.recordsets
+			return data
 			console.log(result)
 
-		}catch(error){
+		} catch (error) {
 			return error
 		}
 	}
 
-	 public async getCategoriaFlujoList():Promise<CategoriaFlujoModel> {
-        try{
-	        let categoriaFlujoModel: CategoriaFlujoModel = Container.get(CategoriaFlujoModel);
-            const sqlGetSteps = await this.databaseConnection.getPool();
-            const result = await sqlGetSteps.query(`SELECT Id_CategoriaFlujo ,NomCategoriaFlujo,Activo,Fecha,Usuario FROM categoriaFlujo where Activo=1`);
-            categoriaFlujoModel = Object.assign(categoriaFlujoModel, result.recordset);
-        	return categoriaFlujoModel;
-        }catch(error){
-            return error
-        }
-    }
+	public async getCategoriaFlujoList(){
+		try {
+			const sqlGetSteps = await this.databaseConnection.getPool();
+			const result = await sqlGetSteps.query(`SELECT Id_CategoriaFlujo,NomCategoriaFlujo,Activo,Fecha,Usuario FROM categoriaFlujo where Activo=1`);
+			return result;
+		} catch (error) {
+			return error
+		}
+	}
 }
-//const FlujoListDao = new FlujoListDAO()
-//export default new FlujoListDAO()
