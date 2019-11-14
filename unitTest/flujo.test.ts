@@ -39,3 +39,58 @@ test('getCategoriasFlujo should return error', async () => {
   }];
   expect.not.arrayContaining(obj);
 });
+
+test('getFlujosCompletos list should return true', async () => {
+  Container.bind(DatabaseConnection).to(DatabaseConnection).scope(Scope.Local);
+  let flujoListDAO: FlujoListDAO = Container.get(FlujoListDAO);
+  let data = await flujoListDAO.getFlujosComplete();
+  let obj = [ { 
+    "Id_Flujo":1,
+    "NomFlujo":"Instalacion de Internet",
+    "CodCategoriaFlujo":1,
+    "CodPaso_Inicial":1,
+    "Descripcion":"proceso realizado en casa",
+    "Orden":1,
+    "Activo":true,
+    "Fecha":"2019-10-30T16:07:00",
+    "Usuario":"soporte"
+ }];
+  expect.arrayContaining(obj);
+});
+
+test('getFlujosCompletos list should return true', async () => {
+  Container.bind(DatabaseConnection).to(DatabaseConnection).scope(Scope.Local);
+  let flujoListDAO: FlujoListDAO = Container.get(FlujoListDAO);
+  let data = await flujoListDAO.getFlujosComplete();
+  let obj = [ { 
+    "Id_Flujo":1,
+    "NomFlujo":"Instalacion de Internet",
+    "CodCategoriaFlujo":0,
+    "CodPaso_Inicial":1,
+    "Descripcion":"proceso realizado en casa",
+    "Orden":1,
+    "Activo":true,
+    "Fecha":"2019-10-30T16:07:00",
+    "Usuario":"soporte"
+ }];
+  expect.not.arrayContaining(obj);
+});
+
+
+test('getFlujosCompletos cuestionario should return true', async () => {
+  Container.bind(DatabaseConnection).to(DatabaseConnection).scope(Scope.Local);
+  let flujoListDAO: FlujoListDAO = Container.get(FlujoListDAO);
+  let data = await flujoListDAO.getFlujosComplete();
+  let obj = [ { 
+    "Id_Flujo":1,
+    "NomFlujo":"Instalacion de Internet",
+    "CodCategoriaFlujo":0,
+    "CodPaso_Inicial":1,
+    "Descripcion":"proceso realizado en casa",
+    "Orden":1,
+    "Activo":true,
+    "Fecha":"2019-10-30T16:07:00",
+    "Usuario":"soporte"
+ }];
+  expect.not.arrayContaining(obj);
+});

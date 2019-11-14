@@ -116,14 +116,13 @@ export class FlujoListDAO {
 						FOR JSON PATH, ROOT('pasos')`)
 			let data: any = result.recordsets
 			return data
-			console.log(result)
 
 		} catch (error) {
 			return error
 		}
 	}
 
-	public async getCategoriaFlujoList(){
+	public async getCategoriaFlujoList() {
 		try {
 			const sqlGetSteps = await this.databaseConnection.getPool();
 			const result = await sqlGetSteps.query(`SELECT Id_CategoriaFlujo,NomCategoriaFlujo,Activo,Fecha,Usuario FROM categoriaFlujo where Activo=1`);
@@ -132,4 +131,20 @@ export class FlujoListDAO {
 			return error
 		}
 	}
+
+	public async validateFlujoExist(Id_Flujo: number): Promise<boolean> {
+		try {
+			const sqlGetSteps = await this.databaseConnection.getPool();
+			const result = await sqlGetSteps.query(`SELECT Id_Flujo,NomFlujo,CodCategoriaFlujo,CodPaso_Inicial,Descripcion,Orden,Activo,Fecha,Usuario FROM Flujo where Activo=1 AND Id_Flujo=${Id_Flujo}`);
+			if (result.rowsAffected[0] > 0) {
+				return true;
+			} else {
+				return false;
+			}
+
+		} catch (error) {
+			return error
+		}
+	}
+
 }
