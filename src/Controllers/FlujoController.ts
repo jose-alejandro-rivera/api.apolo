@@ -21,7 +21,7 @@ export default class FlujoController {
 			const result = await this.FlujoListDAO.getCategoriaFlujoList();
 			let categoriaFlujoModel: CategoriaFlujoModel;
 			if (result.rowsAffected[0] == 0) {
-				return res.status(200).json({ 'status': 200, 'response': "no existen elementos creados para la consulta" });
+				return res.status(201).json({ 'status': 201, 'response': "no existen elementos creados para la consulta" });
 			} else {
 				categoriaFlujoModel = Object.assign(result.recordset);
 				return categoriaFlujoModel;

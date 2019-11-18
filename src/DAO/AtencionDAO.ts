@@ -8,18 +8,37 @@ import { Container, Inject } from "typescript-ioc";
  * 
  * @category DAO
  */
-export class FlujoListDAO {
+export class AtencionDAO {
 
 	constructor(@Inject private databaseConnection: Conection) {
 		// code...
 	}
-	public async createAtencion(Id_Flujo: number){
+ 
+	public async createAtencion(data: any){
 		try {
+			let { CodLogin, CodFlujo } = data;
 			const sqlGetSteps = await this.databaseConnection.getPool();
-			const result = await sqlGetSteps.query(`SELECT Id_CategoriaFlujo,NomCategoriaFlujo,Activo,Fecha,Usuario FROM categoriaFlujo where Activo=1`);
-			return result;
+			const result = await sqlGetSteps.query(`INSERT INTO Atencion (CodLogin, CodFlujo, Fecha) VALUES (${CodLogin},${CodFlujo},getdate()); SELECT SCOPE_IDENTITY() as Id_Atencion;`);
+			return result.recordset[0];
 		} catch (error) {
 			return error
 		}
 	}
+
+	public async validateAtencion(data: any){
+		try {
+			let { CodLogin, CodFlujo } = data;
+			const sqlGetSteps = await this.databaseConnection.getPool();
+			let validateLogin = await sqlGetSteps.query`SELECT * FROM Login WHERE Id_Login = ${CodLogin}`
+			let validateFlujo = await sqlGetSteps.query`SELECT * FROM Flujo WHERE Id_Flujo = ${CodFlujo}`
+			if(validateLogin.recordset.length > 0 && validateFlujo.recordset.length > 0 ){
+				return true;
+			}else{
+				return false;
+			}
+		} catch (error) {
+			return error
+		}
+	}
+
 }
