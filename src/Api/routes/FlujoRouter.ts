@@ -47,7 +47,7 @@ export default class FlujoRouter {
         }
       }
     )
-
+    
     this.app.get(
       '/flujos/completos',
       async (req: Request, res: Response, next: NextFunction) => {

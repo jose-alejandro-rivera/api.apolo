@@ -19,7 +19,8 @@ export class AtencionDAO {
 			let { CodLogin, CodFlujo } = data;
 			const sqlGetSteps = await this.databaseConnection.getPool();
 			const result = await sqlGetSteps.query(`INSERT INTO Atencion (CodLogin, CodFlujo, Fecha) VALUES (${CodLogin},${CodFlujo},getdate()); SELECT SCOPE_IDENTITY() as Id_Atencion;`);
-			return result.recordset[0];
+			console.log(result.recordset);
+			return result.recordset;
 		} catch (error) {
 			return error
 		}
