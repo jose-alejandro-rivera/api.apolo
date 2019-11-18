@@ -14,7 +14,7 @@ export default class AtencionRoute {
             try {
                 const atencionController: AtencionController = Container.get(AtencionController);
                 let responseModel = atencionController.createAtencion(req, res, next);
-                return res.status(200).send([{Id_Atencion: 10032 }]);
+                return responseModel;
               } catch(error) {
                 console.log(error)
               }

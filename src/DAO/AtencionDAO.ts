@@ -30,8 +30,8 @@ export class AtencionDAO {
 		try {
 			let { CodLogin, CodFlujo } = data;
 			const sqlGetSteps = await this.databaseConnection.getPool();
-			let validateLogin = await sqlGetSteps.query`SELECT * FROM Login WHERE Id_Login = ${CodLogin}`
-			let validateFlujo = await sqlGetSteps.query`SELECT * FROM Flujo WHERE Id_Flujo = ${CodFlujo}`
+			let validateLogin = await sqlGetSteps.query`SELECT * FROM Login WHERE Id_Login = ${CodLogin}`;
+			let validateFlujo = await sqlGetSteps.query`SELECT * FROM Flujo WHERE Id_Flujo = ${CodFlujo}`;
 			if(validateLogin.recordset.length > 0 && validateFlujo.recordset.length > 0 ){
 				return true;
 			}else{

@@ -22,7 +22,7 @@ export default class FlujoController {
 			const validation = await this.AtencionDAO.validateAtencion(req.body);
 			if (validation) {
 				const result = await this.AtencionDAO.createAtencion(req.body);
-				return result;
+				return res.status(200).json(result);
 			} else {
 				return res.status(201).json({ 'status': 201, 'response': "informacion incompleta" });
 			}
