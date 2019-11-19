@@ -1,9 +1,10 @@
-import { Router } from 'express'
-import FlujoController  from '../../controllers/FlujoController'
+import { Router } from 'express';
+import ProcesoController  from '../../controllers/ProcesoController';
+import { Request, Response, NextFunction } from 'express';
 import { Container } from "typescript-ioc";
-import { Request, Response, NextFunction } from 'express'
 
-export default class ProcesoRoute{
+
+export default class ProcesoRoute {
 	private app:Router
 	constructor(router:Router){
 		this.app = router
@@ -20,6 +21,28 @@ export default class ProcesoRoute{
 					console.log(error)
 				}
 
+			}
+		)
+
+		this.app.post('/proceso/fake/',
+			async (req: Request, res: Response, next: NextFunction) => {
+			  try {
+				let { Id_Proceso , TipoServicio, Servicio } = req.params
+				console.log(Id_Proceso,TipoServicio,Servicio);
+				return res.status(200).json({ 'status': 200, 'response': "procesos " + req.params.id + "ok" });
+			  } catch(error) {
+				console.log(error)
+			  }
+			}
+		)
+
+		this.app.post('/proceso/fake/ok',
+			async (req: Request, res: Response, next: NextFunction) => {
+			  try {
+				return res.status(200).json({ 'status': 200, 'response': "ok" });
+			  } catch(error) {
+				console.log(error)
+			  }
 			}
 		)
 	}

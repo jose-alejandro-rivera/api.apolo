@@ -19,7 +19,8 @@ export default class FlujoController {
 
 	async createAtencion(req: Request, res: Response, next: NextFunction): Promise<any> {
 		try {
-			const validation = await this.AtencionDAO.validateAtencion(req.body);
+			let { CodLogin, CodFlujo } = req.body;
+			const validation = await this.AtencionDAO.validateAtencion(CodLogin, CodFlujo);
 			if (validation) {
 				const result = await this.AtencionDAO.createAtencion(req.body);
 				return res.status(200).json(result);

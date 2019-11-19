@@ -1,6 +1,5 @@
 import express = require('express');
-import morgan from 'morgan'
-//import config from './config';
+import morgan from 'morgan';
 
 const app: express.Application = express();
 

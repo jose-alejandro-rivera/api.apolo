@@ -1,6 +1,4 @@
 import { Router, Request, Response, NextFunction } from 'express'
-import FlujoController  from '../controllers/FlujoController'
-import { Container } from "typescript-ioc"
 import bodyParser from 'body-parser'
 import morgan from 'morgan'
 import cors from 'cors'
@@ -8,11 +6,12 @@ import flujoRouter from './routes/FlujoRouter'
 import  procesoRouter from './routes/ProcesoRouter'
 import  atencionRouter from './routes/AtencionRouter'
 
-class FlujoRouter {
+class GeneralRouter {
   public router:Router
   private routesFlujo:any
   private routesPasos:any
   private routesAtencion:any
+  private routesProceso:any
 
   constructor() {
     this.router = Router()
@@ -23,6 +22,7 @@ class FlujoRouter {
     this.routesFlujo.router()
     this.routesPasos.router()
     this.routesAtencion.router()
+    this.routesProceso.router()
   }
   config(){
     this.router.use(bodyParser.json());
@@ -38,7 +38,8 @@ class FlujoRouter {
     this.routesFlujo = new flujoRouter(this.router)
     this.routesPasos = new procesoRouter(this.router)
     this.routesAtencion = new atencionRouter(this.router)
+    this.routesProceso = new procesoRouter(this.router)
   }
 }
-const FlujoRouters =  new FlujoRouter
-export default FlujoRouters.router
+const GeneralRouters =  new GeneralRouter
+export default GeneralRouters.router

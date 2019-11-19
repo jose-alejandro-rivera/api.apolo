@@ -26,9 +26,8 @@ export class AtencionDAO {
 		}
 	}
 
-	public async validateAtencion(data: any){
+	public async validateAtencion(CodLogin: number, CodFlujo: number){
 		try {
-			let { CodLogin, CodFlujo } = data;
 			const sqlGetSteps = await this.databaseConnection.getPool();
 			let validateLogin = await sqlGetSteps.query`SELECT * FROM Login WHERE Id_Login = ${CodLogin}`;
 			let validateFlujo = await sqlGetSteps.query`SELECT * FROM Flujo WHERE Id_Flujo = ${CodFlujo}`;
