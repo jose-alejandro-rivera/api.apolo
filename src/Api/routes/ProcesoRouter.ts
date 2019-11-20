@@ -23,13 +23,11 @@ export default class ProcesoRoute {
 		)
 
 		this.app.post('/proceso/fake',
-			async (req: Request, res: Response, next: NextFunction) => {
+			(req: Request, res: Response, next: NextFunction) => {
 			  try {
-				console.log(req.params);
-				let { Id_Proceso , TipoServicio, Servicio } = req.params
-				console.log(Id_Proceso + TipoServicio + Servicio);
+				let { Id_Proceso , TipoServicio, Servicio } = req.body
 				if (Id_Proceso && TipoServicio && Servicio){
-					return res.status(200).json({ 'status': 200, 'response': "procesos " + Id_Proceso + "ok" });
+					return res.status(200).json({ 'status': 200, 'response': "procesos " + Id_Proceso + " ok" });
 				}
 				else{
 					return res.status(201).json({ 'status': 201, 'response': "informacion incompleta" });
