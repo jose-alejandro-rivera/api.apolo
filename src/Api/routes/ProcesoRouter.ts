@@ -11,8 +11,7 @@ export default class ProcesoRoute {
 	}
 
 	router():void{
-		this.app.get(
-			'/proceso/list',
+		this.app.get('/proceso/list', 
 			(req: Request, res: Response, next: NextFunction) => {
 				try{
 					console.log('services new route')
@@ -20,23 +19,26 @@ export default class ProcesoRoute {
 				}catch(error){
 					console.log(error)
 				}
-
 			}
 		)
 
-		this.app.post('/proceso/fake/',
-			async (req: Request, res: Response, next: NextFunction) => {
+		this.app.post('/proceso/fake',
+			(req: Request, res: Response, next: NextFunction) => {
 			  try {
-				let { Id_Proceso , TipoServicio, Servicio } = req.params
-				console.log(Id_Proceso,TipoServicio,Servicio);
-				return res.status(200).json({ 'status': 200, 'response': "procesos " + req.params.id + "ok" });
+				let { Id_Proceso , TipoServicio, Servicio } = req.body
+				if (Id_Proceso && TipoServicio && Servicio){
+					return res.status(200).json({ 'status': 200, 'response': "procesos " + Id_Proceso + " ok" });
+				}
+				else{
+					return res.status(201).json({ 'status': 201, 'response': "informacion incompleta" });
+				}
 			  } catch(error) {
 				console.log(error)
 			  }
 			}
 		)
 
-		this.app.post('/proceso/fake/ok',
+		this.app.get('/proceso/fake/ok',
 			async (req: Request, res: Response, next: NextFunction) => {
 			  try {
 				return res.status(200).json({ 'status': 200, 'response': "ok" });

@@ -1,8 +1,6 @@
 import { Container, Scope } from 'typescript-ioc';
-import CategoriaFlujoModel from '../src/Models/CategoriaFlujoModels';
-import FlujoModels from '../src/Models/FlujoModels';
 import { FlujoListDAO } from '../src/DAO/FlujoListDAO';
-import { charge } from './mocks/chargeJson';
+import { AtencionDAO } from '../src/DAO/AtencionDAO';
 import DatabaseConnection from '../src/loaders/databaseLoader'
 
 
@@ -93,4 +91,16 @@ test('getFlujosCompletos cuestionario should return true', async () => {
     "Usuario":"soporte"
  }];
   expect.not.arrayContaining(obj);
+});
+
+test('createAtencion should return true', async () => {
+  Container.bind(DatabaseConnection).to(DatabaseConnection).scope(Scope.Local);
+  let atencionDAO: AtencionDAO = Container.get(AtencionDAO);
+  let inData = {
+    "CodLogin":1,
+    "CodFlujo":1
+   };
+  let data = await atencionDAO.createAtencion(inData);
+  let last = await atencionDAO.lastAtencion();
+  expect(data).toEqual(last);
 });
