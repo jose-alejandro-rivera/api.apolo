@@ -49,9 +49,9 @@ export default class FlujoController {
 		}
 	}
 
-	async getSteps(request: any): Promise<void> {
+	async getSteps(id: any): Promise<void> {
 		try {
-			const responseDao = await this.FlujoListDAO.getFlujoList()
+			const responseDao = await this.FlujoListDAO.getFlujoList(id)
 			const responseLoginModel = responseDao
 			return responseLoginModel
 		} catch (error) {
