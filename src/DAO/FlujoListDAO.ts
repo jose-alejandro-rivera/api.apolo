@@ -106,8 +106,8 @@ export class FlujoListDAO {
 											,ps.Id_Paso
 											,tp.Id_TipoPaso
 											,tp.NomTipoPaso
-										 FOR JSON PATH, ROOT('tipoPaso')
-										) AS tipo_paso
+										 FOR JSON PATH
+										) AS Pasos
 
 									,( SELECT 
 											 fp.Id_FlujoPaso 
@@ -119,8 +119,8 @@ export class FlujoListDAO {
 											,fp.finaliza 
 									  FROM FlujoPaso fp 
 									  WHERE CodFlujo = @id_flujo AND fp.Activo = @activo
-									  FOR JSON PATH, ROOT('flujoPaso')
-									) AS flujo_paso 
+									  FOR JSON PATH
+									) AS FlujoPasos 
 
 									,( SELECT
 											 ct.Id_Cuestionario  
@@ -165,8 +165,8 @@ export class FlujoListDAO {
 											,ca.ExpresionRegular
 											,ps.Id_Paso
 										ORDER BY ps.Id_Paso ASC
-										FOR JSON PATH, ROOT('paso_cuestionario')
-									) AS pasoCuestionario
+										FOR JSON PATH
+									) AS Cuestionarios
 
 									,( SELECT  
 									    pc.Id_Proceso
@@ -196,14 +196,14 @@ export class FlujoListDAO {
 										  ,pcs.NomProcesoSalida
 										  ,pcs.Sigla
 										  ,pcs.Criterio_Busqueda
-									  FOR JSON PATH, ROOT('paso_proceso')
-									) AS pasoProcesos
+									  FOR JSON PATH
+									) AS Procesos
 									FROM Flujo fl
 									LEFT JOIN FlujoPaso fp ON fp.CodFlujo = fl.CodCategoriaFlujo
 									LEFT JOIN Paso ps ON ps.Id_Paso = fl.CodPaso_inicial
 									LEFT JOIN TipoPaso tp ON tp.Id_TipoPaso = ps.CodTipoPaso
 									WHERE fl.Id_flujo = @id_flujo AND fl.Activo = @activo
-									FOR JSON PATH, ROOT('Flujo')`)
+									FOR JSON PATH`)
 			if(queryFlujo.rowsAffected > 0){
 				data = {
 					status: 200,
