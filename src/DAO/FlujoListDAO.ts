@@ -91,6 +91,21 @@ export class FlujoListDAO {
 									,fl.Orden 
 
 									,( SELECT 
+											 tp.Id_TipoPaso
+											,tp.NomTipoPaso
+											,ps.Id_Paso
+										 FROM Paso ps 
+										 INNER JOIN FlujoPaso AS fp ON fp.CodPaso_Origen = ps.Id_Paso  OR fp.CodPaso_Destino = ps.Id_Paso
+										 INNER JOIN TipoPaso	tp ON tp.Id_TipoPaso = ps.CodTipoPaso
+										 WHERE fp.CodFlujo = @id_flujo AND tp.Activo = @activo
+										 GROUP BY 
+											 ps.Id_Paso
+											,tp.Id_TipoPaso
+											,tp.NomTipoPaso
+										 FOR JSON PATH, ROOT('tipoPaso')
+										) AS tipo_paso
+
+									,( SELECT 
 											 fp.Id_FlujoPaso 
 											,fp.CodFlujo 
 											,fp.CodPaso_Origen 
@@ -145,6 +160,7 @@ export class FlujoListDAO {
 											,ca.Longitud 
 											,ca.ExpresionRegular
 											,ps.Id_Paso
+										ORDER BY ps.Id_Paso ASC
 										FOR JSON PATH, ROOT('paso_cuestionario')
 									) AS pasoCuestionario
 
