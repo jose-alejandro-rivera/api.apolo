@@ -94,6 +94,8 @@ export class FlujoListDAO {
 											 tp.Id_TipoPaso
 											,tp.NomTipoPaso
 											,ps.Id_Paso
+											,ps.NomPaso
+											,ps.Descripcion
 										 FROM Paso ps 
 										 INNER JOIN FlujoPaso AS fp ON fp.CodPaso_Origen = ps.Id_Paso  OR fp.CodPaso_Destino = ps.Id_Paso
 										 INNER JOIN TipoPaso	tp ON tp.Id_TipoPaso = ps.CodTipoPaso
