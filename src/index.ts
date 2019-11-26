@@ -5,14 +5,12 @@ import expressValidator  from 'express-validator'
 import bodyParser from 'body-parser'
 import dotenv  from 'dotenv'
 
-import flujoRouter from './api/routes/FlujoRouter'
 //const express = require('express')
 class Server{
 	public app: express.Application
 	constructor(){
 		this.app = express()
 		this.config()
-		this.routes()
 	}
 
 	config(){
@@ -31,11 +29,6 @@ class Server{
 		  'methods': 'GET,HEAD,PUT,PATCH,POST,DELETE',
 		  'preflightContinue': false
 		}))
-
-	}
-
-	routes(){
-		this.app.use('/',flujoRouter)
 
 	}
 

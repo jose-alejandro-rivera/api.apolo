@@ -15,9 +15,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@types/jest": "^24.0.22",
     "@types/app-root-path": "^1.2.4",
+    "@types/jest": "^24.0.22",
     "@types/node": "^12.12.5",
+    "@types/swagger-jsdoc": "^3.0.2",
     "@types/swagger-ui-express": "^3.0.1",
     "app-root-path": "^3.0.0",
     "body-parser": "^1.19.0",
@@ -28,6 +29,7 @@
     "express-validator": "^3.2.0",
     "msnodesqlv8": "^0.8.4",
     "mssql": "^5.1.0",
+    "swagger-jsdoc": "^3.4.0",
     "swagger-ui-express": "^4.1.2",
     "typescript-ioc": "^1.2.5",
     "winston": "^3.2.1"
