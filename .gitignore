@@ -2,3 +2,4 @@
 /node_modules
 /src/Config/environments/*
 /build
+app.log
