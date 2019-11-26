@@ -79,7 +79,7 @@ export class FlujoListDAO {
 		try {
 			let activo = 1;
 			const connect = await this.databaseConnection.getPool()
-			let queryFlujo: any = await connect.request()
+			let queryFlujo:any = await connect.request()
 				.input('id_flujo',sql.Int,id)
 				.input('activo',sql.BigInt,activo)
 				.query(`SELECT DISTINCT
@@ -91,59 +91,80 @@ export class FlujoListDAO {
 									,fl.Orden 
 
 									,( SELECT 
-										 fp.Id_FlujoPaso 
-										,fp.CodFlujo 
-										,fp.CodPaso_Origen 
-										,fp.CodPaso_Destino 
-										,fp.Orden
-										,fp.ExpresionEjecucion
-										,fp.finaliza 
-									   FROM FlujoPaso fp WHERE CodFlujo = @id_flujo AND fp.Activo = @activo
+											 tp.Id_TipoPaso
+											,tp.NomTipoPaso
+											,ps.Id_Paso
+											,ps.NomPaso
+											,ps.Descripcion
+										 FROM Paso ps 
+										 INNER JOIN FlujoPaso AS fp ON fp.CodPaso_Origen = ps.Id_Paso  OR fp.CodPaso_Destino = ps.Id_Paso
+										 INNER JOIN TipoPaso	tp ON tp.Id_TipoPaso = ps.CodTipoPaso
+										 WHERE fp.CodFlujo = @id_flujo AND tp.Activo = @activo
+										 GROUP BY 
+										   ps.NomPaso
+											,ps.Descripcion
+											,ps.Id_Paso
+											,tp.Id_TipoPaso
+											,tp.NomTipoPaso
+										 FOR JSON PATH, ROOT('tipoPaso')
+										) AS tipo_paso
+
+									,( SELECT 
+											 fp.Id_FlujoPaso 
+											,fp.CodFlujo 
+											,fp.CodPaso_Origen 
+											,fp.CodPaso_Destino 
+											,fp.Orden
+											,fp.ExpresionEjecucion
+											,fp.finaliza 
+									  FROM FlujoPaso fp 
+									  WHERE CodFlujo = @id_flujo AND fp.Activo = @activo
 									  FOR JSON PATH, ROOT('flujoPaso')
 									) AS flujo_paso 
 
 									,( SELECT
-										 ct.Id_Cuestionario  
-										,ct.NomCuestionario 
-										,ct.Descripcion 
-										,cc.Id_CuestionarioCampo
-										,cc.NomCuestionarioCampo
-										,cc.Sigla 
-										,cc.Orden 
-										,cc.Obligatorio 
-										,cc.CodCampo_Dependencia
-										,cc.CodCuestionario
-										,ca.Id_Campo
-										,ca.NomCampo 
-										,ca.Descripcion AS campoDescripcion
-										,ca.Tipo 
-										,ca.Longitud 
-										,ca.ExpresionRegular
-										,ps.Id_Paso
-									  FROM  Paso ps
+											 ct.Id_Cuestionario  
+											,ct.NomCuestionario 
+											,ct.Descripcion 
+											,cc.Id_CuestionarioCampo
+											,cc.NomCuestionarioCampo
+											,cc.Sigla 
+											,cc.Orden 
+											,cc.Obligatorio 
+											,cc.CodCampo_Dependencia
+											,cc.CodCuestionario
+											,ca.Id_Campo
+											,ca.NomCampo 
+											,ca.Descripcion AS campoDescripcion
+											,ca.Tipo 
+											,ca.Longitud 
+											,ca.ExpresionRegular
+											,ps.Id_Paso
+										  FROM  Paso ps
 										INNER JOIN FlujoPaso AS fp ON fp.CodPaso_Origen = ps.Id_Paso  OR fp.CodPaso_Destino = ps.Id_Paso
 										LEFT JOIN  Cuestionario ct ON ps.CodCuestionario = ct.Id_Cuestionario 
 										INNER JOIN CuestionarioCampo cc ON cc.CodCuestionario = ct.Id_Cuestionario 
 										INNER JOIN Campo ca ON  ca.Id_Campo = cc.CodCampo
 									  WHERE  fp.CodFlujo = @id_flujo AND fp.Activo = @activo AND ps.Activo = @activo AND ct.Activo = @activo
 									  GROUP BY
-										 ct.Id_Cuestionario  
-										,ct.NomCuestionario 
-										,ct.Descripcion 
-										,cc.Id_CuestionarioCampo
-										,cc.NomCuestionarioCampo
-										,cc.Sigla 
-										,cc.Orden 
-										,cc.Obligatorio 
-										,cc.CodCampo_Dependencia
-										,cc.CodCuestionario
-										,ca.Id_Campo
-										,ca.NomCampo 
-										,ca.Descripcion 
-										,ca.Tipo 
-										,ca.Longitud 
-										,ca.ExpresionRegular
-										,ps.Id_Paso
+											 ct.Id_Cuestionario  
+											,ct.NomCuestionario 
+											,ct.Descripcion 
+											,cc.Id_CuestionarioCampo
+											,cc.NomCuestionarioCampo
+											,cc.Sigla 
+											,cc.Orden 
+											,cc.Obligatorio 
+											,cc.CodCampo_Dependencia
+											,cc.CodCuestionario
+											,ca.Id_Campo
+											,ca.NomCampo 
+											,ca.Descripcion 
+											,ca.Tipo 
+											,ca.Longitud 
+											,ca.ExpresionRegular
+											,ps.Id_Paso
+										ORDER BY ps.Id_Paso ASC
 										FOR JSON PATH, ROOT('paso_cuestionario')
 									) AS pasoCuestionario
 
@@ -164,17 +185,17 @@ export class FlujoListDAO {
 										INNER JOIN ProcesoSalida pcs ON pcs.CodProceso = pc.Id_Proceso
 										WHERE fp.CodFlujo = @id_flujo AND fp.Activo = @activo
 									  GROUP BY 
-									   pc.Id_Proceso
-									  ,pc.NomProceso
-									  ,pc.Descripcion
-									  ,pc.Servicio
-									  ,pc.Servicio
-									  ,pc.TipoServicio
-									  ,ps.Id_Paso
-									  ,pcs.Id_ProcesoSalida
-									  ,pcs.NomProcesoSalida
-									  ,pcs.Sigla
-									  ,pcs.Criterio_Busqueda
+										   pc.Id_Proceso
+										  ,pc.NomProceso
+										  ,pc.Descripcion
+										  ,pc.Servicio
+										  ,pc.Servicio
+										  ,pc.TipoServicio
+										  ,ps.Id_Paso
+										  ,pcs.Id_ProcesoSalida
+										  ,pcs.NomProcesoSalida
+										  ,pcs.Sigla
+										  ,pcs.Criterio_Busqueda
 									  FOR JSON PATH, ROOT('paso_proceso')
 									) AS pasoProcesos
 									FROM Flujo fl
@@ -194,9 +215,7 @@ export class FlujoListDAO {
 					rows : []
 				}
 			}
-			
 			return data
-
 		} catch (error) {
 			console.log(error)
 			data = {
