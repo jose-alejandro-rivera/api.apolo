@@ -101,7 +101,9 @@ export class FlujoListDAO {
 										 INNER JOIN TipoPaso	tp ON tp.Id_TipoPaso = ps.CodTipoPaso
 										 WHERE fp.CodFlujo = @id_flujo AND tp.Activo = @activo
 										 GROUP BY 
-											 ps.Id_Paso
+										   ps.NomPaso
+											,ps.Descripcion
+											,ps.Id_Paso
 											,tp.Id_TipoPaso
 											,tp.NomTipoPaso
 										 FOR JSON PATH, ROOT('tipoPaso')
