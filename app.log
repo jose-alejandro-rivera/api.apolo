@@ -800,6 +800,7 @@
 {"message":"Connected to MSSQL","level":"info"}
 {"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
 {"message":"cargando rutas","level":"debug"}
+<<<<<<< HEAD
 {"code":"ESOCKET","originalError":{"message":"Failed to connect to localhost:1433 - Could not connect (sequence)","code":"ESOCKET"},"name":"ConnectionError","level":"error","message":"Database Connection Failed! Bad Config: Failed to connect to localhost:1433 - Could not connect (sequence)","stack":"ConnectionError: Failed to connect to localhost:1433 - Could not connect (sequence)\n    at Connection.<anonymous> (C:\\TOOLBOX-CARGUE-JSON\\api.apolo\\node_modules\\mssql\\lib\\tedious.js:244:17)\n    at Object.onceWrapper (events.js:300:26)\n    at Connection.emit (events.js:210:5)\n    at Connection.EventEmitter.emit (domain.js:476:20)\n    at Connection.socketError (C:\\TOOLBOX-CARGUE-JSON\\api.apolo\\node_modules\\tedious\\lib\\connection.js:1095:12)\n    at C:\\TOOLBOX-CARGUE-JSON\\api.apolo\\node_modules\\tedious\\lib\\connection.js:961:21\n    at SequentialConnectionStrategy.connect (C:\\TOOLBOX-CARGUE-JSON\\api.apolo\\node_modules\\tedious\\lib\\connector.js:121:7)\n    at Socket.onError (C:\\TOOLBOX-CARGUE-JSON\\api.apolo\\node_modules\\tedious\\lib\\connector.js:136:12)\n    at Socket.emit (events.js:210:5)\n    at Socket.EventEmitter.emit (domain.js:476:20)"}
 {"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin.123\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
 {"message":"cargando rutas","level":"debug"}
@@ -3730,4 +3731,336 @@
 {"message":"Connected to MSSQL","level":"info"}
 {"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin.123\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
 {"message":"cargando rutas","level":"debug"}
+=======
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"cargando rutas","level":"debug"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"cargando rutas","level":"debug"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"cargando rutas","level":"debug"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"cargando rutas","level":"debug"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"cargando rutas","level":"debug"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"cargando rutas","level":"debug"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"cargando rutas","level":"debug"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"cargando rutas","level":"debug"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"cargando rutas","level":"debug"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"cargando rutas","level":"debug"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"cargando rutas","level":"debug"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"cargando rutas","level":"debug"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"cargando rutas","level":"debug"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"cargando rutas","level":"debug"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"cargando rutas","level":"debug"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"cargando rutas","level":"debug"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"cargando rutas","level":"debug"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"cargando rutas","level":"debug"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"cargando rutas","level":"debug"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"cargando rutas","level":"debug"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"cargando rutas","level":"debug"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"cargando rutas","level":"debug"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"cargando rutas","level":"debug"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"cargando rutas","level":"debug"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"cargando rutas","level":"debug"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"cargando rutas","level":"debug"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"cargando rutas","level":"debug"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"cargando rutas","level":"debug"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"cargando rutas","level":"debug"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"cargando rutas","level":"debug"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"cargando rutas","level":"debug"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"cargando rutas","level":"debug"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"cargando rutas","level":"debug"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"cargando rutas","level":"debug"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"cargando rutas","level":"debug"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"CWDESDIGBD219\\\\SQLEXPRESS\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"cargando rutas","level":"debug"}
+{"code":"ETIMEOUT","originalError":{"message":"Failed to connect to CWDESDIGBD219\\SQLEXPRESS in 15000ms","code":"ETIMEOUT"},"name":"ConnectionError","level":"error","message":"Database Connection Failed! Bad Config: Failed to connect to CWDESDIGBD219\\SQLEXPRESS in 15000ms","stack":"ConnectionError: Failed to connect to CWDESDIGBD219\\SQLEXPRESS in 15000ms\n    at Connection.tedious.once.err (C:\\Users\\angela.forero\\Desktop\\api.apolo\\node_modules\\mssql\\lib\\tedious.js:244:17)\n    at Object.onceWrapper (events.js:277:13)\n    at Connection.emit (events.js:189:13)\n    at Connection.EventEmitter.emit (domain.js:441:20)\n    at Connection.connectTimeout (C:\\Users\\angela.forero\\Desktop\\api.apolo\\node_modules\\tedious\\lib\\connection.js:1027:10)\n    at Timeout.connectTimer.setTimeout [as _onTimeout] (C:\\Users\\angela.forero\\Desktop\\api.apolo\\node_modules\\tedious\\lib\\connection.js:1001:12)\n    at ontimeout (timers.js:436:11)\n    at tryOnTimeout (timers.js:300:5)\n    at listOnTimeout (timers.js:263:5)\n    at Timer.processTimers (timers.js:223:10)"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"CWDESDIGBD219\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"cargando rutas","level":"debug"}
+{"code":"ETIMEOUT","originalError":{"message":"Failed to connect to CWDESDIGBD219:1433 in 15000ms","code":"ETIMEOUT"},"name":"ConnectionError","level":"error","message":"Database Connection Failed! Bad Config: Failed to connect to CWDESDIGBD219:1433 in 15000ms","stack":"ConnectionError: Failed to connect to CWDESDIGBD219:1433 in 15000ms\n    at Connection.tedious.once.err (C:\\Users\\angela.forero\\Desktop\\api.apolo\\node_modules\\mssql\\lib\\tedious.js:244:17)\n    at Object.onceWrapper (events.js:277:13)\n    at Connection.emit (events.js:189:13)\n    at Connection.EventEmitter.emit (domain.js:441:20)\n    at Connection.connectTimeout (C:\\Users\\angela.forero\\Desktop\\api.apolo\\node_modules\\tedious\\lib\\connection.js:1027:10)\n    at Timeout.connectTimer.setTimeout [as _onTimeout] (C:\\Users\\angela.forero\\Desktop\\api.apolo\\node_modules\\tedious\\lib\\connection.js:1001:12)\n    at ontimeout (timers.js:436:11)\n    at tryOnTimeout (timers.js:300:5)\n    at listOnTimeout (timers.js:263:5)\n    at Timer.processTimers (timers.js:223:10)"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"cargando rutas","level":"debug"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"cargando rutas","level":"debug"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"cargando rutas","level":"debug"}
+{"message":"cargando rutas","level":"debug"}
+{"message":"cargando rutas","level":"debug"}
+{"message":"cargando rutas","level":"debug"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"683457609384576\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"code":"ELOGIN","originalError":{"message":"Login failed for user 'sa'.","code":"ELOGIN"},"name":"ConnectionError","level":"error","message":"Database Connection Failed! Bad Config: Login failed for user 'sa'.","stack":"ConnectionError: Login failed for user 'sa'.\n    at Connection.tedious.once.err (C:\\Users\\angela.forero\\Desktop\\api.apolo\\node_modules\\mssql\\lib\\tedious.js:244:17)\n    at Object.onceWrapper (events.js:277:13)\n    at Connection.emit (events.js:189:13)\n    at Connection.EventEmitter.emit (domain.js:441:20)\n    at Connection.processLogin7Response (C:\\Users\\angela.forero\\Desktop\\api.apolo\\node_modules\\tedious\\lib\\connection.js:1397:14)\n    at Connection.message (C:\\Users\\angela.forero\\Desktop\\api.apolo\\node_modules\\tedious\\lib\\connection.js:1932:14)\n    at Connection.dispatchEvent (C:\\Users\\angela.forero\\Desktop\\api.apolo\\node_modules\\tedious\\lib\\connection.js:1084:36)\n    at MessageIO.messageIo.on (C:\\Users\\angela.forero\\Desktop\\api.apolo\\node_modules\\tedious\\lib\\connection.js:984:14)\n    at MessageIO.emit (events.js:189:13)\n    at MessageIO.EventEmitter.emit (domain.js:441:20)"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"683457609384576\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"code":"ELOGIN","originalError":{"message":"Login failed for user 'sa'.","code":"ELOGIN"},"name":"ConnectionError","level":"error","message":"Database Connection Failed! Bad Config: Login failed for user 'sa'.","stack":"ConnectionError: Login failed for user 'sa'.\n    at Connection.tedious.once.err (C:\\Users\\angela.forero\\Desktop\\api.apolo\\node_modules\\mssql\\lib\\tedious.js:244:17)\n    at Object.onceWrapper (events.js:277:13)\n    at Connection.emit (events.js:189:13)\n    at Connection.processLogin7Response (C:\\Users\\angela.forero\\Desktop\\api.apolo\\node_modules\\tedious\\lib\\connection.js:1397:14)\n    at Connection.message (C:\\Users\\angela.forero\\Desktop\\api.apolo\\node_modules\\tedious\\lib\\connection.js:1932:14)\n    at Connection.dispatchEvent (C:\\Users\\angela.forero\\Desktop\\api.apolo\\node_modules\\tedious\\lib\\connection.js:1084:36)\n    at MessageIO.messageIo.on (C:\\Users\\angela.forero\\Desktop\\api.apolo\\node_modules\\tedious\\lib\\connection.js:984:14)\n    at MessageIO.emit (events.js:189:13)\n    at Message.message.on (C:\\Users\\angela.forero\\Desktop\\api.apolo\\node_modules\\tedious\\lib\\message-io.js:32:14)\n    at Message.emit (events.js:194:15)\n    at endReadableNT (C:\\Users\\angela.forero\\Desktop\\api.apolo\\node_modules\\tedious\\node_modules\\readable-stream\\lib\\_stream_readable.js:1077:12)\n    at process._tickCallback (internal/process/next_tick.js:63:19)"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"683457609384576\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"code":"ELOGIN","originalError":{"message":"Login failed for user 'sa'.","code":"ELOGIN"},"name":"ConnectionError","level":"error","message":"Database Connection Failed! Bad Config: Login failed for user 'sa'.","stack":"ConnectionError: Login failed for user 'sa'.\n    at Connection.tedious.once.err (C:\\Users\\angela.forero\\Desktop\\api.apolo\\node_modules\\mssql\\lib\\tedious.js:244:17)\n    at Object.onceWrapper (events.js:277:13)\n    at Connection.emit (events.js:189:13)\n    at Connection.processLogin7Response (C:\\Users\\angela.forero\\Desktop\\api.apolo\\node_modules\\tedious\\lib\\connection.js:1397:14)\n    at Connection.message (C:\\Users\\angela.forero\\Desktop\\api.apolo\\node_modules\\tedious\\lib\\connection.js:1932:14)\n    at Connection.dispatchEvent (C:\\Users\\angela.forero\\Desktop\\api.apolo\\node_modules\\tedious\\lib\\connection.js:1084:36)\n    at MessageIO.messageIo.on (C:\\Users\\angela.forero\\Desktop\\api.apolo\\node_modules\\tedious\\lib\\connection.js:984:14)\n    at MessageIO.emit (events.js:189:13)\n    at Message.message.on (C:\\Users\\angela.forero\\Desktop\\api.apolo\\node_modules\\tedious\\lib\\message-io.js:32:14)\n    at Message.emit (events.js:194:15)\n    at endReadableNT (C:\\Users\\angela.forero\\Desktop\\api.apolo\\node_modules\\tedious\\node_modules\\readable-stream\\lib\\_stream_readable.js:1077:12)\n    at process._tickCallback (internal/process/next_tick.js:63:19)"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"683457609384576\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"code":"ELOGIN","originalError":{"message":"Login failed for user 'sa'.","code":"ELOGIN"},"name":"ConnectionError","level":"error","message":"Database Connection Failed! Bad Config: Login failed for user 'sa'.","stack":"ConnectionError: Login failed for user 'sa'.\n    at Connection.tedious.once.err (C:\\Users\\angela.forero\\Desktop\\api.apolo\\node_modules\\mssql\\lib\\tedious.js:244:17)\n    at Object.onceWrapper (events.js:277:13)\n    at Connection.emit (events.js:189:13)\n    at Connection.processLogin7Response (C:\\Users\\angela.forero\\Desktop\\api.apolo\\node_modules\\tedious\\lib\\connection.js:1397:14)\n    at Connection.message (C:\\Users\\angela.forero\\Desktop\\api.apolo\\node_modules\\tedious\\lib\\connection.js:1932:14)\n    at Connection.dispatchEvent (C:\\Users\\angela.forero\\Desktop\\api.apolo\\node_modules\\tedious\\lib\\connection.js:1084:36)\n    at MessageIO.messageIo.on (C:\\Users\\angela.forero\\Desktop\\api.apolo\\node_modules\\tedious\\lib\\connection.js:984:14)\n    at MessageIO.emit (events.js:189:13)\n    at Message.message.on (C:\\Users\\angela.forero\\Desktop\\api.apolo\\node_modules\\tedious\\lib\\message-io.js:32:14)\n    at Message.emit (events.js:194:15)\n    at endReadableNT (C:\\Users\\angela.forero\\Desktop\\api.apolo\\node_modules\\tedious\\node_modules\\readable-stream\\lib\\_stream_readable.js:1077:12)\n    at process._tickCallback (internal/process/next_tick.js:63:19)"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"683457609384576\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"code":"ELOGIN","originalError":{"message":"Login failed for user 'sa'.","code":"ELOGIN"},"name":"ConnectionError","level":"error","message":"Database Connection Failed! Bad Config: Login failed for user 'sa'.","stack":"ConnectionError: Login failed for user 'sa'.\n    at Connection.tedious.once.err (C:\\Users\\angela.forero\\Desktop\\api.apolo\\node_modules\\mssql\\lib\\tedious.js:244:17)\n    at Object.onceWrapper (events.js:277:13)\n    at Connection.emit (events.js:189:13)\n    at Connection.processLogin7Response (C:\\Users\\angela.forero\\Desktop\\api.apolo\\node_modules\\tedious\\lib\\connection.js:1397:14)\n    at Connection.message (C:\\Users\\angela.forero\\Desktop\\api.apolo\\node_modules\\tedious\\lib\\connection.js:1932:14)\n    at Connection.dispatchEvent (C:\\Users\\angela.forero\\Desktop\\api.apolo\\node_modules\\tedious\\lib\\connection.js:1084:36)\n    at MessageIO.messageIo.on (C:\\Users\\angela.forero\\Desktop\\api.apolo\\node_modules\\tedious\\lib\\connection.js:984:14)\n    at MessageIO.emit (events.js:189:13)\n    at Message.message.on (C:\\Users\\angela.forero\\Desktop\\api.apolo\\node_modules\\tedious\\lib\\message-io.js:32:14)\n    at Message.emit (events.js:194:15)\n    at endReadableNT (C:\\Users\\angela.forero\\Desktop\\api.apolo\\node_modules\\tedious\\node_modules\\readable-stream\\lib\\_stream_readable.js:1077:12)\n    at process._tickCallback (internal/process/next_tick.js:63:19)"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"683457609384576\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"code":"ELOGIN","originalError":{"message":"Login failed for user 'sa'.","code":"ELOGIN"},"name":"ConnectionError","level":"error","message":"Database Connection Failed! Bad Config: Login failed for user 'sa'.","stack":"ConnectionError: Login failed for user 'sa'.\n    at Connection.tedious.once.err (C:\\Users\\angela.forero\\Desktop\\api.apolo\\node_modules\\mssql\\lib\\tedious.js:244:17)\n    at Object.onceWrapper (events.js:277:13)\n    at Connection.emit (events.js:189:13)\n    at Connection.processLogin7Response (C:\\Users\\angela.forero\\Desktop\\api.apolo\\node_modules\\tedious\\lib\\connection.js:1397:14)\n    at Connection.message (C:\\Users\\angela.forero\\Desktop\\api.apolo\\node_modules\\tedious\\lib\\connection.js:1932:14)\n    at Connection.dispatchEvent (C:\\Users\\angela.forero\\Desktop\\api.apolo\\node_modules\\tedious\\lib\\connection.js:1084:36)\n    at MessageIO.messageIo.on (C:\\Users\\angela.forero\\Desktop\\api.apolo\\node_modules\\tedious\\lib\\connection.js:984:14)\n    at MessageIO.emit (events.js:189:13)\n    at Message.message.on (C:\\Users\\angela.forero\\Desktop\\api.apolo\\node_modules\\tedious\\lib\\message-io.js:32:14)\n    at Message.emit (events.js:194:15)\n    at endReadableNT (C:\\Users\\angela.forero\\Desktop\\api.apolo\\node_modules\\tedious\\node_modules\\readable-stream\\lib\\_stream_readable.js:1077:12)\n    at process._tickCallback (internal/process/next_tick.js:63:19)"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"683457609384576\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"code":"ELOGIN","originalError":{"message":"Login failed for user 'sa'.","code":"ELOGIN"},"name":"ConnectionError","level":"error","message":"Database Connection Failed! Bad Config: Login failed for user 'sa'.","stack":"ConnectionError: Login failed for user 'sa'.\n    at Connection.tedious.once.err (C:\\Users\\angela.forero\\Desktop\\api.apolo\\node_modules\\mssql\\lib\\tedious.js:244:17)\n    at Object.onceWrapper (events.js:277:13)\n    at Connection.emit (events.js:189:13)\n    at Connection.processLogin7Response (C:\\Users\\angela.forero\\Desktop\\api.apolo\\node_modules\\tedious\\lib\\connection.js:1397:14)\n    at Connection.message (C:\\Users\\angela.forero\\Desktop\\api.apolo\\node_modules\\tedious\\lib\\connection.js:1932:14)\n    at Connection.dispatchEvent (C:\\Users\\angela.forero\\Desktop\\api.apolo\\node_modules\\tedious\\lib\\connection.js:1084:36)\n    at MessageIO.messageIo.on (C:\\Users\\angela.forero\\Desktop\\api.apolo\\node_modules\\tedious\\lib\\connection.js:984:14)\n    at MessageIO.emit (events.js:189:13)\n    at Message.message.on (C:\\Users\\angela.forero\\Desktop\\api.apolo\\node_modules\\tedious\\lib\\message-io.js:32:14)\n    at Message.emit (events.js:194:15)\n    at endReadableNT (C:\\Users\\angela.forero\\Desktop\\api.apolo\\node_modules\\tedious\\node_modules\\readable-stream\\lib\\_stream_readable.js:1077:12)\n    at process._tickCallback (internal/process/next_tick.js:63:19)"}
+{"message":"cargando rutas","level":"debug"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"code":"ELOGIN","originalError":{"message":"Login failed for user 'sa'.","code":"ELOGIN"},"name":"ConnectionError","level":"error","message":"Database Connection Failed! Bad Config: Login failed for user 'sa'.","stack":"ConnectionError: Login failed for user 'sa'.\n    at Connection.tedious.once.err (C:\\Users\\angela.forero\\Desktop\\api.apolo\\node_modules\\mssql\\lib\\tedious.js:244:17)\n    at Object.onceWrapper (events.js:277:13)\n    at Connection.emit (events.js:189:13)\n    at Connection.EventEmitter.emit (domain.js:441:20)\n    at Connection.processLogin7Response (C:\\Users\\angela.forero\\Desktop\\api.apolo\\node_modules\\tedious\\lib\\connection.js:1397:14)\n    at Connection.message (C:\\Users\\angela.forero\\Desktop\\api.apolo\\node_modules\\tedious\\lib\\connection.js:1932:14)\n    at Connection.dispatchEvent (C:\\Users\\angela.forero\\Desktop\\api.apolo\\node_modules\\tedious\\lib\\connection.js:1084:36)\n    at MessageIO.messageIo.on (C:\\Users\\angela.forero\\Desktop\\api.apolo\\node_modules\\tedious\\lib\\connection.js:984:14)\n    at MessageIO.emit (events.js:189:13)\n    at MessageIO.EventEmitter.emit (domain.js:441:20)"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"cargando rutas","level":"debug"}
+{"code":"ELOGIN","originalError":{"message":"Login failed for user 'sa'.","code":"ELOGIN"},"name":"ConnectionError","level":"error","message":"Database Connection Failed! Bad Config: Login failed for user 'sa'.","stack":"ConnectionError: Login failed for user 'sa'.\n    at Connection.tedious.once.err (C:\\Users\\angela.forero\\Desktop\\api.apolo\\node_modules\\mssql\\lib\\tedious.js:244:17)\n    at Object.onceWrapper (events.js:277:13)\n    at Connection.emit (events.js:189:13)\n    at Connection.EventEmitter.emit (domain.js:441:20)\n    at Connection.processLogin7Response (C:\\Users\\angela.forero\\Desktop\\api.apolo\\node_modules\\tedious\\lib\\connection.js:1397:14)\n    at Connection.message (C:\\Users\\angela.forero\\Desktop\\api.apolo\\node_modules\\tedious\\lib\\connection.js:1932:14)\n    at Connection.dispatchEvent (C:\\Users\\angela.forero\\Desktop\\api.apolo\\node_modules\\tedious\\lib\\connection.js:1084:36)\n    at MessageIO.messageIo.on (C:\\Users\\angela.forero\\Desktop\\api.apolo\\node_modules\\tedious\\lib\\connection.js:984:14)\n    at MessageIO.emit (events.js:189:13)\n    at MessageIO.EventEmitter.emit (domain.js:441:20)"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"cargando rutas","level":"debug"}
+{"code":"ELOGIN","originalError":{"message":"Login failed for user 'sa'.","code":"ELOGIN"},"name":"ConnectionError","level":"error","message":"Database Connection Failed! Bad Config: Login failed for user 'sa'.","stack":"ConnectionError: Login failed for user 'sa'.\n    at Connection.tedious.once.err (C:\\Users\\angela.forero\\Desktop\\api.apolo\\node_modules\\mssql\\lib\\tedious.js:244:17)\n    at Object.onceWrapper (events.js:277:13)\n    at Connection.emit (events.js:189:13)\n    at Connection.EventEmitter.emit (domain.js:441:20)\n    at Connection.processLogin7Response (C:\\Users\\angela.forero\\Desktop\\api.apolo\\node_modules\\tedious\\lib\\connection.js:1397:14)\n    at Connection.message (C:\\Users\\angela.forero\\Desktop\\api.apolo\\node_modules\\tedious\\lib\\connection.js:1932:14)\n    at Connection.dispatchEvent (C:\\Users\\angela.forero\\Desktop\\api.apolo\\node_modules\\tedious\\lib\\connection.js:1084:36)\n    at MessageIO.messageIo.on (C:\\Users\\angela.forero\\Desktop\\api.apolo\\node_modules\\tedious\\lib\\connection.js:984:14)\n    at MessageIO.emit (events.js:189:13)\n    at MessageIO.EventEmitter.emit (domain.js:441:20)"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"cargando rutas","level":"debug"}
+{"code":"ELOGIN","originalError":{"message":"Login failed for user 'sa'.","code":"ELOGIN"},"name":"ConnectionError","level":"error","message":"Database Connection Failed! Bad Config: Login failed for user 'sa'.","stack":"ConnectionError: Login failed for user 'sa'.\n    at Connection.tedious.once.err (C:\\Users\\angela.forero\\Desktop\\api.apolo\\node_modules\\mssql\\lib\\tedious.js:244:17)\n    at Object.onceWrapper (events.js:277:13)\n    at Connection.emit (events.js:189:13)\n    at Connection.EventEmitter.emit (domain.js:441:20)\n    at Connection.processLogin7Response (C:\\Users\\angela.forero\\Desktop\\api.apolo\\node_modules\\tedious\\lib\\connection.js:1397:14)\n    at Connection.message (C:\\Users\\angela.forero\\Desktop\\api.apolo\\node_modules\\tedious\\lib\\connection.js:1932:14)\n    at Connection.dispatchEvent (C:\\Users\\angela.forero\\Desktop\\api.apolo\\node_modules\\tedious\\lib\\connection.js:1084:36)\n    at MessageIO.messageIo.on (C:\\Users\\angela.forero\\Desktop\\api.apolo\\node_modules\\tedious\\lib\\connection.js:984:14)\n    at MessageIO.emit (events.js:189:13)\n    at MessageIO.EventEmitter.emit (domain.js:441:20)"}
+{"message":"cargando rutas","level":"debug"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"cargando rutas","level":"debug"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"cargando rutas","level":"debug"}
+{"message":"cargando rutas","level":"debug"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"cargando rutas","level":"debug"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+{"message":"Connected to MSSQL","level":"info"}
+{"message":"cargando rutas","level":"debug"}
+{"message":"cargando rutas","level":"debug"}
+{"message":"configuración base de datos{\"user\":\"sa\",\"password\":\"Admin1234*\",\"server\":\"localhost\",\"database\":\"Apolo\",\"port\":1433,\"parseJSON\":true}","level":"info"}
+>>>>>>> master
 {"message":"Connected to MSSQL","level":"info"}

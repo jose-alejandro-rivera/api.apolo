@@ -10,7 +10,6 @@ import  pasoRouter from './routes/AtencionPasoCampoRouter'
 class GeneralRouter {
   public router:Router
   private routesFlujo:any
-  private routesPasos:any
   private routesAtencion:any
   private routesProceso:any
   private routeAtencionPasoCampo: any
@@ -22,7 +21,6 @@ class GeneralRouter {
   }
   routes(){
     this.routesFlujo.router()
-    this.routesPasos.router()
     this.routesAtencion.router()
     this.routesProceso.router()
     this.routeAtencionPasoCampo.router()
@@ -39,7 +37,6 @@ class GeneralRouter {
       'preflightContinue': false
     }))
     this.routesFlujo = new flujoRouter(this.router)
-    this.routesPasos = new procesoRouter(this.router)
     this.routesAtencion = new atencionRouter(this.router)
     this.routesProceso = new procesoRouter(this.router)
     this.routeAtencionPasoCampo = new pasoRouter(this.router)
