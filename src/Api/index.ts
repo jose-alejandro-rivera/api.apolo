@@ -5,12 +5,14 @@ import cors from 'cors'
 import flujoRouter from './routes/FlujoRouter'
 import  procesoRouter from './routes/ProcesoRouter'
 import  atencionRouter from './routes/AtencionRouter'
+import  pasoRouter from './routes/AtencionPasoCampoRouter'
 
 class GeneralRouter {
   public router:Router
   private routesFlujo:any
   private routesAtencion:any
   private routesProceso:any
+  private routeAtencionPasoCampo: any
 
   constructor() {
     this.router = Router()
@@ -21,6 +23,7 @@ class GeneralRouter {
     this.routesFlujo.router()
     this.routesAtencion.router()
     this.routesProceso.router()
+    this.routeAtencionPasoCampo.router()
   }
   config(){
     this.router.use(bodyParser.json());
@@ -36,6 +39,7 @@ class GeneralRouter {
     this.routesFlujo = new flujoRouter(this.router)
     this.routesAtencion = new atencionRouter(this.router)
     this.routesProceso = new procesoRouter(this.router)
+    this.routeAtencionPasoCampo = new pasoRouter(this.router)
   }
 }
 const GeneralRouters =  new GeneralRouter
