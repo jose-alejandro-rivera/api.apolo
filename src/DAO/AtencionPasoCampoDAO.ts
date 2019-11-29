@@ -109,7 +109,6 @@ export class AtencionPasoCampoDAO {
 			.input('codProceSalida', sql.Int, CodProcesoSalida)
 			.input('valCam', sql.Int, Valor)
 			.query('INSERT INTO AtencionProcesoSalida (CodAtencionProceso,CodProcesoSalida,Valor,Fecha) VALUES (@codAtProces,@codProceSalida,@valCam,getdate());');
-		console.log('final de los Insert', result)		
 		return this.result.rowsAffected;
 
 	}
