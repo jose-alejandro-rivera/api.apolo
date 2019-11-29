@@ -1,11 +1,5 @@
-import { Request, Response, NextFunction } from 'express'
 import { Inject, Container } from "typescript-ioc";
-import FlujoModels from '../models/FlujoModels'
-import Conections from '../connet'
-import Conection from '../loaders/databaseLoader'
 import { AtencionPasoCampoDAO } from '../DAO/AtencionPasoCampoDAO'
-import CategoriaFlujoModel from '../Models/CategoriaFlujoModels'
-import { request } from 'https';
 
 export default class AtencionPasoCampoController {
 	//	private flujos: FlujoModels[]
@@ -22,7 +16,6 @@ export default class AtencionPasoCampoController {
 		let validacionCampos: any;
 		let valAtencionCampo: any;
 		try {
-			console.log(request[0].atencionCampo,'new array de datos')
 			const { CodAtencion, CodPaso, Secuencia, Soluciona } = request[0].atencionPaso;
 			const { CodAtencionPaso, CodProceso, TipoServicio, Servicio, Request, Response } = request[0].atencionProceso;
 			const { CodCuestionarioCampo, ValorCampo } = request[0].atencionCampo;
@@ -56,10 +49,7 @@ export default class AtencionPasoCampoController {
 					return data;
 				}
 			}
-
-			//validacionCampos = await this.validarInsert(request[0].atencionCampo);
 			valAtencionCampo = await this.validarArrayAtencionCampo(request[0].atencionCampo);
-			console.log('----------- valAtencionCampo ', valAtencionCampo)
 			//Valida que los objetos atencionPaso y atencionCampo esten llenos
 			if(request[0].atencionCampo){
 				if (valAtencionCampo) {
@@ -79,9 +69,7 @@ export default class AtencionPasoCampoController {
 			return data;
 		} catch (error) {
 		}
-
 	}
-
 	public async validarInsert(camposValidar: any) {
 		let arrayList = [];
 		arrayList.push(camposValidar);
@@ -93,20 +81,17 @@ export default class AtencionPasoCampoController {
 			}
 		}
 	}
-
 	public async validarArrayAtencionCampo(atencionCampo: any){
-
-		let resCodCuestionarioCampo:any = atencionCampo.find((e:any) => {
-			 return e.CodCuestionarioCampo != ''
+		let resCodCuestionarioCampo : any = atencionCampo.find((e:any) => {
+			 return e.CodCuestionarioCampo == '' 
 		})
-		let resValorCampo:any = atencionCampo.find((e:any) => { 
-			return e.ValorCampo != ''
+		let resValorCampo : any = atencionCampo.find((e:any) => { 
+			return e.ValorCampo == '' 
 		})
-
-		if(resCodCuestionarioCampo.CodCuestionarioCampo == ""){
+		if(resCodCuestionarioCampo){ 
 			return false;
 		}
-		if(resCodCuestionarioCampo.ValorCampo == ""){
+		if(resValorCampo){
 			return false;
 		}
 		return true;
