@@ -3,3 +3,4 @@
 /src/Config/environments/*
 /build
 app.log
+/coverage
