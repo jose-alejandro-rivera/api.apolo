@@ -15,6 +15,11 @@ export default class AtencionPasoCampoController {
 		let data: any;
 		let validacionCampos: any;
 		let valAtencionCampo: any;
+		let dataError : any = {
+			status: 201,
+			msg: 'Error en los datos ingresados'
+		}
+		
 		try {
 			const { CodAtencion, CodPaso, Secuencia, Soluciona } = request[0].atencionPaso;
 			const { CodAtencionPaso, CodProceso, TipoServicio, Servicio, Request, Response } = request[0].atencionProceso;
@@ -41,12 +46,6 @@ export default class AtencionPasoCampoController {
 					Response != ''
 				) {
 					let idProceso = await this.atencionPasoCampoDAO.createAtencionProceso(idAtnPaso, request[0].atencionProceso, request[0].atencionProcesoSalida);
-				}else{
-					data = {
-						status: 201,
-						msg: 'Error en los datos ingresados'
-					}
-					return data;
 				}
 			}
 			valAtencionCampo = await this.validarArrayAtencionCampo(request[0].atencionCampo);
