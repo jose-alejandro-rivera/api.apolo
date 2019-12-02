@@ -117,6 +117,13 @@ export default class AtencionPasoCampoController {
 				resAtencion = 2;
 			}
 			if (
+				elemento.CodCuestionarioCampo == '' &&
+				elemento.ValorCampo == '' &&
+				atencionCampo.length == 1
+			) {
+				resAtencion = 3;
+			}			
+			if (
 				elemento.CodCuestionarioCampo != '' &&
 				elemento.ValorCampo != '' &&
 				atencionCampo.length > 0
