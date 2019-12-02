@@ -39,7 +39,7 @@ export class AtencionPasoCampoDAO {
 			const validacion: any = await request
 			this.result = await request
 				.input('codPas', sql.Int, CodPaso)
-				.query('SELECT p.id_Paso, a.Id_Atencion FROM Paso p, Atencion a where p.id_Paso = @codPas');
+				.query('SELECT p.id_Paso FROM Paso p where p.id_Paso = @codPas');
 			let cPaso = this.result.recordset[0].id_Paso;
 			return cPaso;
 		} catch (error) {
@@ -75,7 +75,12 @@ export class AtencionPasoCampoDAO {
 			const sqlGetSteps = await this.databaseConnection.getPool();
 			const request = await sqlGetSteps.request()
 				.query('SELECT TOP 1 Secuencia,Id_AtencionPaso FROM atencionPaso ORDER BY Id_AtencionPaso DESC');
-			idatenciopas = request.recordset[0].Secuencia
+				if(request.recordset.length > 0){
+					idatenciopas = request.recordset[0].Secuencia
+				}else{
+					idatenciopas = 0;
+				}
+			
 			return idatenciopas;
 		} catch (error) {
 			console.log(error)
