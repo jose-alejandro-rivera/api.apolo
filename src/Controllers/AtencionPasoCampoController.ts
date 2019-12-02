@@ -23,40 +23,19 @@ export default class AtencionPasoCampoController {
 				validation = await this.atencionPasoCampoDAO.createAtencionPasoCampo(request[0].atencionPaso, request[0].atencionProceso, request[0].atencionProcesoSalida, request[0].atencionCampo);
 				idAtnPaso = validation;
 			} else {
-				data = {
-					status: 201,
-					msg: 'Error en los datos ingresados'
-				}
-				return data;
+				return this.validadorMsgError(201);
 			}
 			//Valida que todos los campos de los objetos esten llenos
 			validacionCampos = await this.validarInsert(request[0].atencionProceso);
 			if (request[0].atencionProceso) {
 				if (
-					CodAtencionPaso != '' &&
-					CodProceso != '' &&
-					TipoServicio != '' &&
-					Servicio != '' &&
-					Request != '' &&
-					Response != ''
-				) {
+					CodAtencionPaso != '' && CodProceso != '' && TipoServicio != '' && Servicio != '' && Request != '' && Response != '') {
 					let idProceso = await this.atencionPasoCampoDAO.createAtencionProceso(idAtnPaso, request[0].atencionProceso, request[0].atencionProcesoSalida);
 				} else if (
-					CodAtencionPaso == '' &&
-					CodProceso == '' &&
-					TipoServicio == '' &&
-					Servicio == '' &&
-					Request == '' &&
-					Response == ''
-
-				) {
+					CodAtencionPaso == '' && CodProceso == '' && TipoServicio == '' && Servicio == '' && Request == '' && Response == '') {
 
 				} else {
-					data = {
-						status: 201,
-						msg: 'Error en los datos ingresados'
-					}
-					return data;
+					return this.validadorMsgError(201);
 				}
 			}
 			valAtencionCampo = await this.validarArrayAtencionCampo(request[0].atencionCampo);
@@ -67,21 +46,14 @@ export default class AtencionPasoCampoController {
 				} else if (valAtencionCampo == 3) {
 
 				} else {
-					data = {
-						status: 201,
-						msg: 'Error en los datos ingresados'
-					}
-					return data;
+					return this.validadorMsgError(201);
 				}
 			}
-			data = {
-				status: 200,
-				msg: 'Datos registrados'
-			}
-			return data;
+			return this.validadorMsgError(200);
 		} catch (error) {
 		}
 	}
+	// Este metodo permite validar los campos de atencionProceso --- >> esta pendiente de ser utilizado
 	public async validarInsert(camposValidar: any) {
 		let arrayList = [];
 		arrayList.push(camposValidar);
@@ -93,7 +65,25 @@ export default class AtencionPasoCampoController {
 			}
 		}
 	}
+	// Metodo para adcionar los mensajes de validaciones 
+	public async validadorMsgError(estado: any) {
+		let data: any;
 
+		if (estado == true) {
+			data = {
+				status: estado,
+				msg: 'Datos registrados'
+			}
+			return data;
+		} else {
+			data = {
+				status: 201,
+				msg: 'Error en los datos ingresados'
+			}
+			return data;
+		}
+	}
+	//Este metodo permite validar los datos que llegan de atencionCampo
 	public async validarArrayAtencionCampo(atencionCampo: any) {
 		let resAtencion: number = 1;
 		atencionCampo.forEach((elemento: any, indice: any) => {
@@ -122,7 +112,7 @@ export default class AtencionPasoCampoController {
 				atencionCampo.length == 1
 			) {
 				resAtencion = 3;
-			}			
+			}
 			if (
 				elemento.CodCuestionarioCampo != '' &&
 				elemento.ValorCampo != '' &&
