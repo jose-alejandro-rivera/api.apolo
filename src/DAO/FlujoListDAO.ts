@@ -17,7 +17,10 @@ export class FlujoListDAO {
 	public async getFlujosPorCategoria(Id_CategoriaFlujo: number): Promise<void> {
 		try {
 			const sqlGetSteps = await this.databaseConnection.getPool();
-			const result = await sqlGetSteps.query(`SELECT Id_Flujo,NomFlujo,CodCategoriaFlujo,CodPaso_Inicial,Descripcion,Orden,Activo,Fecha,Usuario FROM Flujo where Activo=1 AND CodCategoriaFlujo=${Id_CategoriaFlujo}`);
+			const request = sqlGetSteps.request();
+			const result = await request
+				.input('Id_CategoriaFlujo', sql.Int, Id_CategoriaFlujo)
+				.query(`SELECT Id_Flujo,NomFlujo,CodCategoriaFlujo,CodPaso_Inicial,Descripcion,Orden,Activo,Fecha,Usuario FROM Flujo where Activo=1 AND CodCategoriaFlujo=@Id_CategoriaFlujo`);
 			return Object.assign(result.recordset);
 		} catch (error) {
 			return error
@@ -239,7 +242,10 @@ export class FlujoListDAO {
 	public async validateFlujoExist(Id_Flujo: number): Promise<boolean> {
 		try {
 			const sqlGetSteps = await this.databaseConnection.getPool();
-			const result = await sqlGetSteps.query(`SELECT Id_Flujo,NomFlujo,CodCategoriaFlujo,CodPaso_Inicial,Descripcion,Orden,Activo,Fecha,Usuario FROM Flujo where Activo=1 AND Id_Flujo=${Id_Flujo}`);
+			const request = sqlGetSteps.request();
+			const result = await request
+				.input('Id_Flujo', sql.Int, Id_Flujo)
+			    .query(`SELECT Id_Flujo,NomFlujo,CodCategoriaFlujo,CodPaso_Inicial,Descripcion,Orden,Activo,Fecha,Usuario FROM Flujo where Activo=1 AND Id_Flujo=@Id_Flujo`);
 			if (result.rowsAffected[0] > 0) {
 				return true;
 			} else {
