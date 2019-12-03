@@ -17,10 +17,10 @@ export class AtencionPasoCampoDAO {
 
 	//Filtra que metodos se ejecutaran segun los datos enviados
 	public async createAtencionPasoCampo(atencionPaso: any, atencionProceso: any, atencionProcesoSalida: any, atencionCampo: any) {
-
 		try {
 			let CodAtencionpaso: any; let codCuestionario: any; let codAtencionProsces: any; let codigopaso: any;
 			let { CodPaso } = atencionPaso;
+
 			codigopaso = await this.consultaAtencionPaso(atencionPaso);
 			if (CodPaso == codigopaso) {
 				CodAtencionpaso = await this.createAtencionPaso(atencionPaso);
@@ -56,16 +56,17 @@ export class AtencionPasoCampoDAO {
 			let id = await this.consultaIdAtencionPaso();
 			let SecuenciaC = id + 1;
 			const validacion: any = await request
-			this.result = await request
+			let result = await request
 				.input('codAt', sql.Int, CodAtencion)
 				.input('codPas', sql.Int, CodPaso)
 				.input('secu', sql.Int, SecuenciaC)
-				.input('solu', sql.Int, Soluciona)
+				.input('solu', sql.Bit, Soluciona)
 				.query('INSERT INTO AtencionPaso (CodAtencion,CodPaso,Secuencia,Soluciona,Fecha) VALUES (@codAt,@codPas,@secu,@solu,getdate()); SELECT SCOPE_IDENTITY() as Id_AtencionPaso;');
-			let CodAtencionpaso = this.result.recordset[0].Id_AtencionPaso;
+				let CodAtencionpaso = result.recordset[0].Id_AtencionPaso;
+
+			
 			return CodAtencionpaso;
 		} catch (error) {
-			console.log(error)
 		}
 	}
 	//Consulta el ultimo id_atencionPaso
@@ -99,7 +100,7 @@ export class AtencionPasoCampoDAO {
 				result = await request
 					.input('codAtPas', sql.Int, CodAtencionpaso)
 					.input('codCuest', sql.Int, CodCuestionarioCampo)
-					.input('valCam', sql.Int, ValorCampo)
+					.input('valCam', sql.VarChar, ValorCampo)
 					.query('INSERT INTO AtencionCampo (CodAtencionPaso,CodCuestionarioCampo,ValorCampo,Fecha) VALUES (@codAtPas,@codCuest,@valCam,getdate());');
 			}
 			return result.rowsAffected;
@@ -137,11 +138,10 @@ export class AtencionPasoCampoDAO {
 			let result = await request
 				.input('codAtProces', sql.Int, codAtencionProsces)
 				.input('codProceSalida', sql.Int, CodProcesoSalida)
-				.input('valCam', sql.Int, Valor)
+				.input('valCam', sql.VarChar, Valor)
 				.query('INSERT INTO AtencionProcesoSalida (CodAtencionProceso,CodProcesoSalida,Valor,Fecha) VALUES (@codAtProces,@codProceSalida,@valCam,getdate());');
 			return this.result.rowsAffected;
 		} catch (error) {
-			console.log(error)
 		}
 
 	}
