@@ -6,6 +6,8 @@ import flujoRouter from './routes/FlujoRouter'
 import  procesoRouter from './routes/ProcesoRouter'
 import  atencionRouter from './routes/AtencionRouter'
 import  pasoRouter from './routes/AtencionPasoCampoRouter'
+import  DocRouter from './routes/documentationRoute'
+
 
 class GeneralRouter {
   public router:Router
@@ -13,6 +15,7 @@ class GeneralRouter {
   private routesAtencion:any
   private routesProceso:any
   private routeAtencionPasoCampo: any
+  private routeDocSwagger : any
 
   constructor() {
     this.router = Router()
@@ -24,6 +27,7 @@ class GeneralRouter {
     this.routesAtencion.router()
     this.routesProceso.router()
     this.routeAtencionPasoCampo.router()
+    this.routeDocSwagger.router();
   }
   config(){
     this.router.use(bodyParser.json());
@@ -40,6 +44,7 @@ class GeneralRouter {
     this.routesAtencion = new atencionRouter(this.router)
     this.routesProceso = new procesoRouter(this.router)
     this.routeAtencionPasoCampo = new pasoRouter(this.router)
+    this.routeDocSwagger = new DocRouter(this.router)
   }
 }
 const GeneralRouters =  new GeneralRouter
