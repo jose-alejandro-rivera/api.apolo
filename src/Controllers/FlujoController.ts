@@ -1,7 +1,6 @@
 import { Request, Response, NextFunction } from 'express'
 import { Inject } from "typescript-ioc";
 import FlujoModels from '../models/FlujoModels'
-import Conections from '../connet'
 import { FlujoListDAO } from '../DAO/FlujoListDAO'
 import CategoriaFlujoModel from '../Models/CategoriaFlujoModels'
 
@@ -9,8 +8,7 @@ import CategoriaFlujoModel from '../Models/CategoriaFlujoModels'
 export default class FlujoController {
 	private flujos: FlujoModels[]
 	constructor(
-		@Inject private FlujoListDAO: FlujoListDAO,
-		@Inject private databaseConnection: Conections
+		@Inject private FlujoListDAO: FlujoListDAO
 	) {
 		this.flujos = []
 	}

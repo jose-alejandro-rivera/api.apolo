@@ -1,14 +1,11 @@
 import { Request, Response, NextFunction } from 'express'
 import { Inject } from "typescript-ioc";
 import ProcesoModels from '../models/ProcesoModels'
-import Conections from '../connet'
 
 
 export default class ProcesoController {
 	private procesos: ProcesoModels[]
-	constructor(
-		@Inject private databaseConnection: Conections
-	) {
+	constructor() {
 		this.procesos = []
 	}
 

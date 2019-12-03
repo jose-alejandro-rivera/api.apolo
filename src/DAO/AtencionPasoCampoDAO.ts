@@ -1,9 +1,6 @@
-import Conections from "../connet"
 import Conection from '../loaders/databaseLoader'
 import * as sql from 'mssql'
-import CategoriaFlujoModel from '../Models/CategoriaFlujoModels'
-import { Container, Inject } from "typescript-ioc";
-import { any } from "bluebird";
+import { Inject } from "typescript-ioc";
 
 /**
  *

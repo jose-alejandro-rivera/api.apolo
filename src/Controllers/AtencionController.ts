@@ -1,21 +1,11 @@
 import { Request, Response, NextFunction } from 'express'
 import { Inject, Container } from "typescript-ioc";
 import FlujoModels from '../models/FlujoModels'
-import Conections from '../connet'
-import Conection from '../loaders/databaseLoader'
 import { AtencionDAO } from '../DAO/AtencionDAO'
-import CategoriaFlujoModel from '../Models/CategoriaFlujoModels'
 
-
-export default class FlujoController {
-	private flujos: FlujoModels[]
-	constructor(
-		@Inject private AtencionDAO: AtencionDAO,
-		@Inject private databaseConnection: Conections
-	) {
-		this.flujos = []
-	}
-
+export default class AtencionController {
+	
+	constructor(@Inject private AtencionDAO: AtencionDAO) {}
 
 	async createAtencion(req: Request, res: Response, next: NextFunction): Promise<any> {
 		try {
