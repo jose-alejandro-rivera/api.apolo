@@ -46,6 +46,7 @@ export class AtencionPasoCampoDAO {
 			console.log(error)
 		}
 	}
+	//Metodo que crea una atecionPaso
 	public async createAtencionPaso(atencionPaso: any) {
 		try {
 			let { CodAtencion, CodPaso, Secuencia, Soluciona } = atencionPaso;
@@ -75,17 +76,18 @@ export class AtencionPasoCampoDAO {
 			const sqlGetSteps = await this.databaseConnection.getPool();
 			const request = await sqlGetSteps.request()
 				.query('SELECT TOP 1 Secuencia,Id_AtencionPaso FROM atencionPaso ORDER BY Id_AtencionPaso DESC');
-				if(request.recordset.length > 0){
-					idatenciopas = request.recordset[0].Secuencia
-				}else{
-					idatenciopas = 0;
-				}
-			
+			if (request.recordset.length > 0) {
+				idatenciopas = request.recordset[0].Secuencia
+			} else {
+				idatenciopas = 0;
+			}
+
 			return idatenciopas;
 		} catch (error) {
 			console.log(error)
 		}
 	}
+	//Metodo que crea una atecionCampo
 	public async createAtencionCampo(arrCuestionarioCampo: any, CodAtencionpaso: any) {
 		try {
 			let result: any;
@@ -105,6 +107,7 @@ export class AtencionPasoCampoDAO {
 			console.log(error)
 		}
 	}
+	//Metodo que crea una atecionProceso	
 	public async createAtencionProceso(idAtnPaso: any, atencionProceso: any, atencionProcesoSalida: any) {
 		try {
 			let { CodProceso, TipoServicio, Servicio, Request, Response } = atencionProceso;
@@ -125,6 +128,7 @@ export class AtencionPasoCampoDAO {
 			console.log(error)
 		}
 	}
+		//Metodo que crea una atecionProcesoSalida
 	public async createAtencionProcesoSalida(atencionProcesoSalida: any, codAtencionProsces: any) {
 		try {
 			let { CodProcesoSalida, Valor } = atencionProcesoSalida;
