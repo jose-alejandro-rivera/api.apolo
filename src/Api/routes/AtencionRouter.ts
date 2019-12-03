@@ -13,14 +13,23 @@ export default class AtencionRoute {
         /**
          * @swagger
          *
-         * /atencion/create:
+         * /api/atencion/create:
          *   post:
          *    tags:
-		 *      - Atencion
-		 *    name: CrearAtencion
-		 *    summary: servicio que crea una atencion nueva 
+         *      - Atencion
+         *    name: CrearAtencion
+         *    summary: servicio que crea una atencion nueva 
          *    produces:
          *       - application/json
+         *    parameters:
+         *       - name: CodLogin
+         *         description: Id del login correspondiente al usuario conectado
+         *         required: true
+         *         type: number
+         *       - name: CodFlujo
+         *         description: Id del flujo seleccionado
+         *         required: true
+         *         type: number
          *    consumes:
 		 *      - application/json
          *    responses:

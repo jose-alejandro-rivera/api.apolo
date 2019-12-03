@@ -12,7 +12,7 @@ export default class FlujoRouter {
 
     /**
 		* @swagger
-		* /flujo/list/:id:
+		* /api/flujo/list/:id:
 		*  get:
 		*    tags:
 		*      - Flujo
@@ -56,7 +56,7 @@ export default class FlujoRouter {
     )
     /**
 		* @swagger
-		* /flujos/por/categorias/:id_categoriaFlujo:
+		* /api/flujos/por/categorias/:id_categoriaFlujo:
 		*  get:
 		*    tags:
 		*      - Flujo
@@ -100,7 +100,7 @@ export default class FlujoRouter {
     )
     /**
 		* @swagger
-		* /flujo/categorias:
+		* /api/flujo/categorias:
 		*  get:
 		*    tags:
 		*      - Flujo
