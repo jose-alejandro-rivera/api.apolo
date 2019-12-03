@@ -26,56 +26,7 @@ export class FlujoListDAO {
 			return error
 		}
 	}
-
-	public async getFlujosComplete(): Promise<void> {
-		try {
-			const sqlGetSteps = await this.databaseConnection.getPool();
-			const result = await sqlGetSteps.request().query(`SELECT f.Id_Flujo,
-														f.NomFlujo,
-													(SELECT cf.Id_CategoriaFlujo as 'Id_CategoriaFlujo',
-														cf.NomCategoriaFlujo as 'NomCategoriaFlujo',
-														cf.Usuario as 'Usuario'
-													FROM CategoriaFlujo cf
-													WHERE cf.Id_CategoriaFlujo = f.CodCategoriaFlujo
-													FOR JSON PATH,ROOT('Categorias')) AS CategoriaFlujo,
-													(SELECT p.Id_Paso,
-														p.NomPaso,
-														p.Descripcion,
-														p.Activo,
-
-													(SELECT c.Id_Cuestionario,
-															c.NomCuestionario,
-															c.Descripcion,
-															c.Activo,
-
-														(SELECT ca.Id_Campo,
-																ca.NomCampo,
-																ca.Descripcion,
-																ca.Tipo,
-																ca.Longitud
-														FROM Campo AS ca
-														JOIN CuestionarioCampo AS cc ON cc.CodCampo=ca.Id_Campo
-														WHERE cc.CodCuestionario=c.Id_Cuestionario
-															FOR JSON PATH,ROOT('Pasos')) AS Pasos
-													FROM Cuestionario AS c
-													WHERE c.Id_Cuestionario=p.CodCuestionario
-														FOR JSON PATH,ROOT('Cuestionario')) AS Cuestionario,
-														p.CodProceso
-													FROM Paso p
-													JOIN FlujoPaso AS fp ON fp.CodPaso_Origen = p.Id_Paso
-													OR fp.CodPaso_Destino = p.Id_Paso
-													WHERE fp.CodFlujo = f.Id_Flujo
-													FOR JSON PATH,ROOT('PasosAsociados')) AS PasosAsociados,
-														f.Descripcion,
-														f.Orden,
-														f.Activo
-													FROM Flujo AS f
-													FOR JSON PATH, ROOT('flujo')`);
-			return Object.assign(result.recordset);
-		} catch (error) {
-			return error
-		}
-	}
+	
 	//OBTIENE EL LISTADO DE PASOS DE LA CONSULTA EN FORMATO JSON
 	public async getFlujoList(id:number): Promise<void> {
 		let data: any

@@ -20,10 +20,10 @@ export default class FlujoRouter {
 		*    summary: servicio retorna listado de los pasos asociados a un flujo creado.
 		*    parameters:
 		*      - in: path
-    *        name: Id
-    *        type: integer
-    *        required: true
-    *        description: numero de id del flujo a filtrar
+		*        name: Id
+		*        type: integer
+		*        required: true
+		*        description: numero de id del flujo a filtrar
 		*    produces:
 		*      - application/json
 		*    consumes:
@@ -64,10 +64,10 @@ export default class FlujoRouter {
 		*    summary: servicio retornaLista de flujo asociados a una misma categoria de flujo
 		*    parameters:
 		*      - in: path
-    *        name: IdCategoriaFlujo
-    *        type: integer
-    *        required: true
-    *        description: numero de id de la categoria flujo
+		*        name: IdCategoriaFlujo
+		*        type: integer
+		*        required: true
+		*        description: numero de id de la categoria flujo
 		*    produces:
 		*      - application/json
 		*    consumes:
@@ -98,14 +98,14 @@ export default class FlujoRouter {
         }
       }
     )
- /**
+    /**
 		* @swagger
 		* /flujo/categorias:
 		*  get:
 		*    tags:
 		*      - Flujo
 		*    name: Lista de categorias de flujo
-		*    summary: servicio retornaLista de lista de categorias de flujo existentes
+		*    summary: servicio retorna lista de categorias de flujo existentes
 		*    produces:
 		*      - application/json
 		*    consumes:
@@ -135,19 +135,7 @@ export default class FlujoRouter {
           console.log(error)
         }
       }
-    )
-
-    this.app.get(
-      '/flujos/completos',
-      async (req: Request, res: Response, next: NextFunction) => {
-        try {
-          const flujoController: FlujoController = Container.get(FlujoController);
-          let responseModel = await flujoController.getFlujoListaCompleta();
-          res.status(200).send(responseModel);
-        } catch (error) {
-          console.log(error)
-        }
-      }
-    )
+	)
+	
   }
 }
