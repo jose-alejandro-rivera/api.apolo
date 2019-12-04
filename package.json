@@ -15,6 +15,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@nestjs/testing": "^6.10.5",
     "@types/app-root-path": "^1.2.4",
     "@types/jest": "^24.0.22",
     "@types/node": "^12.12.5",
