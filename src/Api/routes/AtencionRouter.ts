@@ -54,5 +54,18 @@ export default class AtencionRoute {
             }
         }
         )
+
+
+        this.app.post('/atencion-paso-campo/create',
+        async(req: Request, res: Response, next: NextFunction) => {
+            try {
+                const atencionController: AtencionController = Container.get(AtencionController);
+                let respuesta = await atencionController.createAtencionPasoCampo(req.body);
+                res.status(200).json({'data':respuesta});
+              } catch(error) {
+                console.log(error)
+              }
+        }
+        )
     }
 }

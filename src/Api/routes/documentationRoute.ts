@@ -1,13 +1,6 @@
 import { Router } from 'express';
 import swaggerUi  from 'swagger-ui-express';
-import { swaggerSpec } from '../../loaders/swaggerDocLoader';
-import FlujoController  from '../../controllers/FlujoController';
-import { Container } from "typescript-ioc";
-import { Request, Response, NextFunction } from 'express';
-
-/*export default (app: Router) => {
-    app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec)); 
-}*/
+import { swaggerSpec } from '../../Loaders/swaggerDocLoader';
 
 export default class DocRouter {
     public app:Router

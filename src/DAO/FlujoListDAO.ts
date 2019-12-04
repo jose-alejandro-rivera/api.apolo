@@ -1,4 +1,4 @@
-import Conection from '../loaders/databaseLoader'
+import Conection from '../Loaders/databaseLoader'
 import * as sql from 'mssql'
 import { Inject } from "typescript-ioc";
 

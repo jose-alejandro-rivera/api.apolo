@@ -1,7 +1,7 @@
-import { Router } from 'express'
+import { Request, Response, NextFunction, Router } from 'express'
 import FlujoController from '../../controllers/FlujoController'
 import { Container } from "typescript-ioc";
-import { Request, Response, NextFunction } from 'express'
+
 
 export default class FlujoRouter {
   public app: Router

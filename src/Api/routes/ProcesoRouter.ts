@@ -1,7 +1,5 @@
-import { Router } from 'express';
 import ProcesoController from '../../controllers/ProcesoController';
-import { Request, Response, NextFunction } from 'express';
-import { Container } from "typescript-ioc";
+import { Request, Response, NextFunction, Router } from 'express';
 
 
 export default class ProcesoRoute {
