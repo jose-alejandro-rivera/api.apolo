@@ -21,7 +21,7 @@ test('test consultaAtencionPaso debe devolver error: codPas Invalid number.', as
   let obj = [{
     "CodPaso": ""
   }];
-  expect.arrayContaining(obj);
+  expect.not.arrayContaining(obj);
 });
 //test correcto para createAtencionPaso, realiza el insert de los datos enviados en la bd
 test('test createAtencionPaso debe realizar el insert de manera correcta', async () => {
@@ -55,7 +55,7 @@ test('test createAtencionPaso debe dar error al realizar el insert: Datos errone
     "Secuencia": 1,
     "Soluciona": 1
   }];
-  expect.arrayContaining(obj);
+  expect.not.arrayContaining(obj);
 });
 //test correcto para consultaIdAtencionPaso, realiza la consulta de Secuencia y el Id_AtencionPaso
 test('test consultaIdAtencionPaso debe realizar la consulta de manera correcta de la Secuencia', async () => {
@@ -83,7 +83,7 @@ test('test createAtencionCampo debe realizar el insert: Datos correctos ', async
   expect.arrayContaining(obj);
 });
 //test erroneo para createAtencionCampo, no debe realizar el insert a la bd
-test('test createAtencionCampo debe realizar el insert: Datos correctos ', async () => {
+test('test createAtencionCampo no debe realizar el insert: Datos erroneos ', async () => {
   Container.bind(DatabaseConnection).to(DatabaseConnection).scope(Scope.Local);
   let atencionPasoCampoDAO: AtencionPasoCampoDAO = Container.get(AtencionPasoCampoDAO);
   let atencionCampo = { CodCuestionarioCampo: "Colombia es bella", ValorCampo: "Vass Latam" };
@@ -96,64 +96,48 @@ test('test createAtencionCampo debe realizar el insert: Datos correctos ', async
     "CodCuestionarioCampo": "Colombia es bella",
     "ValorCampo": "Vass Latam"
   }];
-  expect.arrayContaining(obj);
+  expect.not.arrayContaining(obj);
 });
 //test correcto para createAtencionCampo, debe realizar el insert a la bd
-test('test createAtencionProceso debe realizar el insert: Datos correctos ', async () => {
+test('test  createAtencionProceso y atencionProcesoSalida debe realizar el insert: Datos correctos ', async () => {
   Container.bind(DatabaseConnection).to(DatabaseConnection).scope(Scope.Local);
   let atencionPasoCampoDAO: AtencionPasoCampoDAO = Container.get(AtencionPasoCampoDAO);
-  let atencionProceso = { CodAtencionPaso: 1, CodProceso: 1,  TipoServicio: "rest|get", Servicio: "http://www.google.com",  Request: "rest|get", Response: "proceso ejecutado exitosamente" };
-  let atencionProcesoSalida = { CodAtencionProceso : 1, CodProcesoSalida :1, Valor:"proceso ejecutado exitosamente" }
+  let atencionProceso = { CodAtencionPaso: 1, CodProceso: 1, TipoServicio: "rest|get", Servicio: "http://www.google.com", Request: "rest|get", Response: "proceso ejecutado exitosamente" };
+  let atencionProcesoSalida = { CodAtencionProceso: 1, CodProcesoSalida: 1, Valor: "proceso ejecutado exitosamente" }
   let idAtnPaso = 1;
   let data = await atencionPasoCampoDAO.createAtencionProceso(idAtnPaso, atencionProceso, atencionProcesoSalida);
   if (data != '') {
-    console.log('Se ha creado la AtencionCampo createAtencionCampo() ')
+    console.log('Se ha creado la createAtencionProceso y atencionProcesoSalida ')
   }
-  let obj = [ {
+  let obj = [{
     "atencionProceso": {
-    "CodAtencionPaso" : 1,
-    "CodProceso":1,
-    "TipoServicio":"rest|get",
-    "Servicio":"http://www.google.com",
-    "Request":"rest|get",
-    "Response":"proceso ejecutado exitosamente"
-  },    
-  "atencionProcesoSalida":{
-    "CodAtencionProceso" : 1,
-    "CodProcesoSalida":1,
-    "Valor":"proceso ejecutado exitosamente"
- }
-} ];
+      "CodAtencionPaso": 1,
+      "CodProceso": 1,
+      "TipoServicio": "rest|get",
+      "Servicio": "http://www.google.com",
+      "Request": "rest|get",
+      "Response": "proceso ejecutado exitosamente"
+    },
+    "atencionProcesoSalida": {
+      "CodAtencionProceso": 1,
+      "CodProcesoSalida": 1,
+      "Valor": "proceso ejecutado exitosamente"
+    }
+  }];
   expect.arrayContaining(obj);
 });
-//test erroneo para createAtencionProceso, no debe realizar el insert a la bd
-test('test erroneo createAtencionProceso no debe realizar el insert ', async () => {
+//test erroneo para createAtencionProceso y atencionProcesoSalida, no debe realizar el insert a la bd
+test('test erroneo createAtencionProceso y atencionProcesoSalida no debe realizar el insert ', async () => {
   Container.bind(DatabaseConnection).to(DatabaseConnection).scope(Scope.Local);
   let atencionPasoCampoDAO: AtencionPasoCampoDAO = Container.get(AtencionPasoCampoDAO);
-  let atencionProceso = { CodAtencionPaso: "cdocampo", CodProceso: "96**cod",  TipoServicio: "1234", Servicio: "http://www.google..../",  Request: "rest|get", Response: "proceso ejecutado exitosamente" };
-  let atencionProcesoSalida = { CodAtencionProceso : "", CodProcesoSalida :"", Valor:"proceso ejecutado exitosamente" }
+  let atencionProceso = { CodAtencionPaso: "cdocampo", CodProceso: "96**cod", TipoServicio: "1234", Servicio: "http://www.google..../", Request: "rest|get", Response: "proceso ejecutado exitosamente" };
+  let atencionProcesoSalida = { CodAtencionProceso: "", CodProcesoSalida: "", Valor: "proceso ejecutado exitosamente" }
   let idAtnPaso = 1;
   let data = await atencionPasoCampoDAO.createAtencionProceso(idAtnPaso, atencionProceso, atencionProcesoSalida);
-  console.log('-----> data : ', data)
-  if (data == '' || data == 'undefine') {
-    console.log('No se ha creado la createAtencionProceso createAtencionProceso() ')
+  if (data == '' || data == 'undefined') {
+    console.log('No se ha creado la createAtencionProceso y atencionProcesoSalida ')
   }
-  let obj = [ {
-    "atencionProceso": {
-    "CodAtencionPaso" : "cdocampo",
-    "CodProceso":"96**cod",
-    "TipoServicio":"1234",
-    "Servicio":"http://www.google..../",
-    "Request":"rest|get",
-    "Response":"proceso ejecutado exitosamente"
-  },    
-  "atencionProcesoSalida":{
-    "CodAtencionProceso" : "",
-    "CodProcesoSalida":"",
-    "Valor":12345
- }
-} ];
-  expect.arrayContaining(obj);
+  expect.stringContaining('undefined');
 });
 
 

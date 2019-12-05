@@ -125,7 +125,7 @@ export class AtencionPasoCampoDAO {
 			this.createAtencionProcesoSalida(atencionProcesoSalida, codAtencionProces)
 			return codAtencionProces;
 		} catch (error) {
-			console.log(error)
+			return error;
 		}
 	}
 		//Metodo que crea una atecionProcesoSalida
