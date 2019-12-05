@@ -77,7 +77,7 @@ export class FlujoListDAO {
 	public async getFlujoList(id:number): Promise<void> {
 		let data: any
 		try {
-			let activo = 1;
+			let activo:number = 1;
 			const connect = await this.databaseConnection.getPool()
 			let queryFlujo:any = await connect.request()
 				.input('id_flujo',sql.Int,id)
