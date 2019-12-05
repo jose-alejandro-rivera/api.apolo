@@ -126,6 +126,35 @@ test('test createAtencionProceso debe realizar el insert: Datos correctos ', asy
 } ];
   expect.arrayContaining(obj);
 });
+//test erroneo para createAtencionProceso, no debe realizar el insert a la bd
+test('test erroneo createAtencionProceso no debe realizar el insert ', async () => {
+  Container.bind(DatabaseConnection).to(DatabaseConnection).scope(Scope.Local);
+  let atencionPasoCampoDAO: AtencionPasoCampoDAO = Container.get(AtencionPasoCampoDAO);
+  let atencionProceso = { CodAtencionPaso: "cdocampo", CodProceso: "96**cod",  TipoServicio: "1234", Servicio: "http://www.google..../",  Request: "rest|get", Response: "proceso ejecutado exitosamente" };
+  let atencionProcesoSalida = { CodAtencionProceso : "", CodProcesoSalida :"", Valor:"proceso ejecutado exitosamente" }
+  let idAtnPaso = 1;
+  let data = await atencionPasoCampoDAO.createAtencionProceso(idAtnPaso, atencionProceso, atencionProcesoSalida);
+  console.log('-----> data : ', data)
+  if (data == '' || data == 'undefine') {
+    console.log('No se ha creado la createAtencionProceso createAtencionProceso() ')
+  }
+  let obj = [ {
+    "atencionProceso": {
+    "CodAtencionPaso" : "cdocampo",
+    "CodProceso":"96**cod",
+    "TipoServicio":"1234",
+    "Servicio":"http://www.google..../",
+    "Request":"rest|get",
+    "Response":"proceso ejecutado exitosamente"
+  },    
+  "atencionProcesoSalida":{
+    "CodAtencionProceso" : "",
+    "CodProcesoSalida":"",
+    "Valor":12345
+ }
+} ];
+  expect.arrayContaining(obj);
+});
 
 
 

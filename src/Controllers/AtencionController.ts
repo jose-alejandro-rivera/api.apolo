@@ -43,11 +43,6 @@ export default class AtencionController {
 				idAtnPaso = validation;
 			} else {
 				return this.validadorMsgError(201);
-				/* data = {
-					status: 201,
-					msg: 'Error en los datos ingresados'
-				} 
-				return data; */
 			}
 			//Valida que todos los campos de los objetos esten llenos
 			validacionCampos = await this.validarInsert(request[0].atencionProceso);
@@ -73,11 +68,6 @@ export default class AtencionController {
 
 				} else {
 					return this.validadorMsgError(201);
-					/*	data = {
-							status: 201,
-							msg: 'Error en los datos ingresados'
-						} 
-						return data; */
 				}
 			}
 			valAtencionCampo = await this.validarArrayAtencionCampo(request[0].atencionCampo);
@@ -87,19 +77,9 @@ export default class AtencionController {
 					validation = await this.AtencionDAO.createAtencionCampo(request[0].atencionCampo, idAtnPaso);
 				} else if (valAtencionCampo == 2) {
 					return this.validadorMsgError(201);
-					/*data = {
-						status: 201,
-						msg: 'Error en los datos ingresados'
-					}
-					return data; */
 				}
 			}
 			return this.validadorMsgError(200);
-			/*data = {
-				status: 200,
-				msg: 'Datos registrados'
-			}
-			return data; */
 		} catch (error) {
 		}
 	}
