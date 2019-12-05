@@ -42,9 +42,9 @@ test('getFlujoList retorna invalido en la repspuesta', async () => {
   let flujoListDAO:FlujoListDAO = Container.get(FlujoListDAO);
   let data = await flujoListDAO.getFlujoList(1);
   try{
-    expect(data).toEqual(data1)
+    expect(data).not.toEqual(data1)
   }catch(error){
-    console.log(error)
+    console.log(error,'llllllllllll')
   }
 })
 
