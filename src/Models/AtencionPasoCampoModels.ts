@@ -1,11 +1,12 @@
-
-
+/**
+ * @category Models
+ */
 interface AtencionPasoCampoModels {
     Id_CategoriaFlujo: number;
     NomCategoriaFlujo: string;
-    Activo:Boolean;
+    Activo: boolean;
     Fecha:string;
     Usuario:string;
 }
 
-export default CategoriaFlujoModel
+export default AtencionPasoCampoModels

@@ -1,8 +1,6 @@
 import { Request, Response, NextFunction } from 'express'
-import { Inject, Container } from "typescript-ioc";
+import { Inject } from "typescript-ioc";
 import FlujoModels from '../models/FlujoModels'
-import Conections from '../connet'
-import Conection from '../loaders/databaseLoader'
 import { FlujoListDAO } from '../DAO/FlujoListDAO'
 import CategoriaFlujoModel from '../Models/CategoriaFlujoModels'
 
@@ -10,8 +8,7 @@ import CategoriaFlujoModel from '../Models/CategoriaFlujoModels'
 export default class FlujoController {
 	private flujos: FlujoModels[]
 	constructor(
-		@Inject private FlujoListDAO: FlujoListDAO,
-		@Inject private databaseConnection: Conections
+		@Inject private FlujoListDAO: FlujoListDAO
 	) {
 		this.flujos = []
 	}
@@ -34,15 +31,6 @@ export default class FlujoController {
 	async getFlujoPorCategoria(Id_CategoriaFlujo: any): Promise<void> {
 		try {
 			const result = await this.FlujoListDAO.getFlujosPorCategoria(Id_CategoriaFlujo);
-			return result;
-		} catch (error) {
-			console.log(error)
-		}
-	}
-
-	async getFlujoListaCompleta(): Promise<void> {
-		try {
-			const result = await this.FlujoListDAO.getFlujosComplete();
 			return result;
 		} catch (error) {
 			console.log(error)
