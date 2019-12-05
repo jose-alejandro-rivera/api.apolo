@@ -26,7 +26,7 @@ export class AtencionPasoCampoDAO {
 				return CodAtencionpaso;
 			}
 		} catch (error) {
-			console.log(error)
+			return error;
 		}
 	}
 	//Metodo que consulta si el codigo del paso enviado existe en la bd
@@ -42,7 +42,7 @@ export class AtencionPasoCampoDAO {
 			let cPaso = this.result.recordset[0].id_Paso;
 			return cPaso;
 		} catch (error) {
-			console.log(error)
+			return error;
 		}
 	}
 	//Metodo que crea una atecionPaso
@@ -84,7 +84,7 @@ export class AtencionPasoCampoDAO {
 
 			return idatenciopas;
 		} catch (error) {
-			console.log(error)
+			return error;
 		}
 	}
 	//Metodo que crea una atecionCampo
@@ -104,7 +104,7 @@ export class AtencionPasoCampoDAO {
 			}
 			return result.rowsAffected;
 		} catch (error) {
-			console.log(error)
+			return error;
 		}
 	}
 	//Metodo que crea una atecionProceso	

@@ -14,7 +14,7 @@ test('getFlujoList retorna status 200 rows[data] de vuelve datos', async () => {
    try{
      expect(data).toEqual(data1);
    }catch(error){
-    console.log(error)
+     return error;
    }
 });
 
@@ -29,7 +29,7 @@ test('getFlujoList retorna status 201, rows [vacio] argumento invalido', async (
   try{
     expect(data).not.toBe(data1);
   }catch(error){
-    console.log(error)
+    return error;
   }
 })
 
@@ -44,7 +44,7 @@ test('getFlujoList retorna invalido en la repspuesta', async () => {
   try{
     expect(data).not.toEqual(data1)
   }catch(error){
-    console.log(error,'llllllllllll')
+   return error;
   }
 })
 

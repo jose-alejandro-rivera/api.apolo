@@ -9,7 +9,6 @@ test('test consultaAtencionPaso debe devolver true', async () => {
   let atencionDAO: AtencionDAO = Container.get(AtencionDAO);
   let codPaso = 1;
   let data = await atencionDAO.consultaAtencionPaso(codPaso);
-  console.log('data --->', data)
   let obj = [{
     "Id_Paso": 1
   }];

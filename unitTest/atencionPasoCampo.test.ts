@@ -30,7 +30,7 @@ test('test createAtencionPaso debe realizar el insert de manera correcta', async
   let atencionPaso = { CodAtencion: "3", CodPaso: "2", Secuencia: 1, Soluciona: 1 };
   let data = await atencionPasoCampoDAO.createAtencionPaso(atencionPaso);
   if (data != '') {
-    console.log('Se ha realizado el insert createAtencionPaso()')
+    //console.log('Se ha realizado el insert createAtencionPaso()')
   }
   let obj = [{
     "CodAtencion": "3",
@@ -47,7 +47,7 @@ test('test createAtencionPaso debe dar error al realizar el insert: Datos errone
   let atencionPaso = { CodAtencion: "mmmm", CodPaso: "", Secuencia: 1, Soluciona: 1 };
   let data = await atencionPasoCampoDAO.createAtencionPaso(atencionPaso);
   if (data = 'undefined' || data == '') {
-    console.log('Los datos ingresados son erroneos createAtencionPaso()')
+    //console.log('Los datos ingresados son erroneos createAtencionPaso()')
   }
   let obj = [{
     "CodAtencion": "mmmm",
@@ -63,7 +63,7 @@ test('test consultaIdAtencionPaso debe realizar la consulta de manera correcta d
   let atencionPasoCampoDAO: AtencionPasoCampoDAO = Container.get(AtencionPasoCampoDAO);
   let data = await atencionPasoCampoDAO.consultaIdAtencionPaso();
   if (data != '') {
-    console.log('La consulta se ejecuto de manera correcta el metodo consultaIdAtencionPaso()')
+    //console.log('La consulta se ejecuto de manera correcta el metodo consultaIdAtencionPaso()')
   }
 });
 //test correcto para createAtencionCampo, debe realizar el insert a la bd
@@ -74,7 +74,7 @@ test('test createAtencionCampo debe realizar el insert: Datos correctos ', async
   let idAtnPaso = 1;
   let data = await atencionPasoCampoDAO.createAtencionCampo(atencionCampo, idAtnPaso);
   if (data != '') {
-    console.log('Se ha creado la AtencionCampo createAtencionCampo() ')
+    //console.log('Se ha creado la AtencionCampo createAtencionCampo() ')
   }
   let obj = [{
     "CodCuestionarioCampo": 1,
@@ -89,9 +89,6 @@ test('test createAtencionCampo no debe realizar el insert: Datos erroneos ', asy
   let atencionCampo = { CodCuestionarioCampo: "Colombia es bella", ValorCampo: "Vass Latam" };
   let idAtnPaso = 1;
   let data = await atencionPasoCampoDAO.createAtencionCampo(atencionCampo, idAtnPaso);
-  if (data = 'undefined' || data == '') {
-    console.log('No se ha creado la AtencionCampo createAtencionCampo() ')
-  }
   let obj = [{
     "CodCuestionarioCampo": "Colombia es bella",
     "ValorCampo": "Vass Latam"
@@ -107,7 +104,7 @@ test('test  createAtencionProceso y atencionProcesoSalida debe realizar el inser
   let idAtnPaso = 1;
   let data = await atencionPasoCampoDAO.createAtencionProceso(idAtnPaso, atencionProceso, atencionProcesoSalida);
   if (data != '') {
-    console.log('Se ha creado la createAtencionProceso y atencionProcesoSalida ')
+    //console.log('Se ha creado la createAtencionProceso y atencionProcesoSalida ')
   }
   let obj = [{
     "atencionProceso": {
@@ -135,7 +132,7 @@ test('test erroneo createAtencionProceso y atencionProcesoSalida no debe realiza
   let idAtnPaso = 1;
   let data = await atencionPasoCampoDAO.createAtencionProceso(idAtnPaso, atencionProceso, atencionProcesoSalida);
   if (data == '' || data == 'undefined') {
-    console.log('No se ha creado la createAtencionProceso y atencionProcesoSalida ')
+    //console.log('No se ha creado la createAtencionProceso y atencionProcesoSalida ')
   }
   expect.stringContaining('undefined');
 });

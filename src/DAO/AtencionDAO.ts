@@ -27,7 +27,7 @@ export class AtencionDAO {
 				.query(`INSERT INTO Atencion (CodLogin, CodFlujo, Fecha) VALUES (@CodLogin,@CodFlujo,getdate()); SELECT SCOPE_IDENTITY() as Id_Atencion;`);
 			return result.recordset;
 		} catch (error) {
-			return error
+			return error;
 		}
 	}
 
@@ -37,7 +37,7 @@ export class AtencionDAO {
 			const result = await sqlGetSteps.query(`SELECT TOP 1 CAST(Id_Atencion AS int) as Id_Atencion FROM Atencion ORDER BY Id_Atencion DESC `);
 			return result.recordset;
 		} catch (error) {
-			return error
+			return error;
 		}
 	}
 
@@ -57,7 +57,7 @@ export class AtencionDAO {
 				return false;
 			}
 		} catch (error) {
-			return error
+			return error;
 		}
 	}
 
@@ -73,7 +73,7 @@ export class AtencionDAO {
 				return CodAtencionpaso;
 			}
 		} catch (error) {
-			console.log(error)
+			return error;
 		}
 	}
 	//Metodo que consulta si el codigo del paso enviado existe en la bd
@@ -89,7 +89,7 @@ export class AtencionDAO {
 			let cPaso = this.result.recordset[0].id_Paso;
 			return cPaso;
 		} catch (error) {
-			console.log(error)
+			return error;
 		}
 	}
 	//Metodo que crea una atecionPaso
@@ -113,6 +113,7 @@ export class AtencionDAO {
 			
 			return CodAtencionpaso;
 		} catch (error) {
+			return error;
 		}
 	}
 	//Consulta el ultimo id_atencionPaso
@@ -131,7 +132,7 @@ export class AtencionDAO {
 
 			return idatenciopas;
 		} catch (error) {
-			console.log(error)
+			return error;
 		}
 	}
 	//Metodo que crea una atecionCampo
@@ -151,7 +152,7 @@ export class AtencionDAO {
 			}
 			return result.rowsAffected;
 		} catch (error) {
-			console.log(error)
+			return error;
 		}
 	}
 	//Metodo que crea una atecionProceso	
@@ -172,7 +173,7 @@ export class AtencionDAO {
 			this.createAtencionProcesoSalida(atencionProcesoSalida, codAtencionProces)
 			return codAtencionProces;
 		} catch (error) {
-			console.log(error)
+			return error;
 		}
 	}
 		//Metodo que crea una atecionProcesoSalida
@@ -188,6 +189,7 @@ export class AtencionDAO {
 				.query('INSERT INTO AtencionProcesoSalida (CodAtencionProceso,CodProcesoSalida,Valor,Fecha) VALUES (@codAtProces,@codProceSalida,@valCam,getdate());');
 			return this.result.rowsAffected;
 		} catch (error) {
+			return error;
 		}
 
 	}
