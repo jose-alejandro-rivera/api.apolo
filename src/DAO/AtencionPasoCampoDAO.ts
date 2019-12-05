@@ -1,4 +1,3 @@
-import Conections from "../connet"
 import Conection from '../loaders/databaseLoader'
 import * as sql from 'mssql'
 import CategoriaFlujoModel from '../Models/CategoriaFlujoModels'
