@@ -1,18 +1,19 @@
-import { Router, Request, Response, NextFunction } from 'express'
+import { Router } from 'express'
 import bodyParser from 'body-parser'
 import morgan from 'morgan'
 import cors from 'cors'
-import flujoRouter from './routes/FlujoRouter'
-import  procesoRouter from './routes/ProcesoRouter'
-import  atencionRouter from './routes/AtencionRouter'
-import  pasoRouter from './routes/AtencionPasoCampoRouter'
+import flujoRouter from './Routes/FlujoRouter'
+import  procesoRouter from './Routes/ProcesoRouter'
+import  atencionRouter from './Routes/AtencionRouter'
+import  DocRouter from './Routes/DocumentationRoute'
+
 
 class GeneralRouter {
   public router:Router
   private routesFlujo:any
   private routesAtencion:any
   private routesProceso:any
-  private routeAtencionPasoCampo: any
+  private routeDocSwagger : any
 
   constructor() {
     this.router = Router()
@@ -23,7 +24,7 @@ class GeneralRouter {
     this.routesFlujo.router()
     this.routesAtencion.router()
     this.routesProceso.router()
-    this.routeAtencionPasoCampo.router()
+    this.routeDocSwagger.router();
   }
   config(){
     this.router.use(bodyParser.json());
@@ -39,7 +40,7 @@ class GeneralRouter {
     this.routesFlujo = new flujoRouter(this.router)
     this.routesAtencion = new atencionRouter(this.router)
     this.routesProceso = new procesoRouter(this.router)
-    this.routeAtencionPasoCampo = new pasoRouter(this.router)
+    this.routeDocSwagger = new DocRouter(this.router)
   }
 }
 const GeneralRouters =  new GeneralRouter
