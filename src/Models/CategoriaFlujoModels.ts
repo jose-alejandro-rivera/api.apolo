@@ -1,7 +1,7 @@
 interface CategoriaFlujoModel {
      Id_CategoriaFlujo: number;
      NomCategoriaFlujo: string;
-     Activo:Boolean;
+     Activo:boolean;
      Fecha:string;
      Usuario:string;
 }
