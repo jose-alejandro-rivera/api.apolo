@@ -143,6 +143,5 @@ export class AtencionPasoCampoDAO {
 			return this.result.rowsAffected;
 		} catch (error) {
 		}
-
 	}
 }
