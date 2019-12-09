@@ -32,7 +32,6 @@ export class ResponseStatus{
 			throw `{ Invalid: status, status: ${status} }`;
 		}
 		if(rows.length > 0){
-			let key = Object.keys(rows[0])
 			this.status.rows = rows
 		}else{
 			this.status.rows = []
