@@ -1,6 +1,5 @@
 import { Container, Scope } from 'typescript-ioc';
-import { AtencionDAO } from '../src/DAO/AtencionDAO';
-import DatabaseConnection from '../src/loaders/databaseLoader'
+import DatabaseConnection from '../src/loaders/databaseLoader';
 import { FlujoListDAO } from '../src/DAO/FlujoListDAO';
 import { charge } from './mocks/chargeJson';
 import FlujoController  from '../src/Controllers/FlujoController';
