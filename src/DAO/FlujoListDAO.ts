@@ -27,10 +27,11 @@ export class FlujoListDAO {
 	//OBTIENE EL LISTADO DE PASOS DE LA CONSULTA EN FORMATO JSON
 	public async getFlujoList(id:number): Promise<void> {
 		let data: any
+		let queryFlujo:any
 		try {
 			let activo:number = 1;
 			const connect = await this.databaseConnection.getPool()
-			let queryFlujo:any = await connect.request()
+		  queryFlujo = await connect.request()
 				.input('id_flujo',sql.Int,id)
 				.input('activo',sql.BigInt,activo)
 				.query(`SELECT DISTINCT
@@ -155,25 +156,10 @@ export class FlujoListDAO {
 									LEFT JOIN TipoPaso tp ON tp.Id_TipoPaso = ps.CodTipoPaso
 									WHERE fl.Id_flujo = @id_flujo AND fl.Activo = @activo
 									FOR JSON PATH`)
-			if(queryFlujo.rowsAffected > 0){
-				data = {
-					status: 200,
-					rows : queryFlujo.recordsets
-				}
-			}else{
-				data = {
-					status: 201,
-					rows : []
-				}
-			}
-			return data
+			return queryFlujo;
 		} catch (error) {
-			console.log(error)
-			data = {
-					status: 500,
-					rows : []
-				}
-			return data
+			queryFlujo = { rowsAffected : error.name }
+			return queryFlujo
 		}
 	}
 
