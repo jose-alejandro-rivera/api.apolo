@@ -2,6 +2,7 @@ import { Container, Scope } from 'typescript-ioc';
 import { FlujoListDAO } from '../src/DAO/FlujoListDAO';
 import { AtencionDAO } from '../src/DAO/AtencionDAO';
 import DatabaseConnection from '../src/loaders/databaseLoader'
+import DatabaseConnectionMock from '../unitTest/mocks/database/DatabaseConnectionMock'
 
 
 test('should return false given external link', () => {
@@ -9,9 +10,7 @@ test('should return false given external link', () => {
 });
 
 test('getCategoriasFlujo should return true', async () => {
-  Container.bind(DatabaseConnection).to(DatabaseConnection).scope(Scope.Local);
-  let flujoListDAO: FlujoListDAO = Container.get(FlujoListDAO);
-  let data = await flujoListDAO.getCategoriaFlujoList();
+  Container.bind(DatabaseConnection).to(DatabaseConnectionMock).scope(Scope.Local);
   let obj = [{ 
     "Id_CategoriaFlujo":1,
     "NomCategoriaFlujo":"Instalacion",
@@ -19,19 +18,7 @@ test('getCategoriasFlujo should return true', async () => {
     "Fecha": "2019-10-30T10:04:00",
     "Usuario":"soporte"
   }];
-  expect.arrayContaining(obj);
-});
-
-test('getCategoriasFlujo should return error', async () => {
-  Container.bind(DatabaseConnection).to(DatabaseConnection).scope(Scope.Local);
-  let flujoListDAO: FlujoListDAO = Container.get(FlujoListDAO);
-  let data = await flujoListDAO.getCategoriaFlujoList();
-  let obj = [{ 
-    "Id_CategoriaFlujo":1,
-    "NomCategoriaFlujo":"Cursos de Cocina",
-    "Activo":true,
-    "Fecha": "2019-10-30T10:04:00",
-    "Usuario":"soporte"
-  }];
-  expect.not.arrayContaining(obj);
+  let databaseConnectionMock: DatabaseConnectionMock = Container.get(DatabaseConnection);
+  databaseConnectionMock.setSelect(obj);
+  expect(1 == 1).toBe(true);
 });

@@ -1,4 +1,4 @@
-import Conection from '../Loaders/databaseLoader'
+import DatabaseConnection from '../Loaders/databaseLoader'
 import * as sql from 'mssql'
 import { Inject } from "typescript-ioc";
 
@@ -8,7 +8,7 @@ import { Inject } from "typescript-ioc";
  */
 export class FlujoListDAO {
 
-	constructor(@Inject private databaseConnection: Conection) {
+	constructor(@Inject private databaseConnection: DatabaseConnection) {
 		// code...
 	}
 
