@@ -1,4 +1,4 @@
-import * as sql from './mssqlMock';
+import * as sql from './mssqlMoks';
 import config from '../../../src/config';
 import { Singleton } from 'typescript-ioc';
 import LoggerInstance from '../../../src/loaders/loggerLoader';

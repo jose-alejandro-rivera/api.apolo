@@ -8,7 +8,7 @@ import { Inject } from "typescript-ioc";
  */
 export class AtencionDAO {
 
-	
+
 	private result: any;
 
 
@@ -44,11 +44,11 @@ export class AtencionDAO {
 		try {
 			const sqlGetSteps = await this.databaseConnection.getPool();
 			let validateLogin = await sqlGetSteps.request()
-			.input('CodLogin', sql.Int, CodLogin)
-			.query`SELECT Id_Login, Usuario, Fecha FROM Login WHERE Id_Login = @CodLogin`;
+				.input('CodLogin', sql.Int, CodLogin)
+				.query`SELECT Id_Login, Usuario, Fecha FROM Login WHERE Id_Login = @CodLogin`;
 			let validateFlujo = await sqlGetSteps.request()
-			.input('CodFlujo', sql.Int, CodFlujo).
-			query`SELECT Id_Flujo,NomFlujo,CodCategoriaFlujo,CodPaso_Inicial,Descripcion,Orden,Activo,Fecha,Usuario FROM Flujo WHERE Id_Flujo = @CodFlujo`;
+				.input('CodFlujo', sql.Int, CodFlujo).
+				query`SELECT Id_Flujo,NomFlujo,CodCategoriaFlujo,CodPaso_Inicial,Descripcion,Orden,Activo,Fecha,Usuario FROM Flujo WHERE Id_Flujo = @CodFlujo`;
 			if (validateLogin.recordset.length > 0 && validateFlujo.recordset.length > 0) {
 				return true;
 			} else {
@@ -60,10 +60,11 @@ export class AtencionDAO {
 	}
 
 	//Filtra que metodos se ejecutaran segun los datos enviados
-	public async createAtencionPasoCampo(atencionPaso: any, atencionProceso: any, atencionProcesoSalida: any, atencionCampo: any) {
+	public async createAtencionPasoCampo(atencionPaso: any) {
 		try {
 			let CodAtencionpaso: any; let codCuestionario: any; let codAtencionProsces: any; let codigopaso: any;
 			let { CodPaso } = atencionPaso;
+			console.log('--->>> CodPaso <<<---- ',CodPaso);
 
 			codigopaso = await this.consultaAtencionPaso(atencionPaso);
 			if (CodPaso == codigopaso) {
@@ -82,6 +83,7 @@ export class AtencionDAO {
 			this.result = await sqlGetSteps.request()
 				.input('codPas', sql.Int, CodPaso)
 				.query('SELECT p.id_Paso FROM Paso p where p.id_Paso = @codPas');
+			console.log(this.result)
 			let cPaso = this.result.recordset[0].id_Paso;
 			return cPaso;
 		} catch (error) {
@@ -92,7 +94,7 @@ export class AtencionDAO {
 	public async createAtencionPaso(atencionPaso: any) {
 		try {
 			let { CodAtencion, CodPaso, Secuencia, Soluciona } = atencionPaso;
-			console.log('paso soluciona',Soluciona);
+			console.log('paso soluciona', Soluciona);
 			const sqlGetSteps = await this.databaseConnection.getPool();
 			let id = await this.consultaIdAtencionPaso();
 			let SecuenciaC = id + 1;
@@ -102,8 +104,8 @@ export class AtencionDAO {
 				.input('secu', sql.Int, SecuenciaC)
 				.input('solu', sql.Int, Soluciona)
 				.query('INSERT INTO AtencionPaso (CodAtencion,CodPaso,Secuencia,Soluciona,Fecha) VALUES (@codAt,@codPas,@secu,@solu,getdate()); SELECT SCOPE_IDENTITY() as Id_AtencionPaso;');
-				console.log('base de datos', result.recordset[0].Soluciona);
-				let CodAtencionpaso = result.recordset[0].Id_AtencionPaso;
+			console.log('base de datos', result.recordset[0].Soluciona);
+			let CodAtencionpaso = result.recordset[0].Id_AtencionPaso;
 			return CodAtencionpaso;
 		} catch (error) {
 			return error;
@@ -165,7 +167,7 @@ export class AtencionDAO {
 			return error;
 		}
 	}
-		//Metodo que crea una atecionProcesoSalida
+	//Metodo que crea una atecionProcesoSalida
 	public async createAtencionProcesoSalida(atencionProcesoSalida: any, codAtencionProsces: any) {
 		try {
 			let { CodProcesoSalida, Valor } = atencionProcesoSalida;
