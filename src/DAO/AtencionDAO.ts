@@ -92,6 +92,7 @@ export class AtencionDAO {
 	public async createAtencionPaso(atencionPaso: any) {
 		try {
 			let { CodAtencion, CodPaso, Secuencia, Soluciona } = atencionPaso;
+			console.log('paso soluciona',Soluciona);
 			const sqlGetSteps = await this.databaseConnection.getPool();
 			let id = await this.consultaIdAtencionPaso();
 			let SecuenciaC = id + 1;
@@ -99,8 +100,9 @@ export class AtencionDAO {
 				.input('codAt', sql.Int, CodAtencion)
 				.input('codPas', sql.Int, CodPaso)
 				.input('secu', sql.Int, SecuenciaC)
-				.input('solu', sql.Bit, Soluciona)
+				.input('solu', sql.Int, Soluciona)
 				.query('INSERT INTO AtencionPaso (CodAtencion,CodPaso,Secuencia,Soluciona,Fecha) VALUES (@codAt,@codPas,@secu,@solu,getdate()); SELECT SCOPE_IDENTITY() as Id_AtencionPaso;');
+				console.log('base de datos', result.recordset[0].Soluciona);
 				let CodAtencionpaso = result.recordset[0].Id_AtencionPaso;
 			return CodAtencionpaso;
 		} catch (error) {
