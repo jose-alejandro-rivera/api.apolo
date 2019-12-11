@@ -1,12 +1,20 @@
 /**
  * @category Models
  */
-interface AtencionPasoCampoModels {
-    Id_CategoriaFlujo: number;
-    NomCategoriaFlujo: string;
-    Activo: boolean;
-    Fecha:string;
-    Usuario:string;
-}
 
-export default AtencionPasoCampoModels
+export default class AtencionPasoCampoModels {
+    public atencionPaso: object;
+    public atencionProceso: object;
+    public atencionProcesoSalida: object;
+    public atencionCampo: object;
+
+    constructor() {
+
+        
+        this.atencionPaso = {};
+        this.atencionProceso = {};
+        this.atencionProcesoSalida = {};
+        this.atencionCampo = {};
+
+    }
+}

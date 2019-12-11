@@ -1,0 +1,31 @@
+[
+    {
+       "atencionPaso":{
+          "CodAtencion":3,
+          "CodPaso":2,
+          "Secuencia":1,
+          "Soluciona": 1
+       },
+ 
+       "atencionProceso":{
+          "CodAtencionPaso" : 1,
+          "CodProceso":1,
+          "TipoServicio":"rest|get",
+          "Servicio":"http://www.google.com",
+          "Request":"rest|get",
+          "Response":"proceso ejecutado exitosamente"
+       },
+       
+       "atencionProcesoSalida":{
+          "CodAtencionProceso" : 1,
+          "CodProcesoSalida":1,
+          "Valor":"proceso ejecutado exitosamente"
+       },
+       "atencionCampo":[
+         {
+          "CodCuestionarioCampo" : "1",
+          "ValorCampo" : "1"
+         }
+       ]
+    }
+ ]
