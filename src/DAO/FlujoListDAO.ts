@@ -1,4 +1,4 @@
-import Conection from '../Loaders/databaseLoader'
+import DatabaseConnection from '../Loaders/databaseLoader'
 import * as sql from 'mssql'
 import { Inject } from "typescript-ioc";
 
@@ -8,7 +8,7 @@ import { Inject } from "typescript-ioc";
  */
 export class FlujoListDAO {
 
-	constructor(@Inject private databaseConnection: Conection) {
+	constructor(@Inject private databaseConnection: DatabaseConnection) {
 		// code...
 	}
 
@@ -163,13 +163,9 @@ export class FlujoListDAO {
 	}
 
 	public async getCategoriaFlujoList() {
-		try {
-			const sqlGetSteps = await this.databaseConnection.getPool();
-			const result = await sqlGetSteps.query(`SELECT Id_CategoriaFlujo,NomCategoriaFlujo,Activo,Fecha,Usuario FROM categoriaFlujo where Activo=1`);
-			return result;
-		} catch (error) {
-			return error
-		}
+		const sqlGetSteps = await this.databaseConnection.getPool();
+		const result = await sqlGetSteps.query(`SELECT Id_CategoriaFlujo,NomCategoriaFlujo,Activo,Fecha,Usuario FROM categoriaFlujo where Activo=1`);
+		return result;
 	}
 
 	public async validateFlujoExist(Id_Flujo: number): Promise<boolean> {

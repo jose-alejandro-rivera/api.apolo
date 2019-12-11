@@ -47,8 +47,8 @@ export class AtencionDAO {
 			.input('CodLogin', sql.Int, CodLogin)
 			.query`SELECT Id_Login, Usuario, Fecha FROM Login WHERE Id_Login = @CodLogin`;
 			let validateFlujo = await sqlGetSteps.request()
-			.input('CodLogin', sql.Int, CodFlujo).
-			query`SELECT Id_Flujo,NomFlujo,CodCategoriaFlujo,CodPaso_Inicial,Descripcion,Orden,Activo,Fecha,Usuario FROM Flujo WHERE Id_Flujo = @CodLogin`;
+			.input('CodFlujo', sql.Int, CodFlujo).
+			query`SELECT Id_Flujo,NomFlujo,CodCategoriaFlujo,CodPaso_Inicial,Descripcion,Orden,Activo,Fecha,Usuario FROM Flujo WHERE Id_Flujo = @CodFlujo`;
 			if (validateLogin.recordset.length > 0 && validateFlujo.recordset.length > 0) {
 				return true;
 			} else {
