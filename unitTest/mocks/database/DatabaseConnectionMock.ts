@@ -22,7 +22,11 @@ export default class DatabaseConnectionMock {
         (await this.pool).request().resultProcedure.setOutput(data);
     }
 
-    public async setSelect(data: any) {
-        (await this.pool).request().resultProcedure.setRecordSet(data);
+    public async setSelectResponse(data: any, isRecorset: boolean = false) {
+        if(!isRecorset) {
+            (await this.pool).request().resultProcedure.setOutput(data);
+        } else {
+            (await this.pool).request().resultProcedure.setRecordSet(data);
+        }
     }
 }

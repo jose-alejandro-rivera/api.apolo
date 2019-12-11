@@ -27,7 +27,8 @@ export default class FlujoController {
 				return categoriaFlujoModel;
 			}
 		} catch (error) {
-			console.log(error)
+			let res = this.responseStatus.stateSelect(500)
+			return res;
 		}
 	}
 
@@ -36,7 +37,8 @@ export default class FlujoController {
 			const result = await this.FlujoListDAO.getFlujosPorCategoria(Id_CategoriaFlujo);
 			return result;
 		} catch (error) {
-			console.log(error)
+			let res = this.responseStatus.stateSelect(500)
+			return res;
 		}
 	}
 
@@ -53,8 +55,8 @@ export default class FlujoController {
 			}
 			return res
 		} catch (error) {
-			res = this.responseStatus.stateSelect(500)
-			return res
+			let res = this.responseStatus.stateSelect(500)
+			return res;
 		}
 	}
 
@@ -63,7 +65,8 @@ export default class FlujoController {
 			const result = await this.FlujoListDAO.validateFlujoExist(Id_Flujo);
 			return result;
 		} catch (error) {
-			console.log(error)
+			let res = this.responseStatus.stateSelect(500)
+			return res;
 		}
 	}
 
