@@ -6,6 +6,7 @@ import LoggerInstance from '../../../src/loaders/loggerLoader';
 @Singleton
 export default class DatabaseConnectionMock {
     private pool: Promise<sql.ConnectionPool>;
+    private vari : any;
 
     constructor() {
         LoggerInstance.info('configuración base de datos' + JSON.stringify(config.database));
@@ -13,6 +14,7 @@ export default class DatabaseConnectionMock {
             resolve(new sql.ConnectionPool());
         });
     }
+
 
     public getPool() {
         return this.pool;
