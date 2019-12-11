@@ -26,7 +26,6 @@ export class FlujoListDAO {
 	
 	//OBTIENE EL LISTADO DE PASOS DE LA CONSULTA EN FORMATO JSON
 	public async getFlujoList(id:number): Promise<void> {
-		let data: any
 		let queryFlujo:any
 		try {
 			let activo:number = 1;
