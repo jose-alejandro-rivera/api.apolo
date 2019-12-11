@@ -3,12 +3,15 @@ import { Inject } from "typescript-ioc";
 import FlujoModels from '../models/FlujoModels'
 import { FlujoListDAO } from '../DAO/FlujoListDAO'
 import CategoriaFlujoModel from '../Models/CategoriaFlujoModels'
+import { ResponseStatus } from "../ConfigRes/resStatus";
+
 
 
 export default class FlujoController {
 	private flujos: FlujoModels[]
 	constructor(
-		@Inject private FlujoListDAO: FlujoListDAO
+		@Inject private FlujoListDAO: FlujoListDAO,
+		@Inject private responseStatus: ResponseStatus
 	) {
 		this.flujos = []
 	}
@@ -18,7 +21,7 @@ export default class FlujoController {
 			const result = await this.FlujoListDAO.getCategoriaFlujoList();
 			let categoriaFlujoModel: CategoriaFlujoModel;
 			if (result.rowsAffected[0] == 0) {
-				return res.status(201).json({ 'status': 201, 'response': "no existen elementos creados para la consulta" });
+				return res = this.responseStatus.stateSelect(201);
 			} else {
 				categoriaFlujoModel = Object.assign(result.recordset);
 				return categoriaFlujoModel;
@@ -38,13 +41,20 @@ export default class FlujoController {
 	}
 
 	async getSteps(id: any): Promise<void> {
+		let res:any;
 		try {
-			const responseDao = await this.FlujoListDAO.getFlujoList(id)
-			const responseLoginModel = responseDao
-			return responseLoginModel
+			let responseDao:any = await this.FlujoListDAO.getFlujoList(id)
+			if(responseDao.rowsAffected[0] == 'RequestError'){
+				res = this.responseStatus.stateSelect(500)
+			}else if(responseDao.rowsAffected > 0){
+				res = this.responseStatus.stateSelect(200,responseDao.recordsets)
+			}else{
+				res = this.responseStatus.stateSelect(201)
+			}
+			return res
 		} catch (error) {
-			console.log(error)
-			return error
+			res = this.responseStatus.stateSelect(500)
+			return res
 		}
 	}
 
