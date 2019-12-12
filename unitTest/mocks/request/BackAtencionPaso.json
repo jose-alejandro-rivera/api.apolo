@@ -1,10 +1,10 @@
 [
     {
        "atencionPaso":{
-          "CodAtencion":"",
-          "CodPaso":"",
-          "Secuencia":"",
-          "Soluciona":"" 
+          "CodAtencion":3,
+          "CodPaso":2,
+          "Secuencia":1,
+          "Soluciona":0 
        },
  
        "atencionProceso":{

@@ -61,18 +61,19 @@ export class AtencionDAO {
 
 	//Filtra que metodos se ejecutaran segun los datos enviados
 	public async createAtencionPasoCampo(atencionPaso: any) {
+		let CodAtencionpaso: any; 
 		try {
-			let CodAtencionpaso: any; let codCuestionario: any; let codAtencionProsces: any; let codigopaso: any;
+			let codCuestionario: any; let codAtencionProsces: any; let codigopaso: any;
 			let { CodPaso } = atencionPaso;
-			console.log('--->>> CodPaso <<<---- ',CodPaso);
-
 			codigopaso = await this.consultaAtencionPaso(atencionPaso);
-			if (CodPaso == codigopaso) {
+			let cPaso = codigopaso.recordset[0].id_Paso;
+			if (CodPaso == cPaso) {
 				CodAtencionpaso = await this.createAtencionPaso(atencionPaso);
 				return CodAtencionpaso;
 			}
 		} catch (error) {
-			return error;
+			CodAtencionpaso = { rowsAffected : error.name }
+			return CodAtencionpaso
 		}
 	}
 	//Metodo que consulta si el codigo del paso enviado existe en la bd
@@ -83,8 +84,7 @@ export class AtencionDAO {
 			this.result = await sqlGetSteps.request()
 				.input('codPas', sql.Int, CodPaso)
 				.query('SELECT p.id_Paso FROM Paso p where p.id_Paso = @codPas');
-			console.log(this.result)
-			let cPaso = this.result.recordset[0].id_Paso;
+			let cPaso = this.result;
 			return cPaso;
 		} catch (error) {
 			return error;
@@ -105,7 +105,7 @@ export class AtencionDAO {
 				.input('solu', sql.Int, Soluciona)
 				.query('INSERT INTO AtencionPaso (CodAtencion,CodPaso,Secuencia,Soluciona,Fecha) VALUES (@codAt,@codPas,@secu,@solu,getdate()); SELECT SCOPE_IDENTITY() as Id_AtencionPaso;');
 			console.log('base de datos', result.recordset[0].Soluciona);
-			let CodAtencionpaso = result.recordset[0].Id_AtencionPaso;
+			let CodAtencionpaso = result;
 			return CodAtencionpaso;
 		} catch (error) {
 			return error;

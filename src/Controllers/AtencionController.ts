@@ -39,8 +39,8 @@ export default class AtencionController {
 			const { CodAtencionPaso, CodProceso, TipoServicio, Servicio, Request, Response } = request[0].atencionProceso;
 			const { CodCuestionarioCampo, ValorCampo } = request[0].atencionCampo;
 			if (CodAtencion != '' && CodPaso != '') {
-				validation = await this.AtencionDAO.createAtencionPasoCampo(request[0].atencionPaso, request[0].atencionProceso, request[0].atencionProcesoSalida, request[0].atencionCampo);
-				idAtnPaso = validation;
+				validation = await this.AtencionDAO.createAtencionPasoCampo(request[0].atencionPaso);
+				idAtnPaso = validation.recordset[0].Id_AtencionPaso;
 			} else {
 				return this.validadorMsgError(201);
 			}

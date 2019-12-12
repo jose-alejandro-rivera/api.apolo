@@ -1,0 +1,31 @@
+[
+    {
+       "atencionPaso":{
+          "CodAtencion":"",
+          "CodPaso":"",
+          "Secuencia":"",
+          "Soluciona":"" 
+       },
+ 
+       "atencionProceso":{
+          "CodAtencionPaso" : "",
+          "CodProceso":"",
+          "TipoServicio":"",
+          "Servicio":"",
+          "Request":"",
+          "Response":""
+       },
+       
+       "atencionProcesoSalida":{
+          "CodAtencionProceso" : "",
+          "CodProcesoSalida":"",
+          "Valor":""
+       },
+       "atencionCampo":[
+         {
+          "CodCuestionarioCampo" : "",
+          "ValorCampo" : ""
+         }
+       ]
+    }
+ ]

@@ -7,7 +7,6 @@ export function chargeJsonRequest(nameJson: string) {
 		obj = JSON.parse(obj);
 		return obj;
 	}catch(error){
-console.log('error ------------->>> ', error)
 	}
 
 }
