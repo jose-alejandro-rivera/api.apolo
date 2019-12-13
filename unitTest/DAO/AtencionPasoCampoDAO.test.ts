@@ -26,7 +26,7 @@ test('test para crear una atención en su metodo createAtencionPasoCampo deberia
   expect(data.rowsAffected[0] == 1).toBe(true);
 });
 
-test('test erroneo para crear una atención en su metodo createAtencionPasoCampo debería devolver un valor false', async () => {
+test('test erroneo para crear una atención en su metodo createAtencionPasoCampo debería devolver un valor true', async () => {
     Container.bind(DatabaseConnection).to(DataBaseConnectionMock).scope(Scope.Local);
     let atencionDAO: AtencionDAO = Container.get(AtencionDAO);
     let obj = chargeJsonRequest('BackAtencionPasoVacio');
@@ -35,5 +35,6 @@ test('test erroneo para crear una atención en su metodo createAtencionPasoCampo
     database.setProcedureResponse(atencionPasoCampoModels);
     //console.log('atencionPasoCampoModels ---> ', atencionPasoCampoModels[0].atencionPaso, atencionPasoCampoModels[0].atencionProceso);
     let data = await atencionDAO.createAtencionPasoCampo(atencionPasoCampoModels[0].atencionPaso);
-    expect(data.rowsAffected[0] == 1).toBe(false);
+    console.log(data)
+    expect(data.rowsAffected == 'TypeError').toBe(true);
   });
