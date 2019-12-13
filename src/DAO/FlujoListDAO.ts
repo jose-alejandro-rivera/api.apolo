@@ -1,14 +1,17 @@
 import DatabaseConnection from '../Loaders/databaseLoader'
 import * as sql from 'mssql'
-import { Inject } from "typescript-ioc";
-
+import { Inject, Container } from "typescript-ioc";
+import FlujoGetModels from '../Models/FlujoGetModels'
 /**
  * 
  * @category DAO
  */
 export class FlujoListDAO {
-
-	constructor(@Inject private databaseConnection: DatabaseConnection) {
+	//private flujoGetModels: FlujoGetModels;
+	constructor(@Inject 
+		private databaseConnection: DatabaseConnection,
+	) {
+		//this.flujoGetModels = Container.get(FlujoGetModels);
 		// code...
 	}
 
@@ -27,6 +30,7 @@ export class FlujoListDAO {
 	//OBTIENE EL LISTADO DE PASOS DE LA CONSULTA EN FORMATO JSON
 	public async getFlujoList(id:number): Promise<void> {
 		let queryFlujo:any
+		let flujoGetModels: FlujoGetModels = Container.get(FlujoGetModels);
 		try {
 			let activo:number = 1;
 			const connect = await this.databaseConnection.getPool()
@@ -155,10 +159,10 @@ export class FlujoListDAO {
 									LEFT JOIN TipoPaso tp ON tp.Id_TipoPaso = ps.CodTipoPaso
 									WHERE fl.Id_flujo = @id_flujo AND fl.Activo = @activo
 									FOR JSON PATH`)
-			return queryFlujo;
+			//console.log(queryFlujo)
+			return flujoGetModels.flujoGet = queryFlujo
 		} catch (error) {
-			queryFlujo = { rowsAffected : error.name }
-			return queryFlujo
+			return flujoGetModels.flujoGet = error.name
 		}
 	}
 

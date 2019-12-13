@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest --verbose",
+    "test": "jest --coverage --collectCoverageFrom=src/**/*.{ts,js,jsx} --colors",
     "remove": "del build",
     "build": "tsc",
     "ts:node": "ts-node ./src/index.ts",
@@ -56,9 +56,9 @@
     "typescript": "^3.7.2"
   },
   "jest": {
-    "testEnvironment": "node",
-    "coveragePathIgnorePatterns": [
-      "/node_modules/"
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "src/**/*.{ts,js,jsx}"
     ]
   }
 }
