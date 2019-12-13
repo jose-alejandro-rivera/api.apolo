@@ -20,19 +20,21 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 const typescript_ioc_1 = require("typescript-ioc");
-const connet_1 = __importDefault(require("../connet"));
 const AtencionDAO_1 = require("../DAO/AtencionDAO");
-let FlujoController = class FlujoController {
-    constructor(AtencionDAO, databaseConnection) {
+let AtencionController = class AtencionController {
+    constructor(AtencionDAO) {
         this.AtencionDAO = AtencionDAO;
-        this.databaseConnection = databaseConnection;
-        this.flujos = [];
     }
+    /**
+     * Crear atencion luego de haber seleccioando el flujo a ejecutar.
+     *
+     * @param {Request} req  request que contiene el codigo del flujo y codigo de login de usuario
+     * @param {Response} res respuesta como 200 o 201
+     * @param {NextFunction} next funcion next
+     * @returns {Promise}
+     */
     createAtencion(req, res, next) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
@@ -51,11 +53,133 @@ let FlujoController = class FlujoController {
             }
         });
     }
+    /* Metodo que recibe los datos del formulario */
+    createAtencionPasoCampo(request) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let validation;
+            let idAtnPaso;
+            let data;
+            let validacionCampos;
+            let valAtencionCampo;
+            try {
+                const { CodAtencion, CodPaso, Secuencia, Soluciona } = request[0].atencionPaso;
+                const { CodAtencionPaso, CodProceso, TipoServicio, Servicio, Request, Response } = request[0].atencionProceso;
+                const { CodCuestionarioCampo, ValorCampo } = request[0].atencionCampo;
+                if (CodAtencion != '' && CodPaso != '') {
+                    validation = yield this.AtencionDAO.createAtencionPasoCampo(request[0].atencionPaso, request[0].atencionProceso, request[0].atencionProcesoSalida, request[0].atencionCampo);
+                    idAtnPaso = validation;
+                }
+                else {
+                    return this.validadorMsgError(201);
+                }
+                //Valida que todos los campos de los objetos esten llenos
+                validacionCampos = yield this.validarInsert(request[0].atencionProceso);
+                if (request[0].atencionProceso) {
+                    if (CodAtencionPaso != '' &&
+                        CodProceso != '' &&
+                        TipoServicio != '' &&
+                        Servicio != '' &&
+                        Request != '' &&
+                        Response != '') {
+                        let idProceso = yield this.AtencionDAO.createAtencionProceso(idAtnPaso, request[0].atencionProceso, request[0].atencionProcesoSalida);
+                    }
+                    else if (CodAtencionPaso == '' &&
+                        CodProceso == '' &&
+                        TipoServicio == '' &&
+                        Servicio == '' &&
+                        Request == '' &&
+                        Response == '') {
+                    }
+                    else {
+                        return this.validadorMsgError(201);
+                    }
+                }
+                valAtencionCampo = yield this.validarArrayAtencionCampo(request[0].atencionCampo);
+                //Valida que los objetos atencionPaso y atencionCampo esten llenos
+                if (request[0].atencionCampo) {
+                    if (valAtencionCampo == 1) {
+                        validation = yield this.AtencionDAO.createAtencionCampo(request[0].atencionCampo, idAtnPaso);
+                    }
+                    else if (valAtencionCampo == 2) {
+                        return this.validadorMsgError(201);
+                    }
+                }
+                return this.validadorMsgError(200);
+            }
+            catch (error) {
+            }
+        });
+    }
+    // Este metodo permite validar los campos de atencionProceso --- >> esta pendiente de ser utilizado	
+    validarInsert(camposValidar) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let arrayList = [];
+            arrayList.push(camposValidar);
+            for (let x in camposValidar) {
+                if (camposValidar[x] == '') {
+                    return false;
+                }
+                else {
+                    return true;
+                }
+            }
+        });
+    }
+    // Metodo para adcionar los mensajes de validaciones 
+    validadorMsgError(estado) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let data;
+            if (estado == 200) {
+                data = {
+                    status: estado,
+                    msg: 'Datos registrados'
+                };
+                return data;
+            }
+            else {
+                data = {
+                    status: estado,
+                    msg: 'Error en los datos ingresados'
+                };
+                return data;
+            }
+        });
+    }
+    //Este metodo permite validar los datos que llegan de atencionCampo
+    validarArrayAtencionCampo(atencionCampo) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let resAtencion = 1;
+            atencionCampo.forEach((elemento, indice) => {
+                if (elemento.CodCuestionarioCampo != '' &&
+                    elemento.ValorCampo == '') {
+                    resAtencion = 2;
+                }
+                if (elemento.CodCuestionarioCampo == '' &&
+                    elemento.ValorCampo != '') {
+                    resAtencion = 2;
+                }
+                if (elemento.CodCuestionarioCampo == '' &&
+                    elemento.ValorCampo == '' &&
+                    atencionCampo.length > 1) {
+                    resAtencion = 2;
+                }
+                if (elemento.CodCuestionarioCampo == '' &&
+                    elemento.ValorCampo == '' &&
+                    atencionCampo.length == 1) {
+                    resAtencion = 3;
+                }
+                if (elemento.CodCuestionarioCampo != '' &&
+                    elemento.ValorCampo != '' &&
+                    atencionCampo.length > 1) {
+                    resAtencion = 1;
+                }
+            });
+            return resAtencion;
+        });
+    }
 };
-FlujoController = __decorate([
+AtencionController = __decorate([
     __param(0, typescript_ioc_1.Inject),
-    __param(1, typescript_ioc_1.Inject),
-    __metadata("design:paramtypes", [AtencionDAO_1.AtencionDAO,
-        connet_1.default])
-], FlujoController);
-exports.default = FlujoController;
+    __metadata("design:paramtypes", [AtencionDAO_1.AtencionDAO])
+], AtencionController);
+exports.default = AtencionController;

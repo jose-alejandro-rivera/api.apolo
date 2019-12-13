@@ -7,9 +7,10 @@ const express_1 = require("express");
 const body_parser_1 = __importDefault(require("body-parser"));
 const morgan_1 = __importDefault(require("morgan"));
 const cors_1 = __importDefault(require("cors"));
-const FlujoRouter_1 = __importDefault(require("./routes/FlujoRouter"));
-const ProcesoRouter_1 = __importDefault(require("./routes/ProcesoRouter"));
-const AtencionRouter_1 = __importDefault(require("./routes/AtencionRouter"));
+const FlujoRouter_1 = __importDefault(require("./Routes/FlujoRouter"));
+const ProcesoRouter_1 = __importDefault(require("./Routes/ProcesoRouter"));
+const AtencionRouter_1 = __importDefault(require("./Routes/AtencionRouter"));
+const DocumentationRoute_1 = __importDefault(require("./Routes/DocumentationRoute"));
 class GeneralRouter {
     constructor() {
         this.router = express_1.Router();
@@ -20,6 +21,7 @@ class GeneralRouter {
         this.routesFlujo.router();
         this.routesAtencion.router();
         this.routesProceso.router();
+        this.routeDocSwagger.router();
     }
     config() {
         this.router.use(body_parser_1.default.json());
@@ -35,6 +37,7 @@ class GeneralRouter {
         this.routesFlujo = new FlujoRouter_1.default(this.router);
         this.routesAtencion = new AtencionRouter_1.default(this.router);
         this.routesProceso = new ProcesoRouter_1.default(this.router);
+        this.routeDocSwagger = new DocumentationRoute_1.default(this.router);
     }
 }
 const GeneralRouters = new GeneralRouter;

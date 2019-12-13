@@ -17,27 +17,13 @@ if (process.env.NODE_ENV !== 'test') {
     }));
 }
 else {
-    /*transports.push(
-        new winston.transports.Console({
-            format: winston.format.combine(
-                winston.format.cli(),
-                winston.format.splat(),
-            )
-        })
-    )*/
-    transports.push(new winston_1.default.transports.File({
-        level: 'silly',
-        filename: `${app_root_path_1.default.path}/app.log`,
-        handleExceptions: true,
-        maxsize: 5242880,
-        maxFiles: 5
+    transports.push(new winston_1.default.transports.Console({
+        format: winston_1.default.format.combine(winston_1.default.format.cli(), winston_1.default.format.splat())
     }));
 }
-//console.log('configurado logger', config.logs.level, winston.config.npm.levels);
 const LoggerInstance = winston_1.default.createLogger({
     level: config_1.default.logs.level,
     levels: winston_1.default.config.npm.levels,
     transports
 });
-//console.log('configurado logger', LoggerInstance);
 exports.default = LoggerInstance;

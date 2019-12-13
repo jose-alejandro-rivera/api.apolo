@@ -19,16 +19,80 @@ class FlujoRouter {
         this.app = router;
     }
     router() {
+        /**
+            * @swagger
+            * /api/flujo/list/:id:
+            *  get:
+            *    tags:
+            *      - Flujo
+            *    name: Lista de Flujos
+            *    summary: servicio retorna listado de los pasos asociados a un flujo creado.
+            *    parameters:
+            *      - in: path
+            *        name: Id
+            *        type: integer
+            *        required: true
+            *        description: numero de id del flujo a filtrar
+            *    produces:
+            *      - application/json
+            *    consumes:
+            *      - application/json
+            *    responses:
+            *      '200':
+            *          description: objeto con un array de pasos asociados al flujo
+            *          schema:
+            *              type: object
+            *              properties:
+            *                  status:
+            *                      type: number
+            *                  rows:
+            *                      type: object
+            *      '201':
+            *          description: error en la consulta a la BD
+            *
+            */
         this.app.get('/flujo/list/:id', (req, res, next) => __awaiter(this, void 0, void 0, function* () {
             try {
                 const flujoController = typescript_ioc_1.Container.get(FlujoController_1.default);
-                let responseModel = yield flujoController.getSteps(req.params);
+                let responseModel = yield flujoController.getSteps(req.params.id);
                 res.status(200).json(responseModel);
             }
             catch (error) {
                 console.log(error);
             }
         }));
+        /**
+            * @swagger
+            * /api/flujos/por/categorias/:id_categoriaFlujo:
+            *  get:
+            *    tags:
+            *      - Flujo
+            *    name: Lista de flujo filtrados por categoria
+            *    summary: servicio retornaLista de flujo asociados a una misma categoria de flujo
+            *    parameters:
+            *      - in: path
+            *        name: IdCategoriaFlujo
+            *        type: integer
+            *        required: true
+            *        description: numero de id de la categoria flujo
+            *    produces:
+            *      - application/json
+            *    consumes:
+            *      - application/json
+            *    responses:
+            *      '200':
+            *          description: objeto con un array de flujos asociados a la categoria
+            *          schema:
+            *              type: object
+            *              properties:
+            *                  status:
+            *                      type: number
+            *                  rows:
+            *                      type: object
+            *      '201':
+            *          description: error en la consulta a la BD
+            *
+            */
         this.app.get('/flujos/por/categorias/:id_categoriaFlujo', (req, res, next) => __awaiter(this, void 0, void 0, function* () {
             try {
                 const flujoController = typescript_ioc_1.Container.get(FlujoController_1.default);
@@ -39,20 +103,36 @@ class FlujoRouter {
                 console.log(error);
             }
         }));
+        /**
+            * @swagger
+            * /api/flujo/categorias:
+            *  get:
+            *    tags:
+            *      - Flujo
+            *    name: Lista de categorias de flujo
+            *    summary: servicio retorna lista de categorias de flujo existentes
+            *    produces:
+            *      - application/json
+            *    consumes:
+            *      - application/json
+            *    responses:
+            *      '200':
+            *          description: objeto con un array de las categorias
+            *          schema:
+            *              type: object
+            *              properties:
+            *                  status:
+            *                      type: number
+            *                  rows:
+            *                      type: object
+            *      '201':
+            *          description: error en la consulta a la BD
+            *
+            */
         this.app.get('/flujo/categorias', (req, res, next) => __awaiter(this, void 0, void 0, function* () {
             try {
                 const flujoController = typescript_ioc_1.Container.get(FlujoController_1.default);
                 let responseModel = yield flujoController.getCategoriaFlujo(req, res, next);
-                res.status(200).send(responseModel);
-            }
-            catch (error) {
-                console.log(error);
-            }
-        }));
-        this.app.get('/flujos/completos', (req, res, next) => __awaiter(this, void 0, void 0, function* () {
-            try {
-                const flujoController = typescript_ioc_1.Container.get(FlujoController_1.default);
-                let responseModel = yield flujoController.getFlujoListaCompleta();
                 res.status(200).send(responseModel);
             }
             catch (error) {
