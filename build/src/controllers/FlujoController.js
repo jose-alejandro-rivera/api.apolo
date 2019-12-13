@@ -20,17 +20,14 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 const typescript_ioc_1 = require("typescript-ioc");
-const connet_1 = __importDefault(require("../connet"));
 const FlujoListDAO_1 = require("../DAO/FlujoListDAO");
+const resStatus_1 = require("../ConfigRes/resStatus");
 let FlujoController = class FlujoController {
-    constructor(FlujoListDAO, databaseConnection) {
+    constructor(FlujoListDAO, responseStatus) {
         this.FlujoListDAO = FlujoListDAO;
-        this.databaseConnection = databaseConnection;
+        this.responseStatus = responseStatus;
         this.flujos = [];
     }
     getCategoriaFlujo(req, res, next) {
@@ -39,7 +36,7 @@ let FlujoController = class FlujoController {
                 const result = yield this.FlujoListDAO.getCategoriaFlujoList();
                 let categoriaFlujoModel;
                 if (result.rowsAffected[0] == 0) {
-                    return res.status(201).json({ 'status': 201, 'response': "no existen elementos creados para la consulta" });
+                    return res = this.responseStatus.stateSelect(201);
                 }
                 else {
                     categoriaFlujoModel = Object.assign(result.recordset);
@@ -47,7 +44,8 @@ let FlujoController = class FlujoController {
                 }
             }
             catch (error) {
-                console.log(error);
+                let res = this.responseStatus.stateSelect(500);
+                return res;
             }
         });
     }
@@ -58,31 +56,30 @@ let FlujoController = class FlujoController {
                 return result;
             }
             catch (error) {
-                console.log(error);
+                let res = this.responseStatus.stateSelect(500);
+                return res;
             }
         });
     }
-    getFlujoListaCompleta() {
+    getSteps(id) {
         return __awaiter(this, void 0, void 0, function* () {
+            let res;
             try {
-                const result = yield this.FlujoListDAO.getFlujosComplete();
-                return result;
+                let responseDao = yield this.FlujoListDAO.getFlujoList(id);
+                if (responseDao.rowsAffected[0] == 'RequestError') {
+                    res = this.responseStatus.stateSelect(500);
+                }
+                else if (responseDao.rowsAffected > 0) {
+                    res = this.responseStatus.stateSelect(200, responseDao.recordsets);
+                }
+                else {
+                    res = this.responseStatus.stateSelect(201);
+                }
+                return res;
             }
             catch (error) {
-                console.log(error);
-            }
-        });
-    }
-    getSteps(request) {
-        return __awaiter(this, void 0, void 0, function* () {
-            try {
-                const responseDao = yield this.FlujoListDAO.getFlujoList();
-                const responseLoginModel = responseDao;
-                return responseLoginModel;
-            }
-            catch (error) {
-                console.log(error);
-                return error;
+                let res = this.responseStatus.stateSelect(500);
+                return res;
             }
         });
     }
@@ -93,7 +90,8 @@ let FlujoController = class FlujoController {
                 return result;
             }
             catch (error) {
-                console.log(error);
+                let res = this.responseStatus.stateSelect(500);
+                return res;
             }
         });
     }
@@ -102,6 +100,6 @@ FlujoController = __decorate([
     __param(0, typescript_ioc_1.Inject),
     __param(1, typescript_ioc_1.Inject),
     __metadata("design:paramtypes", [FlujoListDAO_1.FlujoListDAO,
-        connet_1.default])
+        resStatus_1.ResponseStatus])
 ], FlujoController);
 exports.default = FlujoController;

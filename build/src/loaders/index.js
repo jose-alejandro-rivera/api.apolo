@@ -23,5 +23,5 @@ exports.default = ({ expressApp }) => __awaiter(void 0, void 0, void 0, function
      * Se cargan todas las rutas
      */
     loggerLoader_1.default.debug('cargando rutas');
-    yield routesLoader_1.default({ app: expressApp });
+    return routesLoader_1.default({ app: expressApp });
 });

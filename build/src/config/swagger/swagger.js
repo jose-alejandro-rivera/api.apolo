@@ -1,24 +1,15 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 let swaggerDefinition = {
+    openapi: '3.0.0',
     info: {
-        title: 'documentación swagger',
+        title: 'Documentacion Appolo Backend',
         version: '1.0.0',
-        description: 'documentación inicial del loginAsesor5'
     },
     host: "localhost:3000",
-    basePath: "/",
-    securityDefinitions: {
-        bearerAuth: {
-            type: 'apiKey',
-            name: 'Authorization',
-            scheme: 'bearer',
-            in: 'header'
-        }
-    }
+    basePath: "/api",
 };
 exports.swaggerOptions = {
     swaggerDefinition,
-    apis: [__dirname + '/../../api/routes/*.js']
+    apis: [__dirname + '/../../Api/routes/*.ts']
 };
-//console.log(swaggerOptions.apis);
