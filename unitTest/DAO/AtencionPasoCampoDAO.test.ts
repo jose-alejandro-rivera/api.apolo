@@ -35,6 +35,5 @@ test('test erroneo para crear una atención en su metodo createAtencionPasoCampo
     database.setProcedureResponse(atencionPasoCampoModels);
     //console.log('atencionPasoCampoModels ---> ', atencionPasoCampoModels[0].atencionPaso, atencionPasoCampoModels[0].atencionProceso);
     let data = await atencionDAO.createAtencionPasoCampo(atencionPasoCampoModels[0].atencionPaso);
-    console.log(data)
     expect(data.rowsAffected == 'TypeError').toBe(true);
   });
