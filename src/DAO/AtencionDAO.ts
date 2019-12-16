@@ -1,6 +1,7 @@
 import Conection from '../loaders/databaseLoader'
 import * as sql from 'mssql'
-import { Inject } from "typescript-ioc";
+import { Inject, Container } from "typescript-ioc";
+import AtencionModels from "../Models/AtencionModels";
 
 /**
  * 
@@ -17,16 +18,18 @@ export class AtencionDAO {
 	}
 
 	public async createAtencion(data: any) {
+		let result:any
+		let atencionPostModels: AtencionModels = Container.get(AtencionModels);
 		try {
 			let { CodLogin, CodFlujo } = data;
 			const sqlGetSteps = await this.databaseConnection.getPool();
-			const result = await sqlGetSteps.request()
+			result = await sqlGetSteps.request()
 				.input('CodLogin', sql.Int, CodLogin)
 				.input('CodFlujo', sql.Int, CodFlujo)
 				.query(`INSERT INTO Atencion (CodLogin, CodFlujo, Fecha) VALUES (@CodLogin,@CodFlujo,getdate()); SELECT SCOPE_IDENTITY() as Id_Atencion;`);
-			return result.recordset;
+			return atencionPostModels.atencionPost = result;
 		} catch (error) {
-			return error;
+			return atencionPostModels.atencionPost = error.name;
 		}
 	}
 
@@ -113,7 +116,6 @@ export class AtencionDAO {
 	//Consulta el ultimo id_atencionPaso
 	public async consultaIdAtencionPaso() {
 		try {
-			console.log('databaseConnection -----> ', this.databaseConnection)
 			let idatenciopas: any;
 			const sqlGetSteps = await this.databaseConnection.getPool();
 			const request = await sqlGetSteps.request()
@@ -127,7 +129,6 @@ export class AtencionDAO {
 				}
 			return idatenciopas;
 		} catch (error) {
-			console.log('error ---------- >>> ', error)
 			return error;
 		}
 	}
@@ -145,7 +146,6 @@ export class AtencionDAO {
 					.input('valCam', sql.VarChar, ValorCampo)
 					.query('INSERT INTO AtencionCampo (CodAtencionPaso,CodCuestionarioCampo,ValorCampo,Fecha) VALUES (@codAtPas,@codCuest,@valCam,getdate());');
 			}
-			console.log('resultado ---<<< ', result );
 			return result.rowsAffected;
 		} catch (error) {
 			return error;

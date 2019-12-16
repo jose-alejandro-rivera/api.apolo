@@ -55,9 +55,7 @@ test('test para consultar el Id de una atencion consultaIdAtencionPaso, deberia 
   let atencionDAO: AtencionDAO = Container.get(AtencionDAO);
   let obj = chargeJsonResponse('AtencionIdResponse');
   let idAtn_Paso = 1;
-  console.log('objobjobj --------->>>> ', obj)
   database.setProcedureResponse(obj, true);
-  console.log('--------------------------------------------------')
   //let data = await atencionDAO.createAtencionCampo(atencionPasoCampoModels[0].atencionCampo, idAtn_Paso);
   //console.log('consultaIdAtencionPaso -----------++', data)
  // expect(data.recordsets.rowsAffected[0] == 1).toBe(true);
