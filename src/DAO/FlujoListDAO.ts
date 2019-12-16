@@ -98,15 +98,13 @@ export class FlujoListDAO {
 									        ,ca.Tipo 
 									        ,ca.Longitud 
 											,ca.ExpresionRegular
-											,cl.Llave
-											,cl.Descripcion AS CampoDesc
+											,(select * from CampoLista cl where cl.CodCampo=ca.Id_Campo FOR JSON PATH) as CampoLista
 									        ,ps.Id_Paso
 									      FROM  Paso ps
 									    INNER JOIN FlujoPaso AS fp ON fp.CodPaso_Origen = ps.Id_Paso  OR fp.CodPaso_Destino = ps.Id_Paso
 									    LEFT JOIN  Cuestionario ct ON ps.CodCuestionario = ct.Id_Cuestionario 
 									    INNER JOIN CuestionarioCampo cc ON cc.CodCuestionario = ct.Id_Cuestionario 
 										INNER JOIN Campo ca ON  ca.Id_Campo = cc.CodCampo
-										INNER JOIN CampoLista cl ON  cl.CodCampo = ca.Id_Campo
 									  WHERE  fp.CodFlujo = @id_flujo AND fp.Activo = @activo AND ps.Activo = @activo AND ct.Activo = @activo
 									  GROUP BY
 									         ct.Id_Cuestionario  
@@ -125,8 +123,6 @@ export class FlujoListDAO {
 									        ,ca.Tipo 
 									        ,ca.Longitud 
 											,ca.ExpresionRegular
-											,cl.Llave
-											,cl.Descripcion 
 									        ,ps.Id_Paso
 									    ORDER BY ps.Id_Paso ASC
 									    FOR JSON PATH

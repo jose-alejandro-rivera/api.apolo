@@ -1,6 +1,7 @@
 import Conection from '../Loaders/databaseLoader'
 import * as sql from 'mssql'
-import { Inject } from "typescript-ioc";
+import { Inject, Container } from "typescript-ioc";
+import AtencionModels from "../Models/AtencionModels";
 
 /**
  * 
@@ -17,16 +18,21 @@ export class AtencionDAO {
 	}
 
 	public async createAtencion(data: any) {
+		let result:any
+		let atencionPostModels: AtencionModels = Container.get(AtencionModels);
+		console.log(atencionPostModels);
 		try {
 			let { CodLogin, CodFlujo } = data;
 			const sqlGetSteps = await this.databaseConnection.getPool();
-			const result = await sqlGetSteps.request()
+			console.log(sqlGetSteps);
+			result = await sqlGetSteps.request()
 				.input('CodLogin', sql.Int, CodLogin)
 				.input('CodFlujo', sql.Int, CodFlujo)
 				.query(`INSERT INTO Atencion (CodLogin, CodFlujo, Fecha) VALUES (@CodLogin,@CodFlujo,getdate()); SELECT SCOPE_IDENTITY() as Id_Atencion;`);
-			return result.recordset;
+			console.log(result);
+			return atencionPostModels.atencionPost = result;
 		} catch (error) {
-			return error;
+			return atencionPostModels.atencionPost = error.name;
 		}
 	}
 
