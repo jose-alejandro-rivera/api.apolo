@@ -1,4 +1,4 @@
-import Conection from '../Loaders/databaseLoader'
+import Conection from '../loaders/databaseLoader'
 import * as sql from 'mssql'
 import { Inject, Container } from "typescript-ioc";
 import AtencionModels from "../Models/AtencionModels";
@@ -20,16 +20,13 @@ export class AtencionDAO {
 	public async createAtencion(data: any) {
 		let result:any
 		let atencionPostModels: AtencionModels = Container.get(AtencionModels);
-		console.log(atencionPostModels);
 		try {
 			let { CodLogin, CodFlujo } = data;
 			const sqlGetSteps = await this.databaseConnection.getPool();
-			console.log(sqlGetSteps);
 			result = await sqlGetSteps.request()
 				.input('CodLogin', sql.Int, CodLogin)
 				.input('CodFlujo', sql.Int, CodFlujo)
 				.query(`INSERT INTO Atencion (CodLogin, CodFlujo, Fecha) VALUES (@CodLogin,@CodFlujo,getdate()); SELECT SCOPE_IDENTITY() as Id_Atencion;`);
-			console.log(result);
 			return atencionPostModels.atencionPost = result;
 		} catch (error) {
 			return atencionPostModels.atencionPost = error.name;
@@ -69,7 +66,7 @@ export class AtencionDAO {
 	public async createAtencionPasoCampo(atencionPaso: any) {
 		let CodAtencionpaso: any; 
 		try {
-			let codCuestionario: any; let codAtencionProsces: any; let codigopaso: any;
+			let codigopaso: any;
 			let { CodPaso } = atencionPaso;
 			codigopaso = await this.consultaAtencionPaso(atencionPaso);
 			let cPaso = codigopaso.recordset[0].id_Paso;
@@ -99,7 +96,8 @@ export class AtencionDAO {
 	//Metodo que crea una atecionPaso
 	public async createAtencionPaso(atencionPaso: any) {
 		try {
-			let { CodAtencion, CodPaso, Secuencia, Soluciona } = atencionPaso;
+			
+			let { CodAtencion, CodPaso, Soluciona } = atencionPaso;
 			const sqlGetSteps = await this.databaseConnection.getPool();
 			let id = await this.consultaIdAtencionPaso();
 			let SecuenciaC = id + 1;
@@ -122,11 +120,13 @@ export class AtencionDAO {
 			const sqlGetSteps = await this.databaseConnection.getPool();
 			const request = await sqlGetSteps.request()
 				.query('SELECT TOP 1 Secuencia,Id_AtencionPaso FROM atencionPaso ORDER BY Id_AtencionPaso DESC');
-			if (request.recordset.length > 0) {
-				idatenciopas = request.recordset[0].Secuencia
-			} else {
-				idatenciopas = 0;
-			}
+				if(request.recordset){
+					if (request.recordset.length > 0) {
+						idatenciopas = request.recordset[0].Secuencia
+					} else {
+						idatenciopas = 0;
+					}
+				}
 			return idatenciopas;
 		} catch (error) {
 			return error;
