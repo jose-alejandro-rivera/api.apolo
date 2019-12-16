@@ -4,9 +4,9 @@
  */
 
 export default class FlujoGetModels {
-	public flujoGet: object
+    public flujoGet: object
 
-	constructor(){
-		this.flujoGet = {}
-	}
+    constructor(){
+        this.flujoGet = {}
+    }
 }
