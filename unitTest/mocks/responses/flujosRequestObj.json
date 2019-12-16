@@ -54,317 +54,317 @@
                 "Descripcion": "Novedad comercial"
               },
               {
-                  "Id_TipoPaso": 1,
-                  "NomTipoPaso": "Actividad",
-                  "Id_Paso": 7,
-                  "NomPaso": "Proceso QC Línea de Rescate",
-                  "Descripcion": "Proceso QC Línea de Rescate"
+                "Id_TipoPaso": 1,
+                "NomTipoPaso": "Actividad",
+                "Id_Paso": 7,
+                "NomPaso": "Proceso QC Línea de Rescate",
+                "Descripcion": "Proceso QC Línea de Rescate"
               },
               {
-                  "Id_TipoPaso": 1,
-                  "NomTipoPaso": "Actividad",
-                  "Id_Paso": 8,
-                  "NomPaso": "Realizar Inspección Visual",
-                  "Descripcion": "Realizar Inspección Visual"
+                "Id_TipoPaso": 1,
+                "NomTipoPaso": "Actividad",
+                "Id_Paso": 8,
+                "NomPaso": "Realizar Inspección Visual",
+                "Descripcion": "Realizar Inspección Visual"
               },
               {
-                  "Id_TipoPaso": 1,
-                  "NomTipoPaso": "Actividad",
-                  "Id_Paso": 9,
-                  "NomPaso": "Realizar SiteSurvey en el predio del cliente",
-                  "Descripcion": "Realizar SiteSurvey en el predio del cliente"
+                "Id_TipoPaso": 1,
+                "NomTipoPaso": "Actividad",
+                "Id_Paso": 9,
+                "NomPaso": "Realizar SiteSurvey en el predio del cliente",
+                "Descripcion": "Realizar SiteSurvey en el predio del cliente"
               },
               {
-                  "Id_TipoPaso": 1,
-                  "NomTipoPaso": "Actividad",
-                  "Id_Paso": 10,
-                  "NomPaso": "La cobertura de wifi es óptima en todo el predio",
-                  "Descripcion": "La cobertura de wifi es óptima en todo el predio"
+                "Id_TipoPaso": 1,
+                "NomTipoPaso": "Actividad",
+                "Id_Paso": 10,
+                "NomPaso": "La cobertura de wifi es óptima en todo el predio",
+                "Descripcion": "La cobertura de wifi es óptima en todo el predio"
               },
               {
-                  "Id_TipoPaso": 1,
-                  "NomTipoPaso": "Actividad",
-                  "Id_Paso": 11,
-                  "NomPaso": "Validación de CTO",
-                  "Descripcion": "Validación de CTO"
+                "Id_TipoPaso": 1,
+                "NomTipoPaso": "Actividad",
+                "Id_Paso": 11,
+                "NomPaso": "Validación de CTO",
+                "Descripcion": "Validación de CTO"
               },
               {
-                  "Id_TipoPaso": 1,
-                  "NomTipoPaso": "Actividad",
-                  "Id_Paso": 12,
-                  "NomPaso": "Sugerir adquisición de repetidores",
-                  "Descripcion": "Sugerir adquisición de repetidores"
+                "Id_TipoPaso": 1,
+                "NomTipoPaso": "Actividad",
+                "Id_Paso": 12,
+                "NomPaso": "Sugerir adquisición de repetidores",
+                "Descripcion": "Sugerir adquisición de repetidores"
               },
               {
-                  "Id_TipoPaso": 2,
-                  "NomTipoPaso": "Decisión",
-                  "Id_Paso": 13,
-                  "NomPaso": "Cliente acepta repetidores?",
-                  "Descripcion": "Cliente acepta repetidores?"
+                "Id_TipoPaso": 2,
+                "NomTipoPaso": "Decisión",
+                "Id_Paso": 13,
+                "NomPaso": "Cliente acepta repetidores?",
+                "Descripcion": "Cliente acepta repetidores?"
               },
               {
-                  "Id_TipoPaso": 1,
-                  "NomTipoPaso": "Actividad",
-                  "Id_Paso": 14,
-                  "NomPaso": "Informar costo repetidores y actualizar info en TOA",
-                  "Descripcion": "Informar costo repetidores y actualizar info en TOA"
+                "Id_TipoPaso": 1,
+                "NomTipoPaso": "Actividad",
+                "Id_Paso": 14,
+                "NomPaso": "Informar costo repetidores y actualizar info en TOA",
+                "Descripcion": "Informar costo repetidores y actualizar info en TOA"
               },
               {
-                  "Id_TipoPaso": 2,
-                  "NomTipoPaso": "Decisión",
-                  "Id_Paso": 15,
-                  "NomPaso": "¿Vías ok?",
-                  "Descripcion": "¿Vías ok?"
+                "Id_TipoPaso": 2,
+                "NomTipoPaso": "Decisión",
+                "Id_Paso": 15,
+                "NomPaso": "¿Vías ok?",
+                "Descripcion": "¿Vías ok?"
               },
               {
-                  "Id_TipoPaso": 1,
-                  "NomTipoPaso": "Actividad",
-                  "Id_Paso": 16,
-                  "NomPaso": "Realizar cambios de las vías con soporte",
-                  "Descripcion": "Realizar cambios de las vías con soporte"
+                "Id_TipoPaso": 1,
+                "NomTipoPaso": "Actividad",
+                "Id_Paso": 16,
+                "NomPaso": "Realizar cambios de las vías con soporte",
+                "Descripcion": "Realizar cambios de las vías con soporte"
               },
               {
-                  "Id_TipoPaso": 2,
-                  "NomTipoPaso": "Decisión",
-                  "Id_Paso": 17,
-                  "NomPaso": "¿Alguna novedad para la instalacion?",
-                  "Descripcion": "¿Alguna novedad para la instalacion?"
+                "Id_TipoPaso": 2,
+                "NomTipoPaso": "Decisión",
+                "Id_Paso": 17,
+                "NomPaso": "¿Alguna novedad para la instalacion?",
+                "Descripcion": "¿Alguna novedad para la instalacion?"
               }
           ],
           "FlujoPasos": [
-              {
-                  "Id_FlujoPaso": 1,
-                  "CodFlujo": 1,
-                  "CodPaso_Origen": 1,
-                  "CodPaso_Destino": 2,
-                  "Orden": 1,
-                  "finaliza": false
+            {
+                "Id_FlujoPaso": 1,
+                "CodFlujo": 1,
+                "CodPaso_Origen": 1,
+                "CodPaso_Destino": 2,
+                "Orden": 1,
+                "finaliza": false
               },
               {
-                  "Id_FlujoPaso": 2,
-                  "CodFlujo": 1,
-                  "CodPaso_Origen": 2,
-                  "CodPaso_Destino": 3,
-                  "Orden": 1,
-                  "finaliza": false
+                "Id_FlujoPaso": 2,
+                "CodFlujo": 1,
+                "CodPaso_Origen": 2,
+                "CodPaso_Destino": 3,
+                "Orden": 1,
+                "finaliza": false
               },
               {
-                  "Id_FlujoPaso": 3,
-                  "CodFlujo": 1,
-                  "CodPaso_Origen": 3,
-                  "CodPaso_Destino": 4,
-                  "Orden": 1,
-                  "ExpresionEjecucion": "@2.CasaEnConjunto==1",
-                  "finaliza": false
+                "Id_FlujoPaso": 3,
+                "CodFlujo": 1,
+                "CodPaso_Origen": 3,
+                "CodPaso_Destino": 4,
+                "Orden": 1,
+                "ExpresionEjecucion": "@2.CasaEnConjunto==1",
+                "finaliza": false
               },
               {
-                  "Id_FlujoPaso": 4,
-                  "CodFlujo": 1,
-                  "CodPaso_Origen": 3,
-                  "CodPaso_Destino": 5,
-                  "Orden": 2,
-                  "ExpresionEjecucion": "@2.CasaEnConjunto==0",
-                  "finaliza": false
+                "Id_FlujoPaso": 4,
+                "CodFlujo": 1,
+                "CodPaso_Origen": 3,
+                "CodPaso_Destino": 5,
+                "Orden": 2,
+                "ExpresionEjecucion": "@2.CasaEnConjunto==0",
+                "finaliza": false
               },
               {
-                  "Id_FlujoPaso": 5,
-                  "CodFlujo": 1,
-                  "CodPaso_Origen": 5,
-                  "CodPaso_Destino": 6,
-                  "Orden": 1,
-                  "finaliza": false
+                "Id_FlujoPaso": 5,
+                "CodFlujo": 1,
+                "CodPaso_Origen": 5,
+                "CodPaso_Destino": 6,
+                "Orden": 1,
+                "finaliza": false
               },
               {
-                  "Id_FlujoPaso": 6,
-                  "CodFlujo": 1,
-                  "CodPaso_Origen": 6,
-                  "CodPaso_Destino": 7,
-                  "Orden": 1,
-                  "ExpresionEjecucion": "@4.TNovedadComercial==1",
-                  "finaliza": true
+                "Id_FlujoPaso": 6,
+                "CodFlujo": 1,
+                "CodPaso_Origen": 6,
+                "CodPaso_Destino": 7,
+                "Orden": 1,
+                "ExpresionEjecucion": "@4.TNovedadComercial==1",
+                "finaliza": true
               },
               {
-                  "Id_FlujoPaso": 7,
-                  "CodFlujo": 1,
-                  "CodPaso_Origen": 6,
-                  "CodPaso_Destino": 8,
-                  "Orden": 1,
-                  "ExpresionEjecucion": "@4.TNovedadComercial==0",
-                  "finaliza": false
+                "Id_FlujoPaso": 7,
+                "CodFlujo": 1,
+                "CodPaso_Origen": 6,
+                "CodPaso_Destino": 8,
+                "Orden": 1,
+                "ExpresionEjecucion": "@4.TNovedadComercial==0",
+                "finaliza": false
               },
               {
-                  "Id_FlujoPaso": 8,
-                  "CodFlujo": 1,
-                  "CodPaso_Origen": 10,
-                  "CodPaso_Destino": 12,
-                  "Orden": 1,
-                  "ExpresionEjecucion": "@5.CoberturaWifi==0",
-                  "finaliza": false
+                "Id_FlujoPaso": 8,
+                "CodFlujo": 1,
+                "CodPaso_Origen": 10,
+                "CodPaso_Destino": 12,
+                "Orden": 1,
+                "ExpresionEjecucion": "@5.CoberturaWifi==0",
+                "finaliza": false
               },
               {
-                  "Id_FlujoPaso": 9,
-                  "CodFlujo": 1,
-                  "CodPaso_Origen": 10,
-                  "CodPaso_Destino": 11,
-                  "Orden": 1,
-                  "ExpresionEjecucion": "@5.CoberturaWifi==1",
-                  "finaliza": false
+                "Id_FlujoPaso": 9,
+                "CodFlujo": 1,
+                "CodPaso_Origen": 10,
+                "CodPaso_Destino": 11,
+                "Orden": 1,
+                "ExpresionEjecucion": "@5.CoberturaWifi==1",
+                "finaliza": false
               },
               {
-                  "Id_FlujoPaso": 10,
-                  "CodFlujo": 1,
-                  "CodPaso_Origen": 8,
-                  "CodPaso_Destino": 9,
-                  "Orden": 1,
-                  "finaliza": false
+                "Id_FlujoPaso": 10,
+                "CodFlujo": 1,
+                "CodPaso_Origen": 8,
+                "CodPaso_Destino": 9,
+                "Orden": 1,
+                "finaliza": false
               },
               {
-                  "Id_FlujoPaso": 11,
-                  "CodFlujo": 1,
-                  "CodPaso_Origen": 9,
-                  "CodPaso_Destino": 10,
-                  "Orden": 1,
-                  "finaliza": false
+                "Id_FlujoPaso": 11,
+                "CodFlujo": 1,
+                "CodPaso_Origen": 9,
+                "CodPaso_Destino": 10,
+                "Orden": 1,
+                "finaliza": false
               },
               {
-                  "Id_FlujoPaso": 12,
-                  "CodFlujo": 1,
-                  "CodPaso_Origen": 12,
-                  "CodPaso_Destino": 13,
-                  "Orden": 1,
-                  "finaliza": false
+                "Id_FlujoPaso": 12,
+                "CodFlujo": 1,
+                "CodPaso_Origen": 12,
+                "CodPaso_Destino": 13,
+                "Orden": 1,
+                "finaliza": false
               },
               {
-                  "Id_FlujoPaso": 13,
-                  "CodFlujo": 1,
-                  "CodPaso_Origen": 13,
-                  "CodPaso_Destino": 14,
-                  "Orden": 1,
-                  "ExpresionEjecucion": "@7.AceptaRepetidores==1",
-                  "finaliza": false
+                "Id_FlujoPaso": 13,
+                "CodFlujo": 1,
+                "CodPaso_Origen": 13,
+                "CodPaso_Destino": 14,
+                "Orden": 1,
+                "ExpresionEjecucion": "@7.AceptaRepetidores==1",
+                "finaliza": false
               },
               {
-                  "Id_FlujoPaso": 14,
-                  "CodFlujo": 1,
-                  "CodPaso_Origen": 13,
-                  "CodPaso_Destino": 11,
-                  "Orden": 1,
-                  "ExpresionEjecucion": "@7.AceptaRepetidores==0",
-                  "finaliza": false
+                "Id_FlujoPaso": 14,
+                "CodFlujo": 1,
+                "CodPaso_Origen": 13,
+                "CodPaso_Destino": 11,
+                "Orden": 1,
+                "ExpresionEjecucion": "@7.AceptaRepetidores==0",
+                "finaliza": false
               },
               {
-                  "Id_FlujoPaso": 15,
-                  "CodFlujo": 1,
-                  "CodPaso_Origen": 14,
-                  "CodPaso_Destino": 11,
-                  "Orden": 1,
-                  "finaliza": false
+                "Id_FlujoPaso": 15,
+                "CodFlujo": 1,
+                "CodPaso_Origen": 14,
+                "CodPaso_Destino": 11,
+                "Orden": 1,
+                "finaliza": false
               },
               {
-                  "Id_FlujoPaso": 16,
-                  "CodFlujo": 1,
-                  "CodPaso_Origen": 11,
-                  "CodPaso_Destino": 15,
-                  "Orden": 1,
-                  "finaliza": false
+                "Id_FlujoPaso": 16,
+                "CodFlujo": 1,
+                "CodPaso_Origen": 11,
+                "CodPaso_Destino": 15,
+                "Orden": 1,
+                "finaliza": false
+              },
+            {
+                "Id_FlujoPaso": 17,
+                "CodFlujo": 1,
+                "CodPaso_Origen": 15,
+                "CodPaso_Destino": 16,
+                "Orden": 1,
+                "ExpresionEjecucion": "@8.IntegracionSolucionChat==0",
+                "finaliza": false
               },
               {
-                  "Id_FlujoPaso": 17,
-                  "CodFlujo": 1,
-                  "CodPaso_Origen": 15,
-                  "CodPaso_Destino": 16,
-                  "Orden": 1,
-                  "ExpresionEjecucion": "@8.IntegracionSolucionChat==0",
-                  "finaliza": false
+                "Id_FlujoPaso": 18,
+                "CodFlujo": 1,
+                "CodPaso_Origen": 15,
+                "CodPaso_Destino": 17,
+                "Orden": 1,
+                "ExpresionEjecucion": "@8.IntegracionSolucionChat==1",
+                "finaliza": false
               },
               {
-                  "Id_FlujoPaso": 18,
-                  "CodFlujo": 1,
-                  "CodPaso_Origen": 15,
-                  "CodPaso_Destino": 17,
-                  "Orden": 1,
-                  "ExpresionEjecucion": "@8.IntegracionSolucionChat==1",
-                  "finaliza": false
-              },
-              {
-                  "Id_FlujoPaso": 19,
-                  "CodFlujo": 1,
-                  "CodPaso_Origen": 16,
-                  "CodPaso_Destino": 17,
-                  "Orden": 1,
-                  "finaliza": false
+                "Id_FlujoPaso": 19,
+                "CodFlujo": 1,
+                "CodPaso_Origen": 16,
+                "CodPaso_Destino": 17,
+                "Orden": 1,
+                "finaliza": false
               }
           ],
           "Cuestionarios": [
               {
-                  "Id_Cuestionario": 1,
-                  "NomCuestionario": "Preparar Labores",
-                  "Descripcion": "Cuestionario para preparar las labores de Alta de duo fibra",
-                  "Id_CuestionarioCampo": 1,
-                  "NomCuestionarioCampo": "Alistar la Herramienta",
-                  "Orden": 1,
-                  "Obligatorio": true,
-                  "CodCuestionario": 1,
-                  "Id_Campo": 1,
-                  "NomCampo": "ListaSiNo",
-                  "campoDescripcion": "Lista desplegable con los valores Si/No",
-                  "Tipo": "Lista",
-                  "Longitud": 0,
-                  "ExpresionRegular": "",
-                  "Id_Paso": 1
+                "Id_Cuestionario": 1,
+                "NomCuestionario": "Preparar Labores",
+                "Descripcion": "Cuestionario para preparar las labores de Alta de duo fibra",
+                "Id_CuestionarioCampo": 1,
+                "NomCuestionarioCampo": "Alistar la Herramienta",
+                "Orden": 1,
+                "Obligatorio": true,
+                "CodCuestionario": 1,
+                "Id_Campo": 1,
+                "NomCampo": "ListaSiNo",
+                "campoDescripcion": "Lista desplegable con los valores Si/No",
+                "Tipo": "Lista",
+                "Longitud": 0,
+                "ExpresionRegular": "",
+                "Id_Paso": 1
               },
               {
-                  "Id_Cuestionario": 1,
-                  "NomCuestionario": "Preparar Labores",
-                  "Descripcion": "Cuestionario para preparar las labores de Alta de duo fibra",
-                  "Id_CuestionarioCampo": 2,
-                  "NomCuestionarioCampo": "Garantizar Stock de Materiales",
-                  "Orden": 2,
-                  "Obligatorio": true,
-                  "CodCuestionario": 1,
-                  "Id_Campo": 1,
-                  "NomCampo": "ListaSiNo",
-                  "campoDescripcion": "Lista desplegable con los valores Si/No",
-                  "Tipo": "Lista",
-                  "Longitud": 0,
-                  "ExpresionRegular": "",
-                  "Id_Paso": 1
+                "Id_Cuestionario": 1,
+                "NomCuestionario": "Preparar Labores",
+                "Descripcion": "Cuestionario para preparar las labores de Alta de duo fibra",
+                "Id_CuestionarioCampo": 2,
+                "NomCuestionarioCampo": "Garantizar Stock de Materiales",
+                "Orden": 2,
+                "Obligatorio": true,
+                "CodCuestionario": 1,
+                "Id_Campo": 1,
+                "NomCampo": "ListaSiNo",
+                "campoDescripcion": "Lista desplegable con los valores Si/No",
+                "Tipo": "Lista",
+                "Longitud": 0,
+                "ExpresionRegular": "",
+                "Id_Paso": 1
+              },
+            {
+                "Id_Cuestionario": 4,
+                "NomCuestionario": "¿Novedad Comercial?",
+                "Descripcion": "¿Novedad Comercial?",
+                "Id_CuestionarioCampo": 9,
+                "NomCuestionarioCampo": "¿Tiene novedad comercial?",
+                "Sigla": "TNovedadComercial",
+                "Orden": 1,
+                "Obligatorio": true,
+                "CodCuestionario": 4,
+                "Id_Campo": 1,
+                "NomCampo": "ListaSiNo",
+                "campoDescripcion": "Lista desplegable con los valores Si/No",
+                "Tipo": "Lista",
+                "Longitud": 0,
+                "ExpresionRegular": "",
+                "Id_Paso": 6
               },
               {
-                  "Id_Cuestionario": 4,
-                  "NomCuestionario": "¿Novedad Comercial?",
-                  "Descripcion": "¿Novedad Comercial?",
-                  "Id_CuestionarioCampo": 9,
-                  "NomCuestionarioCampo": "¿Tiene novedad comercial?",
-                  "Sigla": "TNovedadComercial",
-                  "Orden": 1,
-                  "Obligatorio": true,
-                  "CodCuestionario": 4,
-                  "Id_Campo": 1,
-                  "NomCampo": "ListaSiNo",
-                  "campoDescripcion": "Lista desplegable con los valores Si/No",
-                  "Tipo": "Lista",
-                  "Longitud": 0,
-                  "ExpresionRegular": "",
-                  "Id_Paso": 6
-              },
-              {
-                  "Id_Cuestionario": 5,
-                  "NomCuestionario": "La cobertura del wifi es óptima en todo el previo?",
-                  "Descripcion": "¿La cobertura del wifi es óptima en todo el previo?",
-                  "Id_CuestionarioCampo": 19,
-                  "NomCuestionarioCampo": "La cobertura wifi es optima en todo el prebio.",
-                  "Sigla": "CoberturaWifi",
-                  "Orden": 1,
-                  "Obligatorio": true,
-                  "CodCuestionario": 5,
-                  "Id_Campo": 1,
-                  "NomCampo": "ListaSiNo",
-                  "campoDescripcion": "Lista desplegable con los valores Si/No",
-                  "Tipo": "Lista",
-                  "Longitud": 0,
-                  "ExpresionRegular": "",
-                  "Id_Paso": 10
+                "Id_Cuestionario": 5,
+                "NomCuestionario": "La cobertura del wifi es óptima en todo el previo?",
+                "Descripcion": "¿La cobertura del wifi es óptima en todo el previo?",
+                "Id_CuestionarioCampo": 19,
+                "NomCuestionarioCampo": "La cobertura wifi es optima en todo el prebio.",
+                "Sigla": "CoberturaWifi",
+                "Orden": 1,
+                "Obligatorio": true,
+                "CodCuestionario": 5,
+                "Id_Campo": 1,
+                "NomCampo": "ListaSiNo",
+                "campoDescripcion": "Lista desplegable con los valores Si/No",
+                "Tipo": "Lista",
+                "Longitud": 0,
+                "ExpresionRegular": "",
+                "Id_Paso": 10
               },
               {
                   "Id_Cuestionario": 8,
