@@ -1,9 +1,9 @@
-import { thisExpression } from "@babel/types";
-
 export declare class Connection{}
 export class ConnectionPool {
+    private requestObj = new Request();
+
     request() {
-        return new Request();
+        return this.requestObj;
     }
 }
 
@@ -22,18 +22,14 @@ class Request {
         return this;
     }
 
-    execute() {
+    query() {
         return this.resultProcedure;
-    }
-
-    query(s: string){
-        return this.resultProcedure.recordset;
     }
 }
 
 class IProcedureResult {
     private output: any;
-    public recordset:Array<any> = new Array();
+    public recordsets: Array<any> = new Array();    
 
     public setOutput(data: any) {
         this.output = {
@@ -41,8 +37,8 @@ class IProcedureResult {
         };
     }
 
-    public setRecordSet(data:any){
-        this.recordset = data;
+    public setRecordSet(data: any) {
+        this.recordsets = data;
     }
 
 }

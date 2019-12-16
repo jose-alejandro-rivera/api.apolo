@@ -1,4 +1,4 @@
-import Conection from '../Loaders/databaseLoader'
+import Conection from '../loaders/databaseLoader'
 import * as sql from 'mssql'
 import { Inject } from "typescript-ioc";
 
@@ -8,7 +8,7 @@ import { Inject } from "typescript-ioc";
  */
 export class AtencionDAO {
 
-	
+
 	private result: any;
 
 
@@ -44,11 +44,11 @@ export class AtencionDAO {
 		try {
 			const sqlGetSteps = await this.databaseConnection.getPool();
 			let validateLogin = await sqlGetSteps.request()
-			.input('CodLogin', sql.Int, CodLogin)
-			.query`SELECT Id_Login, Usuario, Fecha FROM Login WHERE Id_Login = @CodLogin`;
+				.input('CodLogin', sql.Int, CodLogin)
+				.query`SELECT Id_Login, Usuario, Fecha FROM Login WHERE Id_Login = @CodLogin`;
 			let validateFlujo = await sqlGetSteps.request()
-			.input('CodFlujo', sql.Int, CodFlujo).
-			query`SELECT Id_Flujo,NomFlujo,CodCategoriaFlujo,CodPaso_Inicial,Descripcion,Orden,Activo,Fecha,Usuario FROM Flujo WHERE Id_Flujo = @CodFlujo`;
+				.input('CodFlujo', sql.Int, CodFlujo).
+				query`SELECT Id_Flujo,NomFlujo,CodCategoriaFlujo,CodPaso_Inicial,Descripcion,Orden,Activo,Fecha,Usuario FROM Flujo WHERE Id_Flujo = @CodFlujo`;
 			if (validateLogin.recordset.length > 0 && validateFlujo.recordset.length > 0) {
 				return true;
 			} else {
@@ -60,18 +60,20 @@ export class AtencionDAO {
 	}
 
 	//Filtra que metodos se ejecutaran segun los datos enviados
-	public async createAtencionPasoCampo(atencionPaso: any, atencionProceso: any, atencionProcesoSalida: any, atencionCampo: any) {
+	public async createAtencionPasoCampo(atencionPaso: any) {
+		let CodAtencionpaso: any; 
 		try {
-			let CodAtencionpaso: any; let codCuestionario: any; let codAtencionProsces: any; let codigopaso: any;
+			let codigopaso: any;
 			let { CodPaso } = atencionPaso;
-
 			codigopaso = await this.consultaAtencionPaso(atencionPaso);
-			if (CodPaso == codigopaso) {
+			let cPaso = codigopaso.recordset[0].id_Paso;
+			if (CodPaso == cPaso) {
 				CodAtencionpaso = await this.createAtencionPaso(atencionPaso);
 				return CodAtencionpaso;
 			}
 		} catch (error) {
-			return error;
+			CodAtencionpaso = { rowsAffected : error.name }
+			return CodAtencionpaso
 		}
 	}
 	//Metodo que consulta si el codigo del paso enviado existe en la bd
@@ -82,7 +84,7 @@ export class AtencionDAO {
 			this.result = await sqlGetSteps.request()
 				.input('codPas', sql.Int, CodPaso)
 				.query('SELECT p.id_Paso FROM Paso p where p.id_Paso = @codPas');
-			let cPaso = this.result.recordset[0].id_Paso;
+			let cPaso = this.result;
 			return cPaso;
 		} catch (error) {
 			return error;
@@ -91,8 +93,8 @@ export class AtencionDAO {
 	//Metodo que crea una atecionPaso
 	public async createAtencionPaso(atencionPaso: any) {
 		try {
-			let { CodAtencion, CodPaso, Secuencia, Soluciona } = atencionPaso;
-			console.log('paso soluciona',Soluciona);
+			
+			let { CodAtencion, CodPaso, Soluciona } = atencionPaso;
 			const sqlGetSteps = await this.databaseConnection.getPool();
 			let id = await this.consultaIdAtencionPaso();
 			let SecuenciaC = id + 1;
@@ -102,8 +104,7 @@ export class AtencionDAO {
 				.input('secu', sql.Int, SecuenciaC)
 				.input('solu', sql.Int, Soluciona)
 				.query('INSERT INTO AtencionPaso (CodAtencion,CodPaso,Secuencia,Soluciona,Fecha) VALUES (@codAt,@codPas,@secu,@solu,getdate()); SELECT SCOPE_IDENTITY() as Id_AtencionPaso;');
-				console.log('base de datos', result.recordset[0].Soluciona);
-				let CodAtencionpaso = result.recordset[0].Id_AtencionPaso;
+			let CodAtencionpaso = result;
 			return CodAtencionpaso;
 		} catch (error) {
 			return error;
@@ -112,17 +113,21 @@ export class AtencionDAO {
 	//Consulta el ultimo id_atencionPaso
 	public async consultaIdAtencionPaso() {
 		try {
+			console.log('databaseConnection -----> ', this.databaseConnection)
 			let idatenciopas: any;
 			const sqlGetSteps = await this.databaseConnection.getPool();
 			const request = await sqlGetSteps.request()
 				.query('SELECT TOP 1 Secuencia,Id_AtencionPaso FROM atencionPaso ORDER BY Id_AtencionPaso DESC');
-			if (request.recordset.length > 0) {
-				idatenciopas = request.recordset[0].Secuencia
-			} else {
-				idatenciopas = 0;
-			}
+				if(request.recordset){
+					if (request.recordset.length > 0) {
+						idatenciopas = request.recordset[0].Secuencia
+					} else {
+						idatenciopas = 0;
+					}
+				}
 			return idatenciopas;
 		} catch (error) {
+			console.log('error ---------- >>> ', error)
 			return error;
 		}
 	}
@@ -140,6 +145,7 @@ export class AtencionDAO {
 					.input('valCam', sql.VarChar, ValorCampo)
 					.query('INSERT INTO AtencionCampo (CodAtencionPaso,CodCuestionarioCampo,ValorCampo,Fecha) VALUES (@codAtPas,@codCuest,@valCam,getdate());');
 			}
+			console.log('resultado ---<<< ', result );
 			return result.rowsAffected;
 		} catch (error) {
 			return error;
@@ -165,7 +171,7 @@ export class AtencionDAO {
 			return error;
 		}
 	}
-		//Metodo que crea una atecionProcesoSalida
+	//Metodo que crea una atecionProcesoSalida
 	public async createAtencionProcesoSalida(atencionProcesoSalida: any, codAtencionProsces: any) {
 		try {
 			let { CodProcesoSalida, Valor } = atencionProcesoSalida;

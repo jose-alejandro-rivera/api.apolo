@@ -1,10 +1,12 @@
-import * as sql from './mssqlMock';
+import * as sql from './mssqlMoks';
 import config from '../../../src/config';
 import { Singleton } from 'typescript-ioc';
 import LoggerInstance from '../../../src/loaders/loggerLoader';
 
 @Singleton
+
 export default class DatabaseConnectionMock {
+
     private pool: Promise<sql.ConnectionPool>;
 
     constructor() {
@@ -18,11 +20,7 @@ export default class DatabaseConnectionMock {
         return this.pool;
     }
 
-    public async setProcedureResponse(data: any) {
-        (await this.pool).request().resultProcedure.setOutput(data);
-    }
-
-    public async setSelectResponse(data: any, isRecorset: boolean = false) {
+    public async setProcedureResponse(data: any, isRecorset: boolean = false) {
         if(!isRecorset) {
             (await this.pool).request().resultProcedure.setOutput(data);
         } else {

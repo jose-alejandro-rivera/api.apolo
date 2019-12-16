@@ -15,7 +15,7 @@ class Server{
 
 	config(){
 		dotenv.config();
-		this.app.set('port',process.env.PORT || '3000')
+		this.app.set('port',process.env.PORT || '3001')
 		this.app.use(morgan('dev'))
 		this.app.use(bodyParser.urlencoded({ extended: true }))
 		this.app.use(bodyParser.json())

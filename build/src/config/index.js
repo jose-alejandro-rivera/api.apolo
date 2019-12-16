@@ -10,7 +10,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const dotenv = __importStar(require("dotenv"));
 dotenv.config();
 let path;
-console.log('directorio raíz de los ambientes', __dirname, process.env.NODE_ENV + "--");
+//console.log('directorio raíz de los ambientes', __dirname, process.env.NODE_ENV + "--");
 switch (process.env.NODE_ENV) {
     case "test":
         path = `${__dirname}/environments/test.env`;
