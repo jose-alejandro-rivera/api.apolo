@@ -179,8 +179,7 @@ export class FlujoListDAO {
 		let categoriasGetModels: CategoriaFlujoModel = Container.get(CategoriaFlujoModel);
 		try{	
 			const sqlGetSteps = await this.databaseConnection.getPool();
-			console.log(sqlGetSteps);
-			result = await sqlGetSteps.query(`SELECT Id_CategoriaFlujo,NomCategoriaFlujo,Activo,Fecha,Usuario FROM categoriaFlujo where Activo=1`);
+			result = await sqlGetSteps.request().query(`SELECT Id_CategoriaFlujo,NomCategoriaFlujo,Activo,Fecha,Usuario FROM categoriaFlujo where Activo=1`);
 			return categoriasGetModels.categoriaGet = result;
 		} catch (error) {
 		return categoriasGetModels.categoriaGet = error.name;
