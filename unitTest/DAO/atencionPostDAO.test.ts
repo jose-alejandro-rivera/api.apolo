@@ -10,17 +10,13 @@ test('AtencionCreateDAO should return true', async () => {
   let database: DatabaseConnectionMock = Container.get(DatabaseConnection);
   let atencionDAO: AtencionDAO = Container.get(AtencionDAO);
 
-  //let InObjectModel = chargeJsonRequest('atencionCreateRequestObj');
   let objectModel = chargeJsonResponse('atencionResponseObj');
   database.setProcedureResponse(objectModel, true);
   let InObjectModel = {
         "CodLogin":1,
         "CodFlujo":1
     };
-  console.log(InObjectModel);
-  console.log(objectModel);
-  
   let dataResponse:any = await atencionDAO.createAtencion(InObjectModel);
-  expect(1 == 1).toBe(true);
+  expect(dataResponse.recordsets[0].Id_Atencion == 146).toBe(true);
 });
 
