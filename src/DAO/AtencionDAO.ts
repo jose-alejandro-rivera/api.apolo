@@ -1,4 +1,4 @@
-import Conection from '../Loaders/databaseLoader'
+import Conection from '../loaders/databaseLoader'
 import * as sql from 'mssql'
 import { Inject } from "typescript-ioc";
 
@@ -63,7 +63,7 @@ export class AtencionDAO {
 	public async createAtencionPasoCampo(atencionPaso: any) {
 		let CodAtencionpaso: any; 
 		try {
-			let codCuestionario: any; let codAtencionProsces: any; let codigopaso: any;
+			let codigopaso: any;
 			let { CodPaso } = atencionPaso;
 			codigopaso = await this.consultaAtencionPaso(atencionPaso);
 			let cPaso = codigopaso.recordset[0].id_Paso;
@@ -93,7 +93,8 @@ export class AtencionDAO {
 	//Metodo que crea una atecionPaso
 	public async createAtencionPaso(atencionPaso: any) {
 		try {
-			let { CodAtencion, CodPaso, Secuencia, Soluciona } = atencionPaso;
+			
+			let { CodAtencion, CodPaso, Soluciona } = atencionPaso;
 			const sqlGetSteps = await this.databaseConnection.getPool();
 			let id = await this.consultaIdAtencionPaso();
 			let SecuenciaC = id + 1;
@@ -112,23 +113,26 @@ export class AtencionDAO {
 	//Consulta el ultimo id_atencionPaso
 	public async consultaIdAtencionPaso() {
 		try {
+			console.log('databaseConnection -----> ', this.databaseConnection)
 			let idatenciopas: any;
 			const sqlGetSteps = await this.databaseConnection.getPool();
 			const request = await sqlGetSteps.request()
 				.query('SELECT TOP 1 Secuencia,Id_AtencionPaso FROM atencionPaso ORDER BY Id_AtencionPaso DESC');
-			if (request.recordset.length > 0) {
-				idatenciopas = request.recordset[0].Secuencia
-			} else {
-				idatenciopas = 0;
-			}
+				if(request.recordset){
+					if (request.recordset.length > 0) {
+						idatenciopas = request.recordset[0].Secuencia
+					} else {
+						idatenciopas = 0;
+					}
+				}
 			return idatenciopas;
 		} catch (error) {
+			console.log('error ---------- >>> ', error)
 			return error;
 		}
 	}
 	//Metodo que crea una atecionCampo
 	public async createAtencionCampo(arrCuestionarioCampo: any, CodAtencionpaso: any) {
-		console.log('Entra en la pruebaaa ----- ', arrCuestionarioCampo, 'CodAtencionpaso -----****', CodAtencionpaso)
 		try {
 			let result: any;
 			const sqlGetSteps = await this.databaseConnection.getPool();
