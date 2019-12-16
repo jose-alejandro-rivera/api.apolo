@@ -128,6 +128,7 @@ export class AtencionDAO {
 	}
 	//Metodo que crea una atecionCampo
 	public async createAtencionCampo(arrCuestionarioCampo: any, CodAtencionpaso: any) {
+		console.log('Entra en la pruebaaa ----- ', arrCuestionarioCampo, 'CodAtencionpaso -----****', CodAtencionpaso)
 		try {
 			let result: any;
 			const sqlGetSteps = await this.databaseConnection.getPool();
@@ -140,6 +141,7 @@ export class AtencionDAO {
 					.input('valCam', sql.VarChar, ValorCampo)
 					.query('INSERT INTO AtencionCampo (CodAtencionPaso,CodCuestionarioCampo,ValorCampo,Fecha) VALUES (@codAtPas,@codCuest,@valCam,getdate());');
 			}
+			console.log('resultado ---<<< ', result );
 			return result.rowsAffected;
 		} catch (error) {
 			return error;
