@@ -2,6 +2,7 @@ import DatabaseConnection from "../loaders/databaseLoader";
 import * as sql from 'mssql';
 import { Inject, Container } from "typescript-ioc";
 import FlujoGetModels from "../models/FlujoGetModels";
+import CategoriaFlujoModel from "../Models/CategoriaFlujoModels";
 
 /**
  * Clase de acceso a datos que contiene los llamadas a consultas de la BD para obtener menú
@@ -174,15 +175,22 @@ export class FlujoListDAO {
     }
 
     public async getCategoriaFlujoList() {
-	    const sqlGetSteps = await this.databaseConnection.getPool();
-	    const result = await sqlGetSteps.query(`SELECT Id_CategoriaFlujo,NomCategoriaFlujo,Activo,Fecha,Usuario FROM categoriaFlujo where Activo=1`);
-	    return result;
+		let result: any;
+		let categoriasGetModels: CategoriaFlujoModel = Container.get(CategoriaFlujoModel);
+		try{	
+			const sqlGetSteps = await this.databaseConnection.getPool();
+			console.log(sqlGetSteps);
+			result = await sqlGetSteps.query(`SELECT Id_CategoriaFlujo,NomCategoriaFlujo,Activo,Fecha,Usuario FROM categoriaFlujo where Activo=1`);
+			return categoriasGetModels.categoriaGet = result;
+		} catch (error) {
+		return categoriasGetModels.categoriaGet = error.name;
+		}
     }
 
     public async validateFlujoExist(Id_Flujo: number): Promise<boolean> {
       try {
-        const sqlGetSteps = await this.databaseConnection.getPool();
-        const result = await sqlGetSteps.request()
+        var sqlGetSteps = await this.databaseConnection.getPool();
+        var result = await sqlGetSteps.request()
             .input('Id_Flujo', sql.Int, Id_Flujo)
             .query(`SELECT Id_Flujo,NomFlujo,CodCategoriaFlujo,CodPaso_Inicial,Descripcion,Orden,Activo,Fecha,Usuario FROM Flujo where Activo=1 AND Id_Flujo=@Id_Flujo`);
         if (result.rowsAffected[0] > 0) {
