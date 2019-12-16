@@ -1,7 +1,7 @@
-<!doctype html>
+rg<!doctype html>
 <html lang="en">
 <head>
-    <title>Code coverage report for Loaders/databaseLoader.ts</title>
+    <title>Code coverage report for loaders/databaseLoader.ts</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="..\prettify.css" />
     <link rel="stylesheet" href="..\base.css" />
@@ -16,13 +16,13 @@
 <div class='wrapper'>
   <div class='pad1'>
     <h1>
-      <a href="..\index.html">All files</a> / <a href="index.html">Loaders</a> databaseLoader.ts
+      <a href="..\index.html">All files</a> / <a href="index.html">loaders</a> databaseLoader.ts
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">85.71% </span>
+        <span class="strong">50% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>12/14</span>
+        <span class='fraction'>7/14</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -30,21 +30,21 @@
         <span class='fraction'>0/0</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">75% </span>
+        <span class="strong">0% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>3/4</span>
+        <span class='fraction'>0/4</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">83.33% </span>
+        <span class="strong">41.67% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>10/12</span>
+        <span class='fraction'>5/12</span>
       </div>
     </div>
     <p class="quiet">
       Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
     </p>
   </div>
-  <div class='status-line high'></div>
+  <div class='status-line medium'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -72,31 +72,31 @@
 <a name='L24'></a><a href='#L24'>24</a>
 <a name='L25'></a><a href='#L25'>25</a>
 <a name='L26'></a><a href='#L26'>26</a>
-<a name='L27'></a><a href='#L27'>27</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
+<a name='L27'></a><a href='#L27'>27</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import * as sql from 'mssql';
 import LoggerInstance from './loggerLoader';
@@ -110,19 +110,19 @@ import config from '../config';
 export default class DatabaseConnection {
     private pool: Promise&lt;sql.ConnectionPool&gt;;
 &nbsp;
-    constructor() {
-        LoggerInstance.info('configuración base de datos' + JSON.stringify(config.database));
-        this.pool = new sql.ConnectionPool(config.database).connect().then(<span class="fstat-no" title="function not covered" >pool </span>=&gt; {
+<span class="fstat-no" title="function not covered" >    constructor() {</span>
+<span class="cstat-no" title="statement not covered" >        LoggerInstance.info('configuración base de datos' + JSON.stringify(config.database));</span>
+<span class="cstat-no" title="statement not covered" >        this.pool = new sql.ConnectionPool(config.database).connect().then(<span class="fstat-no" title="function not covered" >pool </span>=&gt; {</span>
 <span class="cstat-no" title="statement not covered" >            LoggerInstance.info('Connected to MSSQL');</span>
 <span class="cstat-no" title="statement not covered" >            return pool;</span>
-        }).catch(err =&gt; {
-            LoggerInstance.error('Database Connection Failed! Bad Config: ', err);
-            throw 'No hay conexión a la BD!!';
+        }).catch(<span class="fstat-no" title="function not covered" >err </span>=&gt; {
+<span class="cstat-no" title="statement not covered" >            LoggerInstance.error('Database Connection Failed! Bad Config: ', err);</span>
+<span class="cstat-no" title="statement not covered" >            throw 'No hay conexión a la BD!!';</span>
         });
     }
 &nbsp;
-    public getPool() {
-        return this.pool;
+    public <span class="fstat-no" title="function not covered" >getPool(</span>) {
+<span class="cstat-no" title="statement not covered" >        return this.pool;</span>
     }
 }</pre></td></tr>
 </table></pre>
@@ -130,7 +130,7 @@ export default class DatabaseConnection {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Fri Dec 13 2019 15:22:30 GMT-0500 (GMT-05:00)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Mon Dec 16 2019 08:19:18 GMT-0500 (GMT-05:00)
 </div>
 </div>
 <script src="..\prettify.js"></script>

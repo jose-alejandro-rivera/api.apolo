@@ -4,7 +4,9 @@ import { Singleton } from 'typescript-ioc';
 import LoggerInstance from '../../../src/loaders/loggerLoader';
 
 @Singleton
+
 export default class DatabaseConnectionMock {
+
     private pool: Promise<sql.ConnectionPool>;
 
     constructor() {
@@ -26,4 +28,3 @@ export default class DatabaseConnectionMock {
         }
     }
 }
-

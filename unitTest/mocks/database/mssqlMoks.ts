@@ -22,7 +22,7 @@ class Request {
         return this;
     }
 
-    execute() {
+    query() {
         return this.resultProcedure;
     }
 }
