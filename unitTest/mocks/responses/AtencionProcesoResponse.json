@@ -1,0 +1,8 @@
+[{
+    "CodAtencionPaso" : 1,
+    "CodProceso":1,
+    "TipoServicio":"rest|get",
+    "Servicio":"http://www.google.com",
+    "Request":"rest|get",
+    "Response":"proceso ejecutado exitosamente"
+}]
