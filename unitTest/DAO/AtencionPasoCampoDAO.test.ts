@@ -57,6 +57,7 @@ test('test para createAtencionCampo, deberia devolver un valor verdadero', async
   let obj = chargeJsonResponse('AtencionIdResponse'); //Duda
   database.setProcedureResponse(obj, true);
   let idAtn_Paso = 1;
+<<<<<<< HEAD
   let campo = [ { CodCuestionarioCampo: '1', ValorCampo: '1' } ]
   let data = await atencionDAO.createAtencionCampo(campo,idAtn_Paso);
   expect(data.recordsets.rowsAffected[0] == 1).toBe(true);
@@ -102,6 +103,12 @@ test('test para createAtencionProceso, deberia devolver un valor false', async (
   database.setProcedureResponse(obj, true);
   let data = await atencionDAO.createAtencionProceso(idAtnPaso, atencionProceso, atencionProcesoSalida);
   expect(data.recordsets[0].CodAtencionPaso == 'Codigo').toBe(false);
+=======
+  database.setProcedureResponse(obj, true);
+  //let data = await atencionDAO.createAtencionCampo(atencionPasoCampoModels[0].atencionCampo, idAtn_Paso);
+  //console.log('consultaIdAtencionPaso -----------++', data)
+ // expect(data.recordsets.rowsAffected[0] == 1).toBe(true);
+>>>>>>> master
 });
 
 
