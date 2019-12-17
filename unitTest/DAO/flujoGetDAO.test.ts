@@ -6,7 +6,7 @@ import { chargeJsonResponse } from '../mocks/chargeJson';
 import { FlujoListDAO } from '../../src/DAO/FlujoListDAO';
 import FlujoGetModels from '../../src/models/FlujoGetModels';
 
-test('FlujoListDAOTest should return true', async () => {
+test('FlujoListDAOTest Id_Flujo correct should return true', async () => {
   Container.bind(DatabaseConnection).to(DatabaseConnectionMock).scope(Scope.Local);
   let database: DatabaseConnectionMock = Container.get(DatabaseConnection);
   let flujoListDAO: FlujoListDAO = Container.get(FlujoListDAO);
@@ -21,7 +21,7 @@ test('FlujoListDAOTest should return true', async () => {
 });
 
 
-test('FlujoListDAOTest should return true', async () => {
+test('FlujoListDAOTest Id_Flujo Error should return true', async () => {
   Container.bind(DatabaseConnection).to(DatabaseConnectionMock).scope(Scope.Local);
   let database: DatabaseConnectionMock = Container.get(DatabaseConnection);
   let flujoListDAO: FlujoListDAO = Container.get(FlujoListDAO);
