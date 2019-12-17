@@ -49,41 +49,83 @@ test('test para createAtencionPaso, deberia devolver un valor falso', async () =
   let data = await atencionDAO.createAtencionPaso(obj1);
   expect(data.recordsets.rowsAffected[0] == 0).toBe(true);
 });
-test('test para consultar el Id de una atencion consultaIdAtencionPaso, deberia devolver un valor verdadero', async () => {
+
+test('test para createAtencionCampo, deberia devolver un valor verdadero', async () => {
   Container.bind(DatabaseConnection).to(DataBaseConnectionMock).scope(Scope.Local);
   let database: DataBaseConnectionMock = Container.get(DatabaseConnection);
   let atencionDAO: AtencionDAO = Container.get(AtencionDAO);
-  let obj = chargeJsonResponse('AtencionIdResponse');
-  let idAtn_Paso = 1;
-  console.log('objobjobj --------->>>> ', obj)
+  let obj = chargeJsonResponse('AtencionIdResponse'); //Duda
   database.setProcedureResponse(obj, true);
-  console.log('--------------------------------------------------')
-  //let data = await atencionDAO.createAtencionCampo(atencionPasoCampoModels[0].atencionCampo, idAtn_Paso);
-  //console.log('consultaIdAtencionPaso -----------++', data)
- // expect(data.recordsets.rowsAffected[0] == 1).toBe(true);
+  let idAtn_Paso = 1;
+  let campo = [ { CodCuestionarioCampo: '1', ValorCampo: '1' } ]
+  let data = await atencionDAO.createAtencionCampo(campo,idAtn_Paso);
+  expect(data.recordsets.rowsAffected[0] == 1).toBe(true);
 });
 
- /*
-test('test erroneo para crear una atención en su metodo createAtencionPasoCampo debería devolver un valor false', async () => {
-    Container.bind(DatabaseConnection).to(DataBaseConnectionMock).scope(Scope.Local);
-    let atencionDAO: AtencionDAO = Container.get(AtencionDAO);
-    let obj = chargeJsonRequest('BackAtencionPasoVacio');
-    let atencionPasoCampoModels = Object.assign(Container.get(AtencionPasoCampoModels), obj);
-    let database: DataBaseConnectionMock = Container.get(DatabaseConnection);
-    database.setProcedureResponse(atencionPasoCampoModels);
-    let data = await atencionDAO.createAtencionPasoCampo(atencionPasoCampoModels[0].atencionPaso);
-    expect(data.rowsAffected[0] == 1).toBe(false);
-  });
- 
-  test('test para crear una atención en su metodo createAtencionCampo debería devolver un valor verdadero +++++', async () => {
-    Container.bind(DatabaseConnection).to(DataBaseConnectionMock).scope(Scope.Local);
-    let atencionDAO: AtencionDAO = Container.get(AtencionDAO);
-    let obj = chargeJsonRequest('BackAtencionPaso');
-    let atencionPasoCampoModels = Object.assign(Container.get(AtencionPasoCampoModels), obj);
-    let database: DataBaseConnectionMock = Container.get(DatabaseConnection);
-    database.setProcedureResponse(atencionPasoCampoModels);
-    let idAtn_Paso = idAtnPaso.recordset[0].Id_AtencionPaso;
-    let data = await atencionDAO.createAtencionCampo(atencionPasoCampoModels[0].atencionCampo, idAtn_Paso);
-    console.log('data  ---->>> ', data)
-    expect(data.rowsAffected[0] == 1).toBe(true);
-  }); */
+test('test para createAtencionCampo, deberia devolver un valor falso', async () => {
+  Container.bind(DatabaseConnection).to(DataBaseConnectionMock).scope(Scope.Local);
+  let database: DataBaseConnectionMock = Container.get(DatabaseConnection);
+  let atencionDAO: AtencionDAO = Container.get(AtencionDAO);
+  let obj = chargeJsonResponse('AtencionIdVacioResponse');
+  database.setProcedureResponse(obj, true);
+  let idAtn_Paso = '';
+  let campo = [ { CodCuestionarioCampo: '', ValorCampo: '' } ]
+  let data = await atencionDAO.createAtencionCampo(campo,idAtn_Paso);
+  expect(data.recordsets.rowsAffected[0] == 1).toBe(false);
+}); 
+
+
+
+test('test para createAtencionProceso, deberia devolver un valor verdadero', async () => {
+  Container.bind(DatabaseConnection).to(DataBaseConnectionMock).scope(Scope.Local);
+  let database: DataBaseConnectionMock = Container.get(DatabaseConnection);
+  let atencionDAO: AtencionDAO = Container.get(AtencionDAO);
+  let obj = chargeJsonResponse('AtencionProcesoResponse');
+  let atencionProceso = [ { CodAtencionPaso : 1,  CodProceso:1, TipoServicio:"rest|get", Servicio:"http://www.google.com", Request:"rest|get", Response:"proceso ejecutado exitosamente" } ];
+  let atencionProcesoSalida = [ { CodAtencionProceso : 1,  CodProcesoSalida:1, Valor:"proceso ejecutado exitosamente" } ];
+  let idAtnPaso = 1;
+  database.setProcedureResponse(obj, true);
+  let data = await atencionDAO.createAtencionProceso(idAtnPaso, atencionProceso, atencionProcesoSalida);
+  expect(data.recordsets[0].CodAtencionPaso == 1).toBe(true);
+}); 
+
+
+test('test para createAtencionProceso, deberia devolver un valor false', async () => {
+  Container.bind(DatabaseConnection).to(DataBaseConnectionMock).scope(Scope.Local);
+  
+  let database: DataBaseConnectionMock = Container.get(DatabaseConnection);
+  let atencionDAO: AtencionDAO = Container.get(AtencionDAO);
+  let obj = chargeJsonResponse('AtencionProcesoVacioResponse');
+  let atencionProceso = [ { CodAtencionPaso : 1,  CodProceso:1, TipoServicio:"rest|get", Servicio:"http://www.google.com", Request:"rest|get", Response:"proceso ejecutado exitosamente" } ];
+  let atencionProcesoSalida = [ { CodAtencionProceso : 1,  CodProcesoSalida:1, Valor:"proceso ejecutado exitosamente" } ];
+  let idAtnPaso = 1;
+  database.setProcedureResponse(obj, true);
+  let data = await atencionDAO.createAtencionProceso(idAtnPaso, atencionProceso, atencionProcesoSalida);
+  expect(data.recordsets[0].CodAtencionPaso == 'Codigo').toBe(false);
+});
+
+
+test('test para createAtencionProcesoSalida, deberia devolver un valor verdadero', async () => {
+  Container.bind(DatabaseConnection).to(DataBaseConnectionMock).scope(Scope.Local);
+  let database: DataBaseConnectionMock = Container.get(DatabaseConnection);
+  let atencionDAO: AtencionDAO = Container.get(AtencionDAO);
+  let obj = chargeJsonResponse('AtencionProcesoSalidaResponse');
+  let atencionProcesoSalida = [ { CodAtencionProceso : 1,  CodProcesoSalida:1, Valor:"proceso ejecutado exitosamente" } ];
+  let idAtnPaso =   { Id_AtencionProceso: 1 } ;
+  database.setProcedureResponse(obj, true);
+  let data = await atencionDAO.createAtencionProcesoSalida(atencionProcesoSalida, idAtnPaso);
+  expect(data.recordsets[0].CodAtencionProceso == 1).toBe(true);
+}); 
+
+
+test('test para createAtencionProcesoSalida, deberia devolver un valor falso', async () => {
+  Container.bind(DatabaseConnection).to(DataBaseConnectionMock).scope(Scope.Local);
+  let database: DataBaseConnectionMock = Container.get(DatabaseConnection);
+  let atencionDAO: AtencionDAO = Container.get(AtencionDAO);
+  let obj = chargeJsonResponse('AtencionProcesoSalidaVacioResponse');
+  let atencionProcesoSalida = [ { CodAtencionProceso : 1,  CodProcesoSalida:1, Valor:"proceso ejecutado exitosamente" } ];
+  let idAtnPaso =   { Id_AtencionProceso: 1 } ;
+  database.setProcedureResponse(obj, true);
+  let data = await atencionDAO.createAtencionProcesoSalida(atencionProcesoSalida, idAtnPaso);
+  expect(data.recordsets[0].CodAtencionProceso != "").toBe(false);
+}); 

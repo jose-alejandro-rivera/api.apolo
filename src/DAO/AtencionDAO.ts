@@ -24,7 +24,7 @@ export class AtencionDAO {
 				.input('CodLogin', sql.Int, CodLogin)
 				.input('CodFlujo', sql.Int, CodFlujo)
 				.query(`INSERT INTO Atencion (CodLogin, CodFlujo, Fecha) VALUES (@CodLogin,@CodFlujo,getdate()); SELECT SCOPE_IDENTITY() as Id_Atencion;`);
-			return result.recordset;
+				return result.recordset;
 		} catch (error) {
 			return error;
 		}
@@ -113,7 +113,6 @@ export class AtencionDAO {
 	//Consulta el ultimo id_atencionPaso
 	public async consultaIdAtencionPaso() {
 		try {
-			console.log('databaseConnection -----> ', this.databaseConnection)
 			let idatenciopas: any;
 			const sqlGetSteps = await this.databaseConnection.getPool();
 			const request = await sqlGetSteps.request()
@@ -127,7 +126,6 @@ export class AtencionDAO {
 				}
 			return idatenciopas;
 		} catch (error) {
-			console.log('error ---------- >>> ', error)
 			return error;
 		}
 	}
@@ -145,8 +143,7 @@ export class AtencionDAO {
 					.input('valCam', sql.VarChar, ValorCampo)
 					.query('INSERT INTO AtencionCampo (CodAtencionPaso,CodCuestionarioCampo,ValorCampo,Fecha) VALUES (@codAtPas,@codCuest,@valCam,getdate());');
 			}
-			console.log('resultado ---<<< ', result );
-			return result.rowsAffected;
+			return result;
 		} catch (error) {
 			return error;
 		}
@@ -164,24 +161,25 @@ export class AtencionDAO {
 				.input('req', sql.VarChar, Request)
 				.input('res', sql.VarChar, Response)
 				.query('INSERT INTO AtencionProceso (CodAtencionPaso,CodProceso,TipoServicio,Servicio,Request,Response,Fecha) VALUES (@codAtPas,@codProces,@tipoServ,@serv,@req,@res,getdate()); SELECT SCOPE_IDENTITY() as Id_AtencionProceso;');
-			let codAtencionProces = result.recordset[0].Id_AtencionProceso;
-			this.createAtencionProcesoSalida(atencionProcesoSalida, codAtencionProces)
-			return codAtencionProces;
+			this.createAtencionProcesoSalida(atencionProcesoSalida, result)
+			return result; 
 		} catch (error) {
 			return error;
 		}
 	}
 	//Metodo que crea una atecionProcesoSalida
-	public async createAtencionProcesoSalida(atencionProcesoSalida: any, codAtencionProsces: any) {
+	public async createAtencionProcesoSalida(atencionProcesoSalida: any, result: any) {
+		let { Id_AtencionProceso } = result;
+	//	let codAtencionProsces = result.recordsets[0].Id_AtencionProceso
 		try {
 			let { CodProcesoSalida, Valor } = atencionProcesoSalida;
 			const sqlGetSteps = await this.databaseConnection.getPool();
 			let result = await sqlGetSteps.request()
-				.input('codAtProces', sql.Int, codAtencionProsces)
+				.input('codAtProces', sql.Int, Id_AtencionProceso)
 				.input('codProceSalida', sql.Int, CodProcesoSalida)
 				.input('valCam', sql.VarChar, Valor)
 				.query('INSERT INTO AtencionProcesoSalida (CodAtencionProceso,CodProcesoSalida,Valor,Fecha) VALUES (@codAtProces,@codProceSalida,@valCam,getdate());');
-			return this.result.rowsAffected;
+				return result;
 		} catch (error) {
 			return error;
 		}
