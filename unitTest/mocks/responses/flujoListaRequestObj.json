@@ -1,0 +1,13 @@
+[
+    {
+        "Id_Flujo": 1,
+        "NomFlujo": "Alta dúo fibra",
+        "CodCategoriaFlujo": 1,
+        "CodPaso_Inicial": 1,
+        "Descripcion": "Flujo para dar alta un dúo de fibra",
+        "Orden": 1,
+        "Activo": true,
+        "Fecha": "2019-11-18T10:23:00.000Z",
+        "Usuario": "dbo"
+    }
+]
