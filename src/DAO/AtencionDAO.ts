@@ -58,6 +58,7 @@ export class AtencionDAO {
 	//Filtra que metodos se ejecutaran segun los datos enviados
 	public async createAtencionPasoCampo(atencionPaso: any) {
 		let CodAtencionpaso: any; 
+
 		try {
 			let codigopaso: any;
 			let { CodPaso } = atencionPaso;
@@ -166,7 +167,6 @@ export class AtencionDAO {
 	//Metodo que crea una atecionProcesoSalida
 	public async createAtencionProcesoSalida(atencionProcesoSalida: any, result: any) {
 		let { Id_AtencionProceso } = result;
-	//	let codAtencionProsces = result.recordsets[0].Id_AtencionProceso
 		try {
 			let { CodProcesoSalida, Valor } = atencionProcesoSalida;
 			const sqlGetSteps = await this.databaseConnection.getPool();
