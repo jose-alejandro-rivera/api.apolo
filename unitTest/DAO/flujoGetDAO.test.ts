@@ -27,7 +27,7 @@ test('FlujoListDAOTest should return true', async () => {
   let flujoListDAO: FlujoListDAO = Container.get(FlujoListDAO);
 
   let objectModel = chargeJsonResponse('flujosRequestInvalid');
-  
+
   database.setProcedureResponse(objectModel, true);
   let idFlujo = 2;
   
