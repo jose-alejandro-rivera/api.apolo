@@ -20,3 +20,16 @@ test('AtencionCreateDAO should return true', async () => {
   expect(dataResponse.recordsets[0].Id_Atencion == 146).toBe(true);
 });
 
+test('AtencionCreateDAO should return false', async () => {
+  Container.bind(DatabaseConnection).to(DatabaseConnectionMock).scope(Scope.Local);
+  let database: DatabaseConnectionMock = Container.get(DatabaseConnection);
+  let atencionDAO: AtencionDAO = Container.get(AtencionDAO);
+
+  let objectModel = chargeJsonResponse('atencionResponseInvalid');
+  database.setProcedureResponse(objectModel, true);
+  let InObjectModel = {
+        "CodLogin":1
+    };
+  let dataResponse:any = await atencionDAO.createAtencion(InObjectModel);
+  expect(dataResponse.recordsets.status == 201).toBe(true);
+});
