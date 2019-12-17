@@ -32,6 +32,7 @@ export class AtencionDAO {
 				.query(`INSERT INTO Atencion (CodLogin, CodFlujo, Fecha) VALUES (@CodLogin,@CodFlujo,getdate()); SELECT SCOPE_IDENTITY() as Id_Atencion;`);
 			return atencionPostModels.atencionPost = result;
 		} catch (error) {
+			console.log("error reported");
 			return atencionPostModels.atencionPost = error.name;
 		}
 	}
