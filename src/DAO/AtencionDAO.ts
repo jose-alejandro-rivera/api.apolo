@@ -59,6 +59,7 @@ export class AtencionDAO {
 	public async createAtencionPasoCampo(atencionPaso: any) {
 		let CodAtencionpaso: any; 
 		try {
+			//Esta variable solo es utilizada para ejecutar pruebas unitarias
 			let cPasopruebas = 2; 
 			let codigopaso: any;
 			let { CodPaso } = atencionPaso;
@@ -71,7 +72,7 @@ export class AtencionDAO {
 		} catch (error) {
 			CodAtencionpaso = { rowsAffected : error.name }
 			return CodAtencionpaso
-		}
+		} 
 	}
 	//Metodo que consulta si el codigo del paso enviado existe en la bd
 	public async consultaAtencionPaso(atencionPaso: any) {
