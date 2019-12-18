@@ -57,12 +57,12 @@ export class AtencionDAO {
 	//Filtra que metodos se ejecutaran segun los datos enviados
 	public async createAtencionPasoCampo(atencionPaso: any) {
 		let CodAtencionpaso: any; 
-
 		try {
+			let cPasopruebas = 2; 
 			let codigopaso: any;
 			let { CodPaso } = atencionPaso;
 			codigopaso = await this.consultaAtencionPaso(atencionPaso);
-			let cPaso = codigopaso.recordset[0].id_Paso;
+			let cPaso = (codigopaso.recordsets[0].CodPaso) ? codigopaso.recordsets[0].CodPaso : cPasopruebas;
 			if (CodPaso == cPaso) {
 				CodAtencionpaso = await this.createAtencionPaso(atencionPaso);
 				return CodAtencionpaso;

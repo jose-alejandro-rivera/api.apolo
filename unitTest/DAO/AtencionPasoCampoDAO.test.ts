@@ -13,17 +13,17 @@ test('test para consultar createAtencionPasoCampo, deberia devolver un valor ver
   let database: DataBaseConnectionMock = Container.get(DatabaseConnection);
   let atencionDAO: AtencionDAO = Container.get(AtencionDAO);
   let obj = chargeJsonResponse('AtencionPasoResponse');
-  let obj1 =  { CodPaso: '1' } ;
+  let obj1 =  { CodPaso: 2 } ;
   database.setProcedureResponse(obj, true);
   let data = await atencionDAO.createAtencionPasoCampo(obj1);
-  expect(data.rowsAffected == 'TypeError').toBe(true);
+  expect(data.recordsets[0].CodPaso == 2).toBe(true);
 });
 test('test para consultar createAtencionPasoCampo, deberia devolver un valor falso', async () => {
   Container.bind(DatabaseConnection).to(DataBaseConnectionMock).scope(Scope.Local);
   let database: DataBaseConnectionMock = Container.get(DatabaseConnection);
   let atencionDAO: AtencionDAO = Container.get(AtencionDAO);
   let obj = chargeJsonResponse('AtencionPasoResponse');
-  let obj1 =  { CodPaso: '1' } ;
+  let obj1 =  { CodPaso: 2 } ;
   database.setProcedureResponse(obj, true);
   let data = await atencionDAO.createAtencionPasoCampo(obj1);
   expect(data.rowsAffected == 1).toBe(false);
