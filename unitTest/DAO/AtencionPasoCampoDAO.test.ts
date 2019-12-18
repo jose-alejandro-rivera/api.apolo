@@ -161,6 +161,19 @@ test('test para createAtencionCampo, deberia devolver un valor falso', async () 
   let data = await atencionDAO.createAtencionCampo(campo,idAtn_Paso);
   expect(data.recordsets.rowsAffected[0] == 1).toBe(false);
 }); 
+//Prueba para que se ejecute el try
+test('test para createAtencionCampo, deberia devolver un valor falso', async () => {
+  Container.bind(DatabaseConnection).to(DatabaseConnectionCatchMock).scope(Scope.Local);
+  let database: DatabaseConnectionCatchMock = Container.get(DatabaseConnection);
+  let atencionDAO: AtencionDAO = Container.get(AtencionDAO);
+  let obj = chargeJsonResponse('AtencionIdVacioResponse');
+  database.setProcedureResponse(obj, true);
+  let idAtn_Paso = '';
+  let campo = [ { CodCuestionarioCampo: '', ValorCampo: '' } ]
+  let data = await atencionDAO.createAtencionCampo(campo,idAtn_Paso);
+  //expect(data.recordsets.rowsAffected[0] == 1).toBe(false);
+}); 
+
 
 test('test para createAtencionProceso, deberia devolver un valor verdadero', async () => {
   Container.bind(DatabaseConnection).to(DataBaseConnectionMock).scope(Scope.Local);
@@ -188,6 +201,19 @@ test('test para createAtencionProceso, deberia devolver un valor false', async (
   let data = await atencionDAO.createAtencionProceso(idAtnPaso, atencionProceso, atencionProcesoSalida);
   expect(data.recordsets[0].CodAtencionPaso == 'Codigo').toBe(false);
 });
+//Prueba para que se ejecute el try
+test('test para createAtencionProceso, deberia devolver un valor false', async () => {
+  Container.bind(DatabaseConnection).to(DatabaseConnectionCatchMock).scope(Scope.Local);
+    let database: DatabaseConnectionCatchMock = Container.get(DatabaseConnection);
+  let atencionDAO: AtencionDAO = Container.get(AtencionDAO);
+  let obj = chargeJsonResponse('AtencionProcesoVacioResponse');
+  let atencionProceso = [ { CodAtencionPaso : 1,  CodProceso:1, TipoServicio:"rest|get", Servicio:"http://www.google.com", Request:"rest|get", Response:"proceso ejecutado exitosamente" } ];
+  let atencionProcesoSalida = [ { CodAtencionProceso : 1,  CodProcesoSalida:1, Valor:"proceso ejecutado exitosamente" } ];
+  let idAtnPaso = 1;
+  database.setProcedureResponse(obj, true);
+  let data = await atencionDAO.createAtencionProceso(idAtnPaso, atencionProceso, atencionProcesoSalida);
+ // expect(data.recordsets[0].CodAtencionPaso == 'Codigo').toBe(false);
+});
 
 test('test para createAtencionProcesoSalida, deberia devolver un valor verdadero', async () => {
   Container.bind(DatabaseConnection).to(DataBaseConnectionMock).scope(Scope.Local);
@@ -201,7 +227,6 @@ test('test para createAtencionProcesoSalida, deberia devolver un valor verdadero
   expect(data.recordsets[0].CodAtencionProceso == 1).toBe(true);
 }); 
 
-
 test('test para createAtencionProcesoSalida, deberia devolver un valor falso', async () => {
   Container.bind(DatabaseConnection).to(DataBaseConnectionMock).scope(Scope.Local);
   let database: DataBaseConnectionMock = Container.get(DatabaseConnection);
@@ -212,4 +237,17 @@ test('test para createAtencionProcesoSalida, deberia devolver un valor falso', a
   database.setProcedureResponse(obj, true);
   let data = await atencionDAO.createAtencionProcesoSalida(atencionProcesoSalida, idAtnPaso);
   expect(data.recordsets[0].CodAtencionProceso != "").toBe(false);
+}); 
+
+//Prueba para que se ejecute el try
+test('test para createAtencionProcesoSalida, deberia devolver un valor falso', async () => {
+  Container.bind(DatabaseConnection).to(DatabaseConnectionCatchMock).scope(Scope.Local);
+  let database: DatabaseConnectionCatchMock = Container.get(DatabaseConnection);
+  let atencionDAO: AtencionDAO = Container.get(AtencionDAO);
+  let obj = chargeJsonResponse('AtencionProcesoSalidaVacioResponse');
+  let atencionProcesoSalida = [ { CodAtencionProceso : 1,  CodProcesoSalida:1, Valor:"proceso ejecutado exitosamente" } ];
+  let idAtnPaso =   { Id_AtencionProceso: 1 } ;
+  database.setProcedureResponse(obj, true);
+  let data = await atencionDAO.createAtencionProcesoSalida(atencionProcesoSalida, idAtnPaso);
+ // expect(data.recordsets[0].CodAtencionProceso != "").toBe(false);
 }); 
