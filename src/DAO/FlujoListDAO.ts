@@ -24,7 +24,7 @@ export class FlujoListDAO {
         result = await sqlGetSteps.request()
             .input('Id_CategoriaFlujo', sql.Int, Id_CategoriaFlujo)
             .query(`SELECT Id_Flujo,NomFlujo,CodCategoriaFlujo,CodPaso_Inicial,Descripcion,Orden,Activo,Fecha,Usuario FROM Flujo where Activo=1 AND CodCategoriaFlujo=@Id_CategoriaFlujo`);
-		return flujoGetModels.flujoGet = Object.assign(result.recordsets);
+		return flujoGetModels.flujoGet = result;
       } catch (error) {
         return error
       }
