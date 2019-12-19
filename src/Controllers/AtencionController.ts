@@ -42,10 +42,11 @@ export default class AtencionController {
 				validation = await this.AtencionDAO.createAtencionPasoCampo(request[0].atencionPaso);
 				idAtnPaso = validation.recordset[0].Id_AtencionPaso;
 			} else {
-				return this.validadorMsgError(201);
+				return this.validadorMsgError(201, 'crear atención paso campo');
 			}
 			//Valida que todos los campos de los objetos esten llenos
 			validacionCampos = await this.validarInsert(request[0].atencionProceso);
+			
 			if (request[0].atencionProceso) {
 				if (
 					CodAtencionPaso != '' &&
@@ -54,20 +55,19 @@ export default class AtencionController {
 					Servicio != '' &&
 					Request != '' &&
 					Response != ''
-				) {
+				) { 
 					let idProceso = await this.AtencionDAO.createAtencionProceso(idAtnPaso, request[0].atencionProceso, request[0].atencionProcesoSalida);
 				} else if (
-					CodAtencionPaso == '' &&
-					CodProceso == '' &&
-					TipoServicio == '' &&
-					Servicio == '' &&
-					Request == '' &&
+					CodAtencionPaso == '' ||
+					CodProceso == '' ||
+					TipoServicio == '' ||
+					Servicio == '' ||
+					Request == '' ||
 					Response == ''
 
 				) {
-
 				} else {
-					return this.validadorMsgError(201);
+					return this.validadorMsgError(201, 'crear atencion proceso');
 				}
 			}
 			valAtencionCampo = await this.validarArrayAtencionCampo(request[0].atencionCampo);
@@ -76,10 +76,10 @@ export default class AtencionController {
 				if (valAtencionCampo == 1) {
 					validation = await this.AtencionDAO.createAtencionCampo(request[0].atencionCampo, idAtnPaso);
 				} else if (valAtencionCampo == 2) {
-					return this.validadorMsgError(201);
+					return this.validadorMsgError(201, 'crear atencion campo');
 				}
 			}
-			return this.validadorMsgError(200);
+			return this.validadorMsgError(200, '');
 		} catch (error) {
 		}
 	}
@@ -96,10 +96,10 @@ export default class AtencionController {
 		}
 	}
 	// Metodo para adcionar los mensajes de validaciones 
-	public async validadorMsgError(estado: any) {
+	public async validadorMsgError(estado: any, clas: any) {
 		let data: any;
 
-		if (estado == 200) {
+		if (estado == 200 && clas == '') {
 			data = {
 				status: estado,
 				msg: 'Datos registrados'
@@ -108,7 +108,7 @@ export default class AtencionController {
 		} else {
 			data = {
 				status: estado,
-				msg: 'Error en los datos ingresados'
+				msg: 'Error en los datos ingresados '+ clas
 			}
 			return data;
 		}
