@@ -16,12 +16,15 @@ export class FlujoListDAO {
     }
 
     public async getFlujosPorCategoria(Id_CategoriaFlujo: number): Promise<void> {
+		let result: any;
+		let flujoGetModels: FlujoGetModels = Container.get(FlujoGetModels);
       try {
-        const sqlGetSteps = await this.databaseConnection.getPool();
-        const result = await sqlGetSteps.request()
+		const sqlGetSteps = await this.databaseConnection.getPool();
+		console.log(sqlGetSteps);
+        result = await sqlGetSteps.request()
             .input('Id_CategoriaFlujo', sql.Int, Id_CategoriaFlujo)
             .query(`SELECT Id_Flujo,NomFlujo,CodCategoriaFlujo,CodPaso_Inicial,Descripcion,Orden,Activo,Fecha,Usuario FROM Flujo where Activo=1 AND CodCategoriaFlujo=@Id_CategoriaFlujo`);
-        return Object.assign(result.recordset);
+		return flujoGetModels.flujoGet = result;
       } catch (error) {
         return error
       }

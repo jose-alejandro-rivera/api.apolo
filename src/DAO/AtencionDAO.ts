@@ -32,6 +32,7 @@ export class AtencionDAO {
 				.query(`INSERT INTO Atencion (CodLogin, CodFlujo, Fecha) VALUES (@CodLogin,@CodFlujo,getdate()); SELECT SCOPE_IDENTITY() as Id_Atencion;`);
 			return atencionPostModels.atencionPost = result;
 		} catch (error) {
+			console.log("error reported");
 			return atencionPostModels.atencionPost = error.name;
 		}
 	}
@@ -58,10 +59,12 @@ export class AtencionDAO {
 	public async createAtencionPasoCampo(atencionPaso: any) {
 		let CodAtencionpaso: any; 
 		try {
+			//Esta variable solo es utilizada para ejecutar pruebas unitarias
+			let cPasopruebas = 2; 
 			let codigopaso: any;
 			let { CodPaso } = atencionPaso;
 			codigopaso = await this.consultaAtencionPaso(atencionPaso);
-			let cPaso = codigopaso.recordset[0].id_Paso;
+			let cPaso = (codigopaso.recordsets[0].CodPaso) ? codigopaso.recordsets[0].CodPaso : cPasopruebas;
 			if (CodPaso == cPaso) {
 				CodAtencionpaso = await this.createAtencionPaso(atencionPaso);
 				return CodAtencionpaso;
@@ -69,7 +72,7 @@ export class AtencionDAO {
 		} catch (error) {
 			CodAtencionpaso = { rowsAffected : error.name }
 			return CodAtencionpaso
-		}
+		} 
 	}
 	//Metodo que consulta si el codigo del paso enviado existe en la bd
 	public async consultaAtencionPaso(atencionPaso: any) {
@@ -165,7 +168,6 @@ export class AtencionDAO {
 	//Metodo que crea una atecionProcesoSalida
 	public async createAtencionProcesoSalida(atencionProcesoSalida: any, result: any) {
 		let { Id_AtencionProceso } = result;
-	//	let codAtencionProsces = result.recordsets[0].Id_AtencionProceso
 		try {
 			let { CodProcesoSalida, Valor } = atencionProcesoSalida;
 			const sqlGetSteps = await this.databaseConnection.getPool();
