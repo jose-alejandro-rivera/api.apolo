@@ -44,5 +44,5 @@ test('FlujoDAOTest FlujoList depending category should return true', async () =>
   database.setProcedureResponse(objectModel, true);
   let Id_Categoria = 1;
   let dataResponse:any = await flujoListDAO.getFlujosPorCategoria(Id_Categoria);
-  expect(dataResponse[0].Id_Flujo == 1).toBe(true);
+  expect(dataResponse.recordsets[0].Id_Flujo == 1).toBe(true);
 });
