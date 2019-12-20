@@ -1,8 +1,12 @@
 [
-    {
-        "CodAtencion": 3,
-        "CodPaso": 2,
-        "Secuencia": 1,
-        "Soluciona": 1
-    }
+    [
+        {
+            "CodAtencion": 3,
+            "CodPaso": 2,
+            "id_Paso" : 2,
+            "Secuencia": 1,
+            "Soluciona": 1
+        }
+    ]
+
 ]

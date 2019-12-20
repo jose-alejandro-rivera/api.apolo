@@ -64,7 +64,6 @@ export class AtencionDAO {
 			let codigopaso: any;
 			let { CodPaso } = atencionPaso;
 			codigopaso = await this.consultaAtencionPaso(atencionPaso);
-			console.log('codigopaso ', codigopaso)
 			let cPaso = (codigopaso.recordsets[0][0].id_Paso) ? codigopaso.recordsets[0][0].id_Paso : cPasopruebas;
 			if (CodPaso == cPaso) {
 				CodAtencionpaso = await this.createAtencionPaso(atencionPaso);
