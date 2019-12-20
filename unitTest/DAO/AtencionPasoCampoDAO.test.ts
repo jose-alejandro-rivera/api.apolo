@@ -18,8 +18,11 @@ test('test para consultar createAtencionPasoCampo, deberia devolver un valor ver
   let obj1 =  { CodPaso: 2 } ;
   database.setProcedureResponse(obj, true);
   let data = await atencionDAO.createAtencionPasoCampo(obj1);
-  expect(data.recordsets[0].CodPaso == 2).toBe(true);
+  expect(data.recordsets[0][0].CodPaso == 2).toBe(true);
 });
+
+
+
 test('test para consultar createAtencionPasoCampo, deberia devolver un valor falso', async () => {
   Container.bind(DatabaseConnection).to(DataBaseConnectionMock).scope(Scope.Local);
   let database: DataBaseConnectionMock = Container.get(DatabaseConnection);
