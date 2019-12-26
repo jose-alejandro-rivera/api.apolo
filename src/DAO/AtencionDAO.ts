@@ -180,7 +180,19 @@ export class AtencionDAO {
 		} catch (error) {
 			return error;
 		}
+	}
 
+	//Metodo devuelve el paso de la ultima atencion
+	public async ultimoAtencionPaso(CodAtencion: number) {
+		try {
+			const sqlGetSteps = await this.databaseConnection.getPool();
+			let result = await sqlGetSteps.request()
+				.input('CodAtencion', sql.Int, CodAtencion)
+				.query('SELECT Id_AtencionPaso,CodPaso FROM AtencionPaso WHERE CodAtencion=@CodAtencion ORDER BY Id_AtencionPaso DESC');
+				return result;
+		} catch (error) {
+			return error;
+		}
 	}
 
 }

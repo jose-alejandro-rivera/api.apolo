@@ -152,5 +152,17 @@ export default class AtencionRoute {
                 }
             }
         )
+
+        this.app.get('/atencion/lastStep/:id',
+            async (req: Request, res: Response, next: NextFunction) => {
+              try {
+                const atencionController: AtencionController = Container.get(AtencionController);
+                let responseModel = await atencionController.getLastStep(req.params.id);
+                res.status(200).json(responseModel);
+              } catch (error) {
+                console.log(error)
+              }
+            }
+          )
     }
 }

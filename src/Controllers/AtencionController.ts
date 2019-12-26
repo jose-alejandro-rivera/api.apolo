@@ -1,10 +1,11 @@
 import { Request, Response, NextFunction } from 'express'
 import { Inject } from "typescript-ioc";
 import { AtencionDAO } from '../DAO/AtencionDAO'
+import { ResponseStatus } from "../ConfigRes/resStatus";
 
 export default class AtencionController {
 
-	constructor(@Inject private AtencionDAO: AtencionDAO) { }
+	constructor(@Inject private AtencionDAO: AtencionDAO, @Inject private responseStatus: ResponseStatus) { }
 	/**
 	 * Crear atencion luego de haber seleccioando el flujo a ejecutar.
 	 * 
@@ -152,6 +153,16 @@ export default class AtencionController {
 			}
 		});
 		return resAtencion;
+	}
+	
+	async getLastStep(CodAtencion: any): Promise<void> {
+		try {
+			const result = await this.AtencionDAO.ultimoAtencionPaso(CodAtencion);
+			return result;
+		} catch (error) {
+			let res = this.responseStatus.stateSelect(500)
+			return res;
+		}
 	}
 
 }
