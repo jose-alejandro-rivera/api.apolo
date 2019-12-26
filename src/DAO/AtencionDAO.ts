@@ -188,7 +188,7 @@ export class AtencionDAO {
 			const sqlGetSteps = await this.databaseConnection.getPool();
 			let result = await sqlGetSteps.request()
 				.input('CodAtencion', sql.Int, CodAtencion)
-				.query('SELECT TOP 1 Id_AtencionPaso,CodPaso FROM AtencionPaso WHERE CodAtencion=@CodAtencion ORDER BY Id_AtencionPaso DESC');
+				.query('SELECT Id_AtencionPaso,CodPaso FROM AtencionPaso WHERE CodAtencion=@CodAtencion ORDER BY Id_AtencionPaso DESC');
 				return result;
 		} catch (error) {
 			return error;

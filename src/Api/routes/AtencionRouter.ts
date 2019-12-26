@@ -153,7 +153,7 @@ export default class AtencionRoute {
             }
         )
 
-        this.app.get('/atenciona/lastStep/:id',
+        this.app.get('/atencion/lastStep/:id',
             async (req: Request, res: Response, next: NextFunction) => {
               try {
                 const atencionController: AtencionController = Container.get(AtencionController);
