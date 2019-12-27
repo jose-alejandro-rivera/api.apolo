@@ -90,12 +90,17 @@ export class AtencionDAO {
 	}
 	//Metodo que crea una atecionPaso
 	public async createAtencionPaso(atencionPaso: any) {
+		let SecuenciaC:any;
 		try {
 			
 			let { CodAtencion, CodPaso, Soluciona } = atencionPaso;
 			const sqlGetSteps = await this.databaseConnection.getPool();
-			let id = await this.consultaIdAtencionPaso();
-			let SecuenciaC = id + 1;
+			let id = await this.consultaIdAtencionPaso(CodAtencion);
+			if(id != 0){
+				SecuenciaC = id + 1;
+			}else{
+				SecuenciaC =1;
+			}
 			let result = await sqlGetSteps.request()
 				.input('codAt', sql.Int, CodAtencion)
 				.input('codPas', sql.Int, CodPaso)
@@ -109,15 +114,16 @@ export class AtencionDAO {
 		}
 	}
 	//Consulta el ultimo id_atencionPaso
-	public async consultaIdAtencionPaso() {
+	public async consultaIdAtencionPaso(CodAtencion: any) {
 		try {
 			let idatenciopas: any;
 			const sqlGetSteps = await this.databaseConnection.getPool();
 			const request = await sqlGetSteps.request()
-				.query('SELECT TOP 1 Secuencia,Id_AtencionPaso FROM atencionPaso ORDER BY Id_AtencionPaso DESC');
+			.input('codAt', sql.Int, CodAtencion)
+				.query('select count(secuencia) as registroPaso from atencionpaso where CodAtencion =@codAt');
 				if(request.recordset){
 					if (request.recordset.length > 0) {
-						idatenciopas = request.recordset[0].Secuencia
+						idatenciopas = request.recordset[0].registroPaso
 					} else {
 						idatenciopas = 0;
 					}
