@@ -1,4 +1,4 @@
-import ProcesoController from '../../controllers/ProcesoController';
+import ProcesoController from '../../Controllers/ProcesoController';
 import { Request, Response, NextFunction, Router } from 'express';
 
 

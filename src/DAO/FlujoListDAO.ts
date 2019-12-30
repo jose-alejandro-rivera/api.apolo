@@ -1,7 +1,7 @@
-import DatabaseConnection from "../loaders/databaseLoader";
+import DatabaseConnection from "../Loaders/databaseLoader";
 import * as sql from 'mssql';
 import { Inject, Container } from "typescript-ioc";
-import FlujoGetModels from "../models/FlujoGetModels";
+import FlujoGetModels from "../Models/FlujoGetModels";
 import CategoriaFlujoModel from "../Models/CategoriaFlujoModels";
 
 /**

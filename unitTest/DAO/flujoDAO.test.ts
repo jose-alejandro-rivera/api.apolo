@@ -1,10 +1,9 @@
 
 import {Container, Scope} from 'typescript-ioc';
-import DatabaseConnection from '../../src/loaders/databaseLoader';
+import DatabaseConnection from '../../src/Loaders/databaseLoader';
 import DatabaseConnectionMock from '../mocks/database/DatabaseConnectionMock';
-import { chargeJsonResponse, chargeJsonRequest } from '../mocks/chargeJson';
+import { chargeJsonResponse } from '../mocks/chargeJson';
 import { FlujoListDAO } from '../../src/DAO/FlujoListDAO';
-import FlujoGetModels from '../../src/models/FlujoGetModels';
 
 test('FlujoListDAOTest Id_Flujo correct should return true', async () => {
   Container.bind(DatabaseConnection).to(DatabaseConnectionMock).scope(Scope.Local);

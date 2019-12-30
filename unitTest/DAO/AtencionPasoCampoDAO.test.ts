@@ -1,12 +1,11 @@
 
 import {Container, Scope} from 'typescript-ioc';
-import AtencionPasoCampoModels from '../../src/Models/atencionPasoCampoModels';
-import DatabaseConnection from '../../src/loaders/databaseLoader';
-import DataBaseConnectionMock from '../mocks/database/DataBaseConnectionMock';
+import DatabaseConnection from '../../src/Loaders/databaseLoader';
+import DataBaseConnectionMock from '../mocks/database/DatabaseConnectionMock';
 import DatabaseConnectionCatchMock from '../mocks/database/DatabaseConnectionCatchMock';
 
 import { AtencionDAO } from '../../src/DAO/AtencionDAO';
-import { chargeJsonResponse, chargeJsonRequest } from '../mocks/chargeJson';
+import { chargeJsonResponse } from '../mocks/chargeJson';
 
 var idAtnPaso: any;
 

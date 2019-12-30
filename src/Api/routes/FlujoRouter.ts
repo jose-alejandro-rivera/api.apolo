@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction, Router } from 'express'
-import FlujoController from '../../controllers/FlujoController'
+import FlujoController from '../../Controllers/FlujoController'
 import { Container } from "typescript-ioc";
 
 

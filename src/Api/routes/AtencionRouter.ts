@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import AtencionController from '../../controllers/AtencionController'
+import AtencionController from '../../Controllers/AtencionController'
 import { Container } from "typescript-ioc";
 import { Request, Response, NextFunction } from 'express'
 

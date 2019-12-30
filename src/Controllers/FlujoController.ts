@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express'
 import { Inject } from "typescript-ioc";
-import FlujoModels from '../models/FlujoModels'
+import FlujoModels from '../Models/FlujoModels'
 import { FlujoListDAO } from '../DAO/FlujoListDAO'
 import CategoriaFlujoModel from '../Models/CategoriaFlujoModels'
 import { ResponseStatus } from "../ConfigRes/resStatus";

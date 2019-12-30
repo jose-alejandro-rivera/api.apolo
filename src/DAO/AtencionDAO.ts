@@ -1,9 +1,7 @@
-import Conection from '../loaders/databaseLoader'
+import Conection from '../Loaders/databaseLoader'
 import * as sql from 'mssql'
 import { Inject, Container } from "typescript-ioc";
 import AtencionModels from "../Models/AtencionModels";
-import FlujoGetModels from "../models/FlujoGetModels";
-import LoginModels from "../Models/LoginModels";
 import ValidationModels from "../Models/ValidationModels";
 
 /**
