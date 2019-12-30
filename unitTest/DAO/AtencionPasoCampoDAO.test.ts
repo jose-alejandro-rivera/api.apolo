@@ -97,7 +97,7 @@ test('test para createAtencionPaso, deberia devolver un valor falso', async () =
   expect(data.recordsets.rowsAffected[0] == 0).toBe(true);
 });
 //Prueba para que se ejecute el try catch
-test('test para createAtencionPaso, deberia devolver un valor falso', async () => {
+/*test('test para createAtencionPaso, deberia devolver un valor falso', async () => {
   Container.bind(DatabaseConnection).to(DatabaseConnectionCatchMock).scope(Scope.Local);
   let database: DatabaseConnectionCatchMock = Container.get(DatabaseConnection);
   let atencionDAO: AtencionDAO = Container.get(AtencionDAO);
@@ -133,9 +133,8 @@ test('test para consultaIdAtencionPaso, deberia devolver un valor falso', async 
   let obj = chargeJsonResponse('AtencionIdResponse');
   database.setProcedureResponse(obj, true);
   let data = await atencionDAO.consultaIdAtencionPaso();
-  //expect(data == 12).toBe(false);
- // expect(data.recordsets.rowsAffected[0] == 0).toBe(true);
-});
+  expect(data == 12).toBe(false);
+});*/
 test('test para createAtencionCampo, deberia devolver un valor verdadero', async () => {
   Container.bind(DatabaseConnection).to(DataBaseConnectionMock).scope(Scope.Local);
   let database: DataBaseConnectionMock = Container.get(DatabaseConnection);
