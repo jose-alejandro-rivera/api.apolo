@@ -1,12 +1,12 @@
 interface FlujoModels {
-	NomFlujo: String,
-	CodCategoriaFlujo: Number,
-	CodPaso_Inicial: Number,
-	Descripcion: String,
-	Orden: Number,
-	Activo: Number,
-	Fecha: String,
-	Usuario: String
+	NomFlujo: string,
+	CodCategoriaFlujo: number,
+	CodPaso_Inicial: number,
+	Descripcion: string,
+	Orden: number,
+	Activo: number,
+	Fecha: string,
+	Usuario: string
 }
 
 export default FlujoModels
