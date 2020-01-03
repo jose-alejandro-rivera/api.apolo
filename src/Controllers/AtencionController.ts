@@ -89,11 +89,10 @@ export default class AtencionController {
 	public async validarInsert(camposValidar: any) {
 		for (var i = 0; i < camposValidar.length; i++) {
 			if (camposValidar[i] == '') {
-				return false;
-			} else {
-				return true;
+			   return false;
 			}
 		}
+		return true;
 	}
 	// Metodo para adcionar los mensajes de validaciones 
 	public async validadorMsgError(estado: any, clas: any) {
