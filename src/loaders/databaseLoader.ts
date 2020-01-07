@@ -1,7 +1,7 @@
 import * as sql from 'mssql';
 import LoggerInstance from './loggerLoader';
 import { Singleton } from 'typescript-ioc';
-import config from '../config';
+import config from '../Config';
 
 /**
  * @category Database

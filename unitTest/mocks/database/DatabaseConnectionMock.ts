@@ -1,7 +1,7 @@
 import * as sql from './mssqlMoks';
-import config from '../../../src/config';
+import config from '../../../src/Config';
 import { Singleton } from 'typescript-ioc';
-import LoggerInstance from '../../../src/loaders/loggerLoader';
+import LoggerInstance from '../../../src/Loaders/loggerLoader';
 
 @Singleton
 

@@ -15,7 +15,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@nestjs/testing": "^6.10.11",
     "@types/app-root-path": "^1.2.4",
     "@types/node": "^12.12.18",
     "@types/swagger-jsdoc": "^3.0.2",

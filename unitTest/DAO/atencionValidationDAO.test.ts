@@ -1,6 +1,6 @@
 
 import {Container, Scope} from 'typescript-ioc';
-import DatabaseConnection from '../../src/loaders/databaseLoader';
+import DatabaseConnection from '../../src/Loaders/databaseLoader';
 import DatabaseConnectionMock from '../mocks/database/DatabaseConnectionMock';
 import { chargeJsonResponse, chargeJsonRequest } from '../mocks/chargeJson';
 import { AtencionDAO } from '../../src/DAO/AtencionDAO';

@@ -47,7 +47,7 @@ export default class AtencionController {
 			}
 			//Valida que todos los campos de los objetos esten llenos
 			validacionCampos = await this.validarInsert(request[0].atencionProceso);
-			
+
 			if (request[0].atencionProceso) {
 				if (
 					CodAtencionPaso != '' &&
@@ -56,7 +56,7 @@ export default class AtencionController {
 					Servicio != '' &&
 					Request != '' &&
 					Response != ''
-				) { 
+				) {
 					let idProceso = await this.AtencionDAO.createAtencionProceso(idAtnPaso, request[0].atencionProceso, request[0].atencionProcesoSalida);
 				} else if (
 					CodAtencionPaso == '' ||
@@ -67,6 +67,7 @@ export default class AtencionController {
 					Response == ''
 
 				) {
+					return;
 				} else {
 					return this.validadorMsgError(201, 'crear atencion proceso');
 				}
@@ -86,15 +87,12 @@ export default class AtencionController {
 	}
 	// Este metodo permite validar los campos de atencionProceso --- >> esta pendiente de ser utilizado	
 	public async validarInsert(camposValidar: any) {
-		let arrayList = [];
-		arrayList.push(camposValidar);
-		for (let x in camposValidar) {
-			if (camposValidar[x] == '') {
-				return false;
-			} else {
-				return true;
+		for (var i = 0; i < camposValidar.length; i++) {
+			if (camposValidar[i] == '') {
+			   return false;
 			}
 		}
+		return true;
 	}
 	// Metodo para adcionar los mensajes de validaciones 
 	public async validadorMsgError(estado: any, clas: any) {
@@ -109,7 +107,7 @@ export default class AtencionController {
 		} else {
 			data = {
 				status: estado,
-				msg: 'Error en los datos ingresados '+ clas
+				msg: 'Error en los datos ingresados ' + clas
 			}
 			return data;
 		}
@@ -154,7 +152,7 @@ export default class AtencionController {
 		});
 		return resAtencion;
 	}
-	
+
 	async getLastStep(CodAtencion: any): Promise<void> {
 		try {
 			const result = await this.AtencionDAO.ultimoAtencionPaso(CodAtencion);

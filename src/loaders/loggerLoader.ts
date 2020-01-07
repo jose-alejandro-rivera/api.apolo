@@ -1,5 +1,5 @@
 import winston from 'winston';
-import config from '../config';
+import config from '../Config';
 import  appRoot from 'app-root-path';
 
 const transports = [];

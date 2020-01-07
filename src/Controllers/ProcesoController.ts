@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express'
 import { Inject } from "typescript-ioc";
-import ProcesoModels from '../models/ProcesoModels'
+import ProcesoModels from '../Models/ProcesoModels'
 
 
 export default class ProcesoController {
