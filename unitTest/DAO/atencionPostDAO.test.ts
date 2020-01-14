@@ -14,7 +14,8 @@ test('AtencionCreateDAO validate Id_Atencion should return true', async () => {
   database.setProcedureResponse(objectModel, true);
   let InObjectModel = {
         "CodLogin":1,
-        "CodFlujo":1
+        "CodFlujo":1,
+        "NumOrden":1
     };
   let dataResponse:any = await atencionDAO.createAtencion(InObjectModel);
   expect(dataResponse.recordsets[0].Id_Atencion == 146).toBe(true);

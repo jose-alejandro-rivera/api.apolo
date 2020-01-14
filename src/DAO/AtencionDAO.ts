@@ -22,12 +22,13 @@ export class AtencionDAO {
 		let result:any
 		let atencionPostModels: AtencionModels = Container.get(AtencionModels);
 		try {
-			let { CodLogin, CodFlujo } = data;
+			let { CodLogin, CodFlujo, NumOrden } = data;
 			const sqlGetSteps = await this.databaseConnection.getPool();
 			result = await sqlGetSteps.request()
 				.input('CodLogin', sql.Int, CodLogin)
 				.input('CodFlujo', sql.Int, CodFlujo)
-				.query(`INSERT INTO Atencion (CodLogin, CodFlujo, Fecha) VALUES (@CodLogin,@CodFlujo,getdate()); SELECT SCOPE_IDENTITY() as Id_Atencion;`);
+				.input('NumOrden', sql.VarChar, NumOrden)
+				.query(`INSERT INTO Atencion (CodLogin, CodFlujo, Fecha, NumOrden) VALUES (@CodLogin,@CodFlujo,getdate(),@NumOrden); SELECT SCOPE_IDENTITY() as Id_Atencion;`);
 			return atencionPostModels.atencionPost = result;
 		} catch (error) {
 			console.log("error reported");
