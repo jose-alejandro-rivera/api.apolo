@@ -5,7 +5,7 @@ const app: express.Application = express();
 
 async function loadServer() {
 	  app.use(morgan('dev'))
-    await require('./loaders').default({ expressApp: app });
+    await require('./Loaders').default({ expressApp: app });
 } 
 
 loadServer();

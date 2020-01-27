@@ -3,9 +3,11 @@ import bodyParser from 'body-parser'
 import morgan from 'morgan'
 import cors from 'cors'
 import flujoRouter from './Routes/FlujoRouter'
-import  procesoRouter from './Routes/ProcesoRouter'
-import  atencionRouter from './Routes/AtencionRouter'
-import  DocRouter from './Routes/DocumentationRoute'
+import procesoRouter from './Routes/ProcesoRouter'
+import atencionRouter from './Routes/AtencionRouter'
+import DocRouter from './Routes/DocumentationRoute'
+import IntegracionToaController from './Routes/IntegracionToaRouter'
+
 
 
 class GeneralRouter {
@@ -14,6 +16,7 @@ class GeneralRouter {
   private routesAtencion:any
   private routesProceso:any
   private routeDocSwagger : any
+  private routeIntegracionToa:any
 
   constructor() {
     this.router = Router()
@@ -24,7 +27,8 @@ class GeneralRouter {
     this.routesFlujo.router()
     this.routesAtencion.router()
     this.routesProceso.router()
-    this.routeDocSwagger.router();
+    this.routeDocSwagger.router()
+    this.routeIntegracionToa.router()
   }
   config(){
     this.router.use(bodyParser.json());
@@ -41,6 +45,7 @@ class GeneralRouter {
     this.routesAtencion = new atencionRouter(this.router)
     this.routesProceso = new procesoRouter(this.router)
     this.routeDocSwagger = new DocRouter(this.router)
+    this.routeIntegracionToa  = new IntegracionToaController(this.router)
   }
 }
 const GeneralRouters =  new GeneralRouter

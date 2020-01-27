@@ -154,7 +154,7 @@ export class AtencionDAO {
 	//Metodo que crea una atecionProceso	
 	public async createAtencionProceso(idAtnPaso: any, atencionProceso: any, atencionProcesoSalida: any) {
 		try {
-			let { CodProceso, TipoServicio, Servicio, Request, Response } = atencionProceso;
+			let { CodProceso, TipoServicio, Servicio, Request, Response, NumOrden} = atencionProceso;
 			const sqlGetSteps = await this.databaseConnection.getPool();
 			let result = await sqlGetSteps.request()
 				.input('codAtPas', sql.Int, idAtnPaso)
@@ -163,7 +163,8 @@ export class AtencionDAO {
 				.input('serv', sql.VarChar, Servicio)
 				.input('req', sql.VarChar, Request)
 				.input('res', sql.VarChar, Response)
-				.query('INSERT INTO AtencionProceso (CodAtencionPaso,CodProceso,TipoServicio,Servicio,Request,Response,Fecha) VALUES (@codAtPas,@codProces,@tipoServ,@serv,@req,@res,getdate()); SELECT SCOPE_IDENTITY() as Id_AtencionProceso;');
+				.input('NumOrden', sql.VarChar, NumOrden)
+				.query('INSERT INTO AtencionProceso (CodAtencionPaso,CodProceso,TipoServicio,Servicio,Request,Response,Fecha,NumOrden) VALUES (@codAtPas,@codProces,@tipoServ,@serv,@req,@res,getdate(),@NumOrden); SELECT SCOPE_IDENTITY() as Id_AtencionProceso;');
 			this.createAtencionProcesoSalida(atencionProcesoSalida, result)
 			return result; 
 		} catch (error) {

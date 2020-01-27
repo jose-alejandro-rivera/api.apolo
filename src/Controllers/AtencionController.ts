@@ -37,7 +37,7 @@ export default class AtencionController {
 		let valAtencionCampo: any;
 		try {
 			const { CodAtencion, CodPaso, Secuencia, Soluciona } = request[0].atencionPaso;
-			const { CodAtencionPaso, CodProceso, TipoServicio, Servicio, Request, Response } = request[0].atencionProceso;
+			const { CodAtencionPaso, CodProceso, TipoServicio, Servicio, Request, Response, NumOrden } = request[0].atencionProceso;
 			const { CodCuestionarioCampo, ValorCampo } = request[0].atencionCampo;
 			if (CodAtencion != '' && CodPaso != '') {
 				validation = await this.AtencionDAO.createAtencionPasoCampo(request[0].atencionPaso);
@@ -55,7 +55,8 @@ export default class AtencionController {
 					TipoServicio != '' &&
 					Servicio != '' &&
 					Request != '' &&
-					Response != ''
+					Response != '' &&
+					NumOrden != ''
 				) {
 					let idProceso = await this.AtencionDAO.createAtencionProceso(idAtnPaso, request[0].atencionProceso, request[0].atencionProcesoSalida);
 				} else if (
@@ -64,7 +65,8 @@ export default class AtencionController {
 					TipoServicio == '' ||
 					Servicio == '' ||
 					Request == '' ||
-					Response == ''
+					Response == '' ||
+					NumOrden == ''
 
 				) {
 					return;
