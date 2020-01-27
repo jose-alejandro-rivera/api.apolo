@@ -54,7 +54,6 @@ export default class AtencionRoute {
          */
         this.app.post('/atencion/create', (req: Request, res: Response, next: NextFunction) => {
             try {
-                console.log(req);
                 const atencionController: AtencionController = Container.get(AtencionController);
                 let responseModel = atencionController.createAtencion(req, res, next);
                 return responseModel;
