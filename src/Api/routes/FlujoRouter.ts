@@ -87,7 +87,7 @@ export default class FlujoRouter {
 		*          
 		*/
     this.app.get(
-      '/flujos/por/categorias/:id_categoriaFlujo',
+      '/flujos/por/Categorias/:id_categoriaFlujo',
       async (req: Request, res: Response, next: NextFunction) => {
         try {
           const flujoController: FlujoController = Container.get(FlujoController);
