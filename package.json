@@ -28,6 +28,7 @@
     "express": "^4.17.1",
     "express-validator": "^3.2.1",
     "fs-extra": "^8.1.0",
+    "moment": "^2.24.0",
     "msnodesqlv8": "^0.8.6",
     "mssql": "^5.1.0",
     "swagger-jsdoc": "^3.5.0",
