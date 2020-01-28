@@ -1,8 +1,6 @@
 export default class IntegracionToaResponseModels {
-	status: Object
-	activityType:Object
+	responseToa:Object
 	constructor(){
-		this.status = {}
-		this.activityType = {}
+		this.responseToa = {}
 	}
 }

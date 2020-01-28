@@ -15,7 +15,6 @@ export default class IntegracionToaRouter {
 				const { n_orden, tipo_orden, valor } = req.params
 				const integracionToa:IntegracionToa = Container.get(IntegracionToa)
 				let resIntegra = await integracionToa.getIntegracionToa(tipo_orden,n_orden,valor)	
-				console.log(resIntegra,'entra')
 				res.status(200).json(resIntegra)
 		})
 	}
