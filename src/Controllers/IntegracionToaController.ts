@@ -24,22 +24,22 @@ export default class IntegracionToaController {
 		let fechaFin   = await fechaConsulta.getDateCurrent()
 		let fechaHasta = await fechaConsulta.getDatePass()
 		/*SET DATA EN MODEL*/
-		await this.setDataModels(n_orden,tipo_orden,fechaHasta,fechaFin)
+		//await this.setDataModels(n_orden,tipo_orden,fechaHasta,fechaFin)
 		/*CONSULTA EL ID DEL PROCESO*/
-		let resulIdToa = await atencionProcesoDao.searchIdProcesoToa()
+		//let resulIdToa = await atencionProcesoDao.searchIdProcesoToa()
 		
 		let resToa:any = await integracionToaService.serviceIntegrationToa(tipo_orden,n_orden,fechaFin,fechaHasta)
 		console.log(resToa,'resulIdToa--------')
-		if(resToa.data.totalResults == 0){
+		/*if(resToa.data.totalResults == 0){
       integracionToaModels.responseToa = {status: null, activityType: null, statusOrden:'no encontrada'}
       return integracionToaModels
-    }
+    }*/
 
-    let n_orden_activity:number = resToa.data.items[0].activityId
+    /*let n_orden_activity:number = resToa.data.items[0].activityId
 
     integracionToaModels.responseToa = { orden : n_orden_activity, statusOrden:'encontrada' }
     
-    return integracionToaModels
+    return integracionToaModels */
 
 		if(resToa.responseToa.statusOrden == 'no encontrada'){
 			return resToa
