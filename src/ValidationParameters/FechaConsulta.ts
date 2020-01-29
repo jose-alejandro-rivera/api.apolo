@@ -1,6 +1,7 @@
 import moments  from 'moment'
 
 export default class FechaConsulta {
+
 	constructor(){}
 
 	getDateCurrent():string {
@@ -15,4 +16,5 @@ export default class FechaConsulta {
     const fechaFrom = moments(dateFromconfig).format("YYYY-MM-DD")
     return fechaFrom
 	}
+	
 }
