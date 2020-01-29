@@ -26,14 +26,14 @@ export default class IntegracionToaService {
         password: configIntegraciones.contrasena
       }
     })
-    responseIntegracion.responseIntegracion = resp 
-    return resp
-    /*if(resp.data.totalResults == 0){
+    //responseIntegracion.responseIntegracion = resp 
+    //return resp
+    if(resp.data.totalResults == 0){
       integracionToaModels.responseToa = {status: null, activityType: null, statusOrden:'no encontrada'}
       return integracionToaModels
     }
     let n_orden_activity:number = resp.data.items[0].activityId
     integracionToaModels.responseToa = { orden : n_orden_activity, statusOrden:'encontrada' }
-    return integracionToaModels*/
+    return integracionToaModels
 	}
 }
