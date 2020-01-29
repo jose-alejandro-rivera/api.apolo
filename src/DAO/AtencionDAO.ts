@@ -27,8 +27,7 @@ export class AtencionDAO {
 			result = await sqlGetSteps.request()
 				.input('CodLogin', sql.Int, CodLogin)
 				.input('CodFlujo', sql.Int, CodFlujo)
-				.input('NumOrden', sql.VarChar, NumOrden)
-				.query(`INSERT INTO Atencion (CodLogin, CodFlujo, Fecha, NumOrden) VALUES (@CodLogin,@CodFlujo,getdate(),@NumOrden); SELECT SCOPE_IDENTITY() as Id_Atencion;`);
+				.query(`INSERT INTO Atencion (CodLogin, CodFlujo, Fecha) VALUES (@CodLogin,@CodFlujo,getdate()); SELECT SCOPE_IDENTITY() as Id_Atencion;`);
 			return atencionPostModels.atencionPost = result;
 		} catch (error) {
 			console.log("error reported");
