@@ -69,7 +69,7 @@ export default class AtencionController {
 					NumOrden == ''
 
 				) {
-					return;
+					//return;
 				} else {
 					return this.validadorMsgError(201, 'crear atencion proceso');
 				}

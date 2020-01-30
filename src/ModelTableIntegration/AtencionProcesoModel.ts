@@ -1,23 +1,23 @@
 export default class AtencionProcesoModel {
 
-	public CodAtencionPaso:number
 	public CodProceso:number
-	public TipoServicio:string
-	public Servicio:string
+	public NumOrden:string
+	public CodTecnico:number
 	public Request:string
 	public Response:string
-	public NumOrden:string
+	public Servicio:string
+	public Estado:string
 	
 	constructor(){
 
-		this.CodAtencionPaso = 0
 		this.CodProceso = 0
-		this.TipoServicio = ''
-		this.Servicio = ''
+		this.NumOrden = ''
+		this.CodTecnico = 0
 		this.Request = ''
 		this.Response = ''
-		this.NumOrden = ''
-		
+		this.Servicio = ''
+		this.Estado = ''
+
 	}
 
 }

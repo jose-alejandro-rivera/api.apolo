@@ -1,16 +1,32 @@
 import IntegracionToaConsult from '../services/IntegracionToaConsult'
-export default class ToaFactory {
-	constructor(){}
+import IntegracionToaTecnico from '../services/IntegracionToaTecnico'
+import IntegracionToaInterface from '../InterfaceIntegracion/IntegracionToaInterface'
+import { Inject, Container } from "typescript-ioc"
 
-	async factoryIntegracionToa(peticionToa:string,nOrden:number):Promise<any>{
-		let toaFactory:any
-		let resToaIntegrate:IntegracionToaConsult
+export default class ToaFactory {
+	constructor(@Inject private integracionToaConsult:IntegracionToaConsult){}
+
+	async factoryIntegracionToa(peticionToa:string,request:number):Promise<any>{
+		let integracionToa:IntegracionToaInterface
+		let resToaIntegrate:any
+		
 		switch (peticionToa) {
 			case "orden":
-				toaFactory = new IntegracionToaConsult()
-				resToaIntegrate = await toaFactory.getValidateOrden(nOrden)
+
+				integracionToa = Container.get(IntegracionToaConsult)
+				resToaIntegrate = await integracionToa.serviceIntegrationToa(request)
 				return resToaIntegrate
-			break;
+
+			break
+
+			case "tecnico":
+
+				integracionToa = Container.get(IntegracionToaTecnico)
+				resToaIntegrate = await integracionToa.serviceIntegrationToa(request)
+				return resToaIntegrate
+
+			break
+
 			default:
 				// code...
 			break;
