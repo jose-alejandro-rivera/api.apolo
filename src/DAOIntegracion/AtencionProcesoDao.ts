@@ -1,11 +1,12 @@
 import Conection from '../Loaders/databaseLoader'
-import * as sql from 'mssql'
-import { Inject, Container } from "typescript-ioc";
+import AtencionProcesoInterface from '../InterfaceIntegracion/AtencionProcesoInterface'
 import AtencionProcesoModel from '../ModelTableIntegration/AtencionProcesoModel'
 import ResponseTable from '../ResponseTable/ResponseTable'
+import * as sql from 'mssql'
+import { Inject, Container } from "typescript-ioc";
 
 
-export default class AtencionProcesoDao {
+export default class AtencionProcesoDao implements AtencionProcesoInterface {
 	constructor(@Inject private databaseConnection: Conection){}
 
 	async searchIdProcesoToa(NomProceso:string = 'Integración con TOA', Id_Proceso:number = 8): Promise<string> {
@@ -28,7 +29,7 @@ export default class AtencionProcesoDao {
 		.input('NumOrden',sql.VarChar,atencionProcesoModel.NumOrden)
 		.input('CodProceso',sql.Int,atencionProcesoModel.CodProceso)
 		.input('Request',sql.VarChar,atencionProcesoModel.Request)
-		.input('Response',sql.VarChar(255),atencionProcesoModel.Response)
+		.input('Response',sql.VarChar(1000),atencionProcesoModel.Response)
 		.input('Estado',sql.VarChar,atencionProcesoModel.Estado)
 		.input('Servicio',sql.VarChar,atencionProcesoModel.Servicio)
 		.query(`INSERT INTO Integracion (NumOrden, CodProceso,Request,Response,Estado,Servicio) VALUES (@NumOrden, @CodProceso, @Request, @Response, @Estado, @Servicio)`)

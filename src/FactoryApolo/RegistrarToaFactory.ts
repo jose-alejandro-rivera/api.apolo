@@ -1,21 +1,33 @@
-
+import AtencionProcesoInterface from '../InterfaceIntegracion/AtencionProcesoInterface'
 import AtencionProcesoDao from '../DAOIntegracion/AtencionProcesoDao'
 import { Inject, Container } from "typescript-ioc"
 
 export default class RegistrarToaFactory {
-	constructor(@Inject private atencionProcesoDao:AtencionProcesoDao){}
+	constructor(){}
 
 	async registraIntegracion(peticion:string, body:any = {}):Promise<any>{
-		this.atencionProcesoDao = Container.get(AtencionProcesoDao)
-		let toaFactory:any
-		let resToaIntegrate:any
+		let atencionProcesoDao:AtencionProcesoDao
+		atencionProcesoDao = Container.get(AtencionProcesoDao)
+		let resToaIntegrate:Object
 		switch (peticion) {
-			case "no_procesado":
-				resToaIntegrate = await this.atencionProcesoDao.registerAtencionProceso(body)
+			case "procesado":
+				resToaIntegrate = await atencionProcesoDao.registerAtencionProceso(body)
 				return resToaIntegrate
-			break;
+			break
+
+			case "servicioStatus":
+				resToaIntegrate = await atencionProcesoDao.registerAtencionProceso(body)
+				return resToaIntegrate
+			break
+
+			case "servicioTecnico":
+				resToaIntegrate = await atencionProcesoDao.registerAtencionProceso(body)
+				return resToaIntegrate
+			break
+
 			default:
-				// code...
+				resToaIntegrate = await atencionProcesoDao.registerAtencionProceso(body)
+				return resToaIntegrate
 			break;
 		}
 

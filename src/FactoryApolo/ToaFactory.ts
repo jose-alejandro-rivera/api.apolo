@@ -8,17 +8,8 @@ export default class ToaFactory {
 
 	async factoryIntegracionToa(peticionToa:string,request:number):Promise<any>{
 		let integracionToa:IntegracionToaInterface
-		let resToaIntegrate:any
-		
+		let resToaIntegrate:Object
 		switch (peticionToa) {
-			case "orden":
-
-				integracionToa = Container.get(IntegracionToaConsult)
-				resToaIntegrate = await integracionToa.serviceIntegrationToa(request)
-				return resToaIntegrate
-
-			break
-
 			case "tecnico":
 
 				integracionToa = Container.get(IntegracionToaTecnico)
@@ -28,7 +19,9 @@ export default class ToaFactory {
 			break
 
 			default:
-				// code...
+				integracionToa = Container.get(IntegracionToaConsult)
+				resToaIntegrate = await integracionToa.serviceIntegrationToa(request)
+				return resToaIntegrate
 			break;
 		}
 
