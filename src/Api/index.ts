@@ -7,6 +7,7 @@ import procesoRouter from './Routes/ProcesoRouter'
 import atencionRouter from './Routes/AtencionRouter'
 import DocRouter from './Routes/DocumentationRoute'
 import IntegracionToaController from './Routes/IntegracionToaRouter'
+import RemotaRouter from './Routes/RemotaRouter'
 
 
 
@@ -17,6 +18,7 @@ class GeneralRouter {
   private routesProceso:any
   private routeDocSwagger : any
   private routeIntegracionToa:any
+  private routeRemotaRouter:any
 
   constructor() {
     this.router = Router()
@@ -29,6 +31,7 @@ class GeneralRouter {
     this.routesProceso.router()
     this.routeDocSwagger.router()
     this.routeIntegracionToa.router()
+    this.routeRemotaRouter.router()
   }
   config(){
     this.router.use(bodyParser.json());
@@ -46,6 +49,7 @@ class GeneralRouter {
     this.routesProceso = new procesoRouter(this.router)
     this.routeDocSwagger = new DocRouter(this.router)
     this.routeIntegracionToa  = new IntegracionToaController(this.router)
+    this.routeRemotaRouter = new RemotaRouter(this.router)
   }
 }
 const GeneralRouters =  new GeneralRouter
