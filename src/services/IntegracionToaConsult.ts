@@ -23,7 +23,7 @@ export default class IntegracionToaConsul implements IntegracionToaInterface {
         password: configIntegraciones.contrasena
       }
     })
-    console.log('*********',resp.data,'*********')
+    //console.log('*********',resp.data,'*********')
     this.responseIntegracion.setResponseIntegracion(resp.data) 
     integracionToaResponseModels.responseToa = {status: resp.data.status, activityType: resp.data.activityType, statusOrden:'encontrada'}
     return [integracionToaResponseModels,this.responseIntegracion]
