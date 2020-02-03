@@ -31,7 +31,6 @@ export default class RemotaController {
 			let CodAtencion = atencionSql.recordset[0].Id_Atencion
 			let codAtencionSet = await this.setValuesAtencionPaso(CodAtencion)
 			let atencionConsultSql:Object|any = await this.retomaChatDao.retomachatAtencionPaso(codAtencionSet)
-			//let resSetRespons:Object|any  = await this.responseStatus.stateSelect(200,atencionConsultSql.recordsets)
 			let flujoSql:Object|any = await this.flujoListDAO.getFlujoList(idFlujo)
 			this.jsonResponse = {
 				"status": 200,
@@ -47,7 +46,7 @@ export default class RemotaController {
 		return this.response
 		
 	}
-	
+
 	setValuesAtencion(request:string):any {
 		const atencionModel = Container.get(AtencionModel)
 		atencionModel.NumOrden = request
