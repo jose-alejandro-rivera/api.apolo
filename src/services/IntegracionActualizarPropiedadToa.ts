@@ -8,23 +8,23 @@ export default class IntegracionActualizarPropiedadToa {
 	constructor (@Inject private responseIntegracion:ResponseIntegracion){}
 
 	async actualizarPropiedadToa(activityId:string): Promise<Object> {
-    console.log('activityId',activityId,'activityId')
+    //console.log('activityId',activityId,'activityId')
 		const configIntegraciones:ConfigIntegraciones = Container.get(ConfigIntegraciones)
 		this.responseIntegracion = Container.get(ResponseIntegracion)
     let url = `${configIntegraciones.urlToa}/activities/${activityId}`  
-   /* body:Object|any = {
+    /*body:Object|any = {
       "XA_LINEAMIENTO_ACT" : 1
     }*/
-    let resp:any = await axios({
+    let resp:any|Object = await axios({
       method:'PATCH',
       url,
-      //data:body,
+      data:{"XA_LINEAMIENTO_ACT" : 1},
       auth: {
         username: configIntegraciones.usuarioToa,
         password: configIntegraciones.contrasena
       }
     })
-    console.log(resp)
+    console.log(resp.data.links)
 		return {}
 	}
 
