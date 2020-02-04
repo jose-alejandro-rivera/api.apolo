@@ -26,13 +26,13 @@ export default class RemotaController {
 
 		}else if(atencionSql.rowsAffected[0] > 0) {
 			this.response = []
-			this.response = this.responseStatus.stateSelect(201)
+			//this.response = this.responseStatus.stateSelect(201)
 			let idFlujo = atencionSql.recordset[0].CodFlujo
 			let CodAtencion = atencionSql.recordset[0].Id_Atencion
 			let codAtencionSet = await this.setValuesAtencionPaso(CodAtencion)
 
 			let atencionConsultSql:Object|any = await this.retomaChatDao.retomachatAtencionPaso(codAtencionSet)
-			if (atencionConsultSql.rowsAffected[0] > 0) {
+			//if (atencionConsultSql.rowsAffected[0] > 0) {
 				this.response = []
 				let flujoSql:Object|any = await this.flujoListDAO.getFlujoList(idFlujo)
 				this.jsonResponse = {
@@ -47,7 +47,7 @@ export default class RemotaController {
 					"recordsets": flujoSql.recordset
 				}
 				this.response =this.jsonResponse
-			}
+			//}
 		}else{
 			this.response = []
 			this.response = this.responseStatus.stateSelect(201)
