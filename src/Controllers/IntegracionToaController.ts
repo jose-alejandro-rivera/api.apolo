@@ -9,6 +9,7 @@ import ConfigIntegraciones from '../Config/configIntegraciones'
 import IntegracionToaResponseModels from '../ModelsIntegraciones/integracionToaResponseModels'
 import IntegracionToaModels from '../ModelsIntegraciones/integracionToaModels'
 import ResponseIntegracion from '../ModelsIntegraciones/ResponseIntegracion'
+import LoguinModel from '../ModelTableIntegration/LoguinModel'
 
 import RegistrarToaFactory from '../FactoryApolo/RegistrarToaFactory'
 import IntegracionToaResponse from '../ResponseTable/IntegracionToaResponse'
@@ -23,7 +24,8 @@ export default class IntegracionToaController {
 		const fechaConsulta:FechaConsulta = Container.get(FechaConsulta)
 		const atencionProcesoDao:AtencionProcesoDao = Container.get(AtencionProcesoDao)
 		const registrarToaFactory:RegistrarToaFactory = Container.get(RegistrarToaFactory)
-		const integracionToaResponse:IntegracionToaResponse = Container.get(IntegracionToaResponse);
+		const integracionToaResponse:IntegracionToaResponse = Container.get(IntegracionToaResponse)
+		let Id_Login:number|any = null
 
 		/*OBTEBNER FECHA ACTUAL Y PASADA*/
 		let fechaFin   = await fechaConsulta.getDateCurrent()
@@ -50,6 +52,19 @@ export default class IntegracionToaController {
 		let toaTecnico:any = await toaFactory.factoryIntegracionToa('tecnico',toaInfo[1].responseIntegracion.resourceId)
 		let reponseTecnico:any = await this.setModelSaveTecnico(n_orden,tipo_orden,resulIdToa.recordset[0].Id_Proceso,toaTecnico)
 		let reponseSqlTecnico:any = await registrarToaFactory.registraIntegracion('servicioTecnico',reponseTecnico)
+
+		let loguinData = await this.setLoguinModel(toaTecnico)
+		//console.log('loguinData',loguinData,'loguinData')
+		//return {}
+		/*let loguinConsult:any = await registrarToaFactory.registraIntegracion('tecnicoLoguinConsult',loguinData)
+		console.log('loguinData',loguinConsult.response.rowsAffected[0],'loguinData')
+		if(loguinConsult.response.rowsAffected[0] > 0){
+			//Id_Login = loguinConsult.response
+		}else{
+			let loguinRegister = await registrarToaFactory.registraIntegracion('tecnicoLoguinRegister',loguinData)
+			console.log('entro en else *** -------',loguinRegister.response,'FIN ---------')
+		}*/
+		//let loguinRegister:any = await registrarToaFactory.registraIntegracion('tecnicoLoguin',loguinData)
 
 		integracionToaResponse.responseToa = {
 			status : toaInfo[0].responseToa.status,
@@ -109,5 +124,12 @@ export default class IntegracionToaController {
 		atencionPostModels.Response = JSON.stringify(response[1].responseIntegracion)
 
 		return atencionPostModels
+	}
+
+	async setLoguinModel(response:Object|any):Promise<Object> {
+		const loguinModel:LoguinModel = Container.get(LoguinModel)
+		loguinModel.Usuario = response[1].responseIntegracion.name
+		loguinModel.ResourceId = response[1].responseIntegracion.resourceId
+		return loguinModel
 	}
 }

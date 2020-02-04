@@ -6,7 +6,7 @@ export default class RegistrarToaFactory {
 	constructor(){}
 
 	async registraIntegracion(peticion:string, body:any = {}):Promise<any>{
-		let atencionProcesoDao:AtencionProcesoDao
+		let atencionProcesoDao:AtencionProcesoInterface
 		atencionProcesoDao = Container.get(AtencionProcesoDao)
 		let resToaIntegrate:Object
 		switch (peticion) {
@@ -25,6 +25,16 @@ export default class RegistrarToaFactory {
 				return resToaIntegrate
 			break
 
+			case "tecnicoLoguinConsult":
+				resToaIntegrate = await atencionProcesoDao.consultLoguin(body)
+				return resToaIntegrate
+			break
+
+			case "tecnicoLoguinRegister":
+				resToaIntegrate = await atencionProcesoDao.registerLoguin(body)
+				return resToaIntegrate
+			break
+			
 			default:
 				resToaIntegrate = await atencionProcesoDao.registerAtencionProceso(body)
 				return resToaIntegrate

@@ -36,7 +36,7 @@ export default class RemotaController {
 				"status": 200,
 				"msg": "Exitoso",
 				"rowsAtaencionPaso": atencionConsultSql.recordset[0],
-				"rows": flujoSql.recordsets
+				"recordsets": flujoSql.recordset
 			}
 			this.response =this.jsonResponse
 		}else{

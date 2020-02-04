@@ -3,8 +3,8 @@ import AtencionProcesoInterface from '../InterfaceIntegracion/AtencionProcesoInt
 import AtencionProcesoModel from '../ModelTableIntegration/AtencionProcesoModel'
 import ResponseTable from '../ResponseTable/ResponseTable'
 import * as sql from 'mssql'
-import { Inject, Container } from "typescript-ioc";
-
+import { Inject, Container } from "typescript-ioc"
+import LoguinModel from '../ModelTableIntegration/LoguinModel'
 
 export default class AtencionProcesoDao implements AtencionProcesoInterface {
 	constructor(@Inject private databaseConnection: Conection){}
@@ -33,6 +33,32 @@ export default class AtencionProcesoDao implements AtencionProcesoInterface {
 		.input('Estado',sql.VarChar,atencionProcesoModel.Estado)
 		.input('Servicio',sql.VarChar,atencionProcesoModel.Servicio)
 		.query(`INSERT INTO Integracion (NumOrden, CodProceso,Request,Response,Estado,Servicio) VALUES (@NumOrden, @CodProceso, @Request, @Response, @Estado, @Servicio)`)
+		responseTable.response = result
+		return responseTable
+	}
+
+
+	async registerLoguin(loguinModel: LoguinModel): Promise<Object> {
+		console.log('Insert loguin',loguinModel,'Insert loguinModel')
+		const responseTable:ResponseTable = Container.get(ResponseTable)
+		let result:any
+		const sqlConnect = await this.databaseConnection.getPool()
+		result = await sqlConnect.request()
+		.input('Usuario',sql.VarChar,loguinModel.Usuario)
+		.input('ResourceId',sql.VarChar,loguinModel.ResourceId)
+		.query(`INSERT INTO Login (Usuario, ResourceId, Fecha) VALUES (@Usuario, @ResourceId,getdate()); SELECT SCOPE_IDENTITY() as Id_Login;`)
+		responseTable.response = result
+		return responseTable
+	}
+
+
+	async consultLoguin(loguinModel: LoguinModel): Promise<Object> {
+		const responseTable:ResponseTable = Container.get(ResponseTable)
+		let result:any
+		const sqlConnect = await this.databaseConnection.getPool()
+		result = await sqlConnect.request()
+		.input('ResourceId',sql.VarChar,loguinModel.ResourceId)
+		.query(`SELECT Usuario,ResourceId FROM Login WHERE ResourceId  = @ResourceId`)
 		responseTable.response = result
 		return responseTable
 	}
