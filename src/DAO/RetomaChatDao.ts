@@ -18,7 +18,17 @@ export class RetomaChatDao {
 		const connect = await this.databaseConnection.getPool()
 		this.result = await connect.request()
         .input('NumOrden',sql.VarChar,atencionModel.NumOrden)
-        .query(`SELECT Id_Atencion,CodFlujo,NumOrden FROM Atencion WHERE NumOrden = @NumOrden`)
+        .query(`SELECT 
+        				a.Id_Atencion
+								,a.CodFlujo
+								,a.NumOrden 
+								,l.ResourceId
+								,l.Usuario
+								,l.Id_Login
+							FROM 
+								Atencion a
+							INNER JOIN Login as l ON  a.CodLogin = l.Id_Login
+							WHERE NumOrden = @NumOrden`)
     return responseTable.response = this.result
 		}catch(error){
 			 return responseTable.response = error.name
@@ -31,7 +41,7 @@ export class RetomaChatDao {
 			const connect = await this.databaseConnection.getPool()
 			this.result = await connect.request()
         .input('CodAtencion',sql.Int,atencionPasoPasoModel.CodAtencion)
-        .query(`SELECT TOP (1) CodAtencion,CodPaso FROM AtencionPaso WHERE CodAtencion = @CodAtencion ORDER BY Id_AtencionPaso DESC`)
+        .query(`SELECT TOP (1) CodAtencion,CodPaso,CodPasoDestino FROM AtencionPaso WHERE CodAtencion = @CodAtencion ORDER BY Id_AtencionPaso DESC`)
     return responseTable.response = this.result
 
 		}catch(error){
