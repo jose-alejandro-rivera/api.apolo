@@ -36,10 +36,10 @@ export default class AtencionController {
 		let validacionCampos: any;
 		let valAtencionCampo: any;
 		try {
-			const { CodAtencion, CodPaso, Secuencia, Soluciona } = request[0].atencionPaso;
+			const { CodAtencion, CodPaso, Secuencia, Soluciona, CodPasoDestino } = request[0].atencionPaso;
 			const { CodAtencionPaso, CodProceso, TipoServicio, Servicio, Request, Response, NumOrden } = request[0].atencionProceso;
 			const { CodCuestionarioCampo, ValorCampo } = request[0].atencionCampo;
-			if (CodAtencion != '' && CodPaso != '') {
+			if (CodAtencion != '' && CodPaso != '' && CodPasoDestino != '') {
 				validation = await this.AtencionDAO.createAtencionPasoCampo(request[0].atencionPaso);
 				idAtnPaso = validation.recordset[0].Id_AtencionPaso;
 			} else {

@@ -41,7 +41,7 @@ export class RetomaChatDao {
 			const connect = await this.databaseConnection.getPool()
 			this.result = await connect.request()
         .input('CodAtencion',sql.Int,atencionPasoPasoModel.CodAtencion)
-        .query(`SELECT TOP (1) CodAtencion,CodPaso FROM AtencionPaso WHERE CodAtencion = @CodAtencion ORDER BY Id_AtencionPaso DESC`)
+        .query(`SELECT TOP (1) CodAtencion,CodPaso,CodPasoDestino FROM AtencionPaso WHERE CodAtencion = @CodAtencion ORDER BY Id_AtencionPaso DESC`)
     return responseTable.response = this.result
 
 		}catch(error){
