@@ -12,9 +12,6 @@ export default class IntegracionActualizarPropiedadToa {
 		const configIntegraciones:ConfigIntegraciones = Container.get(ConfigIntegraciones)
 		this.responseIntegracion = Container.get(ResponseIntegracion)
     let url = `${configIntegraciones.urlToa}/activities/${activityId}`  
-    /*body:Object|any = {
-      "XA_LINEAMIENTO_ACT" : 1
-    }*/
     let resp:any|Object = await axios({
       method:'PATCH',
       url,
