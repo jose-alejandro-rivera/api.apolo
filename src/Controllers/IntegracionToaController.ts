@@ -54,17 +54,14 @@ export default class IntegracionToaController {
 		let reponseSqlTecnico:any = await registrarToaFactory.registraIntegracion('servicioTecnico',reponseTecnico)
 
 		let loguinData = await this.setLoguinModel(toaTecnico)
-		//console.log('loguinData',loguinData,'loguinData')
-		//return {}
-		/*let loguinConsult:any = await registrarToaFactory.registraIntegracion('tecnicoLoguinConsult',loguinData)
-		console.log('loguinData',loguinConsult.response.rowsAffected[0],'loguinData')
+
+		let loguinConsult:any = await registrarToaFactory.registraIntegracion('tecnicoLoguinConsult',loguinData)
 		if(loguinConsult.response.rowsAffected[0] > 0){
-			//Id_Login = loguinConsult.response
+			Id_Login = loguinConsult.response.recordset[0].Id_Login
 		}else{
 			let loguinRegister = await registrarToaFactory.registraIntegracion('tecnicoLoguinRegister',loguinData)
-			console.log('entro en else *** -------',loguinRegister.response,'FIN ---------')
-		}*/
-		//let loguinRegister:any = await registrarToaFactory.registraIntegracion('tecnicoLoguin',loguinData)
+			Id_Login = loguinRegister.response.recordset[0].Id_Login
+		}
 
 		integracionToaResponse.responseToa = {
 			status : toaInfo[0].responseToa.status,
@@ -72,7 +69,8 @@ export default class IntegracionToaController {
 			statusOrden : toaInfo[0].responseToa.statusOrden,
 			resourceId : toaTecnico[0].responseToa.resourceId,
 			statusTecnico : toaTecnico[0].responseToa.status,
-			name : toaTecnico[0].responseToa.name
+			name : toaTecnico[0].responseToa.name,
+			IdLogin: Id_Login
 		}
 
 		return integracionToaResponse;

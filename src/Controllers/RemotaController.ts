@@ -26,19 +26,28 @@ export default class RemotaController {
 
 		}else if(atencionSql.rowsAffected[0] > 0) {
 			this.response = []
-
+			this.response = this.responseStatus.stateSelect(201)
 			let idFlujo = atencionSql.recordset[0].CodFlujo
 			let CodAtencion = atencionSql.recordset[0].Id_Atencion
 			let codAtencionSet = await this.setValuesAtencionPaso(CodAtencion)
+
 			let atencionConsultSql:Object|any = await this.retomaChatDao.retomachatAtencionPaso(codAtencionSet)
-			let flujoSql:Object|any = await this.flujoListDAO.getFlujoList(idFlujo)
-			this.jsonResponse = {
-				"status": 200,
-				"msg": "Exitoso",
-				"rowsAtaencionPaso": atencionConsultSql.recordset[0],
-				"recordsets": flujoSql.recordset
+			if (atencionConsultSql.rowsAffected[0] > 0) {
+				this.response = []
+				let flujoSql:Object|any = await this.flujoListDAO.getFlujoList(idFlujo)
+				this.jsonResponse = {
+					"status": 200,
+					"msg": "Exitoso",
+					"rowsTecnico": {
+						ResourceId: atencionSql.recordset[0].ResourceId,
+						Usuario : atencionSql.recordset[0].Usuario,
+						Id_Login : atencionSql.recordset[0].Id_Login
+					},
+					"rowsAtaencionPaso": atencionConsultSql.recordset[0],
+					"recordsets": flujoSql.recordset
+				}
+				this.response =this.jsonResponse
 			}
-			this.response =this.jsonResponse
 		}else{
 			this.response = []
 			this.response = this.responseStatus.stateSelect(201)

@@ -18,7 +18,17 @@ export class RetomaChatDao {
 		const connect = await this.databaseConnection.getPool()
 		this.result = await connect.request()
         .input('NumOrden',sql.VarChar,atencionModel.NumOrden)
-        .query(`SELECT Id_Atencion,CodFlujo,NumOrden FROM Atencion WHERE NumOrden = @NumOrden`)
+        .query(`SELECT 
+        				a.Id_Atencion
+								,a.CodFlujo
+								,a.NumOrden 
+								,l.ResourceId
+								,l.Usuario
+								,l.Id_Login
+							FROM 
+								Atencion a
+							INNER JOIN Login as l ON  a.CodLogin = l.Id_Login
+							WHERE NumOrden = @NumOrden`)
     return responseTable.response = this.result
 		}catch(error){
 			 return responseTable.response = error.name

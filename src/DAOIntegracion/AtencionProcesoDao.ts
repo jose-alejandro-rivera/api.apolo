@@ -39,7 +39,6 @@ export default class AtencionProcesoDao implements AtencionProcesoInterface {
 
 
 	async registerLoguin(loguinModel: LoguinModel): Promise<Object> {
-		console.log('Insert loguin',loguinModel,'Insert loguinModel')
 		const responseTable:ResponseTable = Container.get(ResponseTable)
 		let result:any
 		const sqlConnect = await this.databaseConnection.getPool()
@@ -58,7 +57,7 @@ export default class AtencionProcesoDao implements AtencionProcesoInterface {
 		const sqlConnect = await this.databaseConnection.getPool()
 		result = await sqlConnect.request()
 		.input('ResourceId',sql.VarChar,loguinModel.ResourceId)
-		.query(`SELECT Usuario,ResourceId FROM Login WHERE ResourceId  = @ResourceId`)
+		.query(`SELECT Id_Login,Usuario,ResourceId FROM Login WHERE ResourceId  = @ResourceId`)
 		responseTable.response = result
 		return responseTable
 	}
