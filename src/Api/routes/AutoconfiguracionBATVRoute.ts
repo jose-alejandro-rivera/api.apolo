@@ -11,12 +11,13 @@ export default class AutoconfiguracionBATVRouter {
 
 	router(): void {
 		this.app.get(
-			'/autoconfiguracion/ba/tv/:n_orden_activity',
+			'/autoconfiguracion/:n_orden_activity/:parametro_config',
 			async (req:Request, res:Response, next: NextFunction) => {
-				const { n_orden_activity } = req.params
+				const { n_orden_activity, parametro_config } = req.params
 				const integracionToa:IntegracionToa = Container.get(IntegracionToa)
-				let resIntegra = await integracionToa.obtenerConfiguracion(n_orden_activity)	
-			res.status(200).json({data : 'ok'})
+				let resIntegra = await integracionToa.obtenerConfiguracion(n_orden_activity,parametro_config)	
+				console.log('*************',resIntegra,'**********')
+				res.status(200).json(resIntegra)
 		})
 	}
 }
