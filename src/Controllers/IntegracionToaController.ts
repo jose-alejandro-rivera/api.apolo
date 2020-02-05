@@ -16,7 +16,7 @@ import IntegracionToaResponse from '../ResponseTable/IntegracionToaResponse'
 
 export default class IntegracionToaController {
 
-	constructor(@Inject private responseIntegracion:ResponseIntegracion ){}
+	constructor(@Inject private responseIntegracion:ResponseIntegracion){}
 
 	 async getIntegracionToa(tipo_orden:string,n_orden:string,valor:string):Promise<Object> {
 

@@ -13,7 +13,6 @@ export default class IntegracionToaConsul implements IntegracionToaInterface {
     const integracionToaResponseModels:IntegracionToaResponseModels = Container.get(IntegracionToaResponseModels)
     const configIntegraciones:ConfigIntegraciones = Container.get(ConfigIntegraciones)
     this.responseIntegracion = Container.get(ResponseIntegracion)
-    //https://api.etadirect.com/rest/ofscCore/v1/activities/
     let url = `${configIntegraciones.urlToa}/activities/${n_orden_activity}`
     let resp:any = await axios({
       method:'get',
@@ -23,7 +22,6 @@ export default class IntegracionToaConsul implements IntegracionToaInterface {
         password: configIntegraciones.contrasena
       }
     })
-    //console.log('*********',resp.data,'*********')
     this.responseIntegracion.setResponseIntegracion(resp.data) 
     integracionToaResponseModels.responseToa = {status: resp.data.status, activityType: resp.data.activityType, statusOrden:'encontrada'}
     return [integracionToaResponseModels,this.responseIntegracion]

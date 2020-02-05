@@ -2,14 +2,13 @@ import { Router } from 'express'
 import bodyParser from 'body-parser'
 import morgan from 'morgan'
 import cors from 'cors'
-import flujoRouter from './Routes/FlujoRouter'
-import procesoRouter from './Routes/ProcesoRouter'
-import atencionRouter from './Routes/AtencionRouter'
-import DocRouter from './Routes/DocumentationRoute'
-import IntegracionToaController from './Routes/IntegracionToaRouter'
-import RemotaRouter from './Routes/RemotaRouter'
-
-
+import flujoRouter from './routes/FlujoRouter'
+import procesoRouter from './routes/ProcesoRouter'
+import atencionRouter from './routes/AtencionRouter'
+import DocRouter from './routes/DocumentationRoute'
+import IntegracionToaRouter from './routes/IntegracionToaRouter'
+import RemotaRouter from './routes/RemotaRouter'
+//import AutoconfiguracionBATVRouter from './routes/AutoconfiguracionBATVRoute'
 
 class GeneralRouter {
   public router:Router
@@ -19,6 +18,7 @@ class GeneralRouter {
   private routeDocSwagger : any
   private routeIntegracionToa:any
   private routeRemotaRouter:any
+  //private routeAutoConfBATV:any
 
   constructor() {
     this.router = Router()
@@ -32,6 +32,7 @@ class GeneralRouter {
     this.routeDocSwagger.router()
     this.routeIntegracionToa.router()
     this.routeRemotaRouter.router()
+    //this.routeAutoConfBATV.router()
   }
   config(){
     this.router.use(bodyParser.json());
@@ -48,8 +49,9 @@ class GeneralRouter {
     this.routesAtencion = new atencionRouter(this.router)
     this.routesProceso = new procesoRouter(this.router)
     this.routeDocSwagger = new DocRouter(this.router)
-    this.routeIntegracionToa  = new IntegracionToaController(this.router)
+    this.routeIntegracionToa  = new IntegracionToaRouter(this.router)
     this.routeRemotaRouter = new RemotaRouter(this.router)
+    //this.routeAutoConfBATV = new AutoconfiguracionBATVRouter(this.router)
   }
 }
 const GeneralRouters =  new GeneralRouter
