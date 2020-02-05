@@ -39,11 +39,12 @@ export default class RemotaController {
 					"status": 200,
 					"msg": "Exitoso",
 					"rowsTecnico": {
+						//Id_Atencion : atencionSql.recordset[0].Id_Atencion,
 						ResourceId: atencionSql.recordset[0].ResourceId,
 						Usuario : atencionSql.recordset[0].Usuario,
 						Id_Login : atencionSql.recordset[0].Id_Login
 					},
-					"rowsAtaencionPaso": atencionConsultSql.recordset[0],
+					"rowsAtaencionPaso": (atencionConsultSql.rowsAffected[0] > 0) ? atencionConsultSql.recordset[0] :{CodAtencion :atencionSql.recordset[0].Id_Atencion},
 					"recordsets": flujoSql.recordset
 				}
 				this.response =this.jsonResponse
