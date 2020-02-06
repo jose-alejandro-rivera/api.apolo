@@ -73,7 +73,7 @@ export default class IntegracionToaController {
 			IdLogin: Id_Login
 		}
 
-		return integracionToaResponse;
+		return integracionToaResponse
 	}
 
 	async setDataModels(n_orden:string,tipo_orden:string,fechaHasta:string,fechaFin:string,idIntegracionToa:number,resToa:any): Promise<Object> {
