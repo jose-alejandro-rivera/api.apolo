@@ -15,20 +15,32 @@ export default class IntegracionToaConsul implements IntegracionToaInterface {
   }
 
 	async serviceIntegrationToa(n_orden_activity:number): Promise<Object> {
-    console.log('ññ',n_orden_activity)
-    this.responseIntegracion = Container.get(ResponseIntegracion)
-    let url = `${this.configIntegraciones.urlToa}/activities/${n_orden_activity}`
-    let resp:any = await axios({
-      method:'get',
-      url,
-      auth: {
-        username: this.configIntegraciones.usuarioToa,
-        password: this.configIntegraciones.contrasena
+    try{
+      this.responseIntegracion = Container.get(ResponseIntegracion)
+      let url = `${this.configIntegraciones.urlToa}/activities/${n_orden_activity}`
+      let resp:any = await axios({
+        method:'get',
+        url,
+        auth: {
+          username: this.configIntegraciones.usuarioToa,
+          password: this.configIntegraciones.contrasena
+        }
+      })
+      this.responseIntegracion.setResponseIntegracion(resp.data) 
+      this.integracionToaResponseModels.responseToa = {
+        status: resp.data.status, 
+        activityType: resp.data.activityType, 
+        statusOrden:'encontrada'
       }
-    })
-    this.responseIntegracion.setResponseIntegracion(resp.data) 
-    this.integracionToaResponseModels.responseToa = {status: resp.data.status, activityType: resp.data.activityType, statusOrden:'encontrada'}
-    return [this.integracionToaResponseModels,this.responseIntegracion]
+      return [this.integracionToaResponseModels,this.responseIntegracion]
+    }catch(error){
+      this.integracionToaResponseModels.responseToa = { 
+        status: null, 
+        activityType: null, 
+        statusOrden:'no_encontrada'
+      }
+      return this.integracionToaResponseModels
+    }
   }
 
 }

@@ -26,6 +26,9 @@ export default class AutoconfiguracionBATVController {
 		let parametroValue:Object|string
 		let parametroKey:Object|string
 		let toaInfo:any = await this.toaFactory.factoryIntegracionToa('orden',n_orden_activity)
+		/*if(toaInfo.responseToa) {
+
+		}*/
 		let insertData:Object|any = await this.setModelSave(request,toaInfo)
 
 		parametroValue = (parametro_config == 'BA') ? toaInfo[1].responseIntegracion.A_ACS_RESULT_CODE : toaInfo[1].responseIntegracion.A_HC_RESULT_CODE

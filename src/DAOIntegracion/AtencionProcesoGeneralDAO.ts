@@ -16,7 +16,6 @@ export default class AtencionProcesoGeneralDAO {
 	async registerAtencionProceso(atencionProcesoModel: AtencionProcesoModel):Promise<ResponseTable> {
 			console.log(atencionProcesoModel)
 		this.result = {}
-		//const sqlConnect = await this.databaseConnection.getPool()
 		this.sqlConnect = await this.databaseConnection.getPool()
 		this.result = await this.sqlConnect.request()
 		.input('CodAtencionPaso',sql.Int,atencionProcesoModel.CodAtencionPaso)

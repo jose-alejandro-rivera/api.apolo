@@ -22,7 +22,9 @@ export class FlujoListDAO {
 		const sqlGetSteps = await this.databaseConnection.getPool();
         result = await sqlGetSteps.request()
             .input('Id_CategoriaFlujo', sql.Int, Id_CategoriaFlujo)
-            .query(`SELECT Id_Flujo,NomFlujo,CodCategoriaFlujo,CodPaso_Inicial,Descripcion,Orden,Activo,Fecha,Usuario FROM Flujo where Activo=1 AND CodCategoriaFlujo=@Id_CategoriaFlujo`);
+            .query(`SELECT Id_Flujo, NomFlujo, CodCategoriaFlujo, CodPaso_Inicial, Descripcion, Orden, Activo, Fecha, Usuario 
+            				FROM Flujo 
+            				where Activo=1 AND CodCategoriaFlujo=@Id_CategoriaFlujo`);
 		return flujoGetModels.flujoGet = result;
       } catch (error) {
         return error
@@ -44,7 +46,7 @@ export class FlujoListDAO {
         .input('id_flujo',sql.Int,id)
         .input('activo',sql.BigInt,activo)
         .query(`SELECT DISTINCT
-									 fl.Id_flujo 
+									fl.Id_flujo 
 									,fl.NomFlujo 
 									,fl.CodCategoriaFlujo
 									,fl.CodPaso_Inicial 
@@ -52,41 +54,43 @@ export class FlujoListDAO {
 									,fl.Orden 
 
 									,( SELECT 
-									         tp.Id_TipoPaso
-									        ,tp.NomTipoPaso
-									        ,ps.Id_Paso
-									        ,ps.NomPaso
-									        ,ps.Descripcion
-									     FROM Paso ps 
-									     INNER JOIN FlujoPaso AS fp ON fp.CodPaso_Origen = ps.Id_Paso  OR fp.CodPaso_Destino = ps.Id_Paso
-									     INNER JOIN TipoPaso    tp ON tp.Id_TipoPaso = ps.CodTipoPaso
-									     WHERE fp.CodFlujo = @id_flujo AND tp.Activo = @activo
-									     GROUP BY 
-									       ps.NomPaso
-									        ,ps.Descripcion
-									        ,ps.Id_Paso
-									        ,tp.Id_TipoPaso
-									        ,tp.NomTipoPaso
-									     FOR JSON PATH
-									    ) AS Pasos
+									     	tp.Id_TipoPaso
+									    	,tp.NomTipoPaso
+									    	,ps.Id_Paso
+									    	,ps.NomPaso
+									    	,ps.Descripcion
+									    	,CASE WHEN ps.Sigla IS NULL THEN 'NULL' ELSE ps.Sigla END AS Sigla
+									   FROM Paso ps 
+									   INNER JOIN FlujoPaso AS fp ON fp.CodPaso_Origen = ps.Id_Paso  OR fp.CodPaso_Destino = ps.Id_Paso
+									   INNER JOIN TipoPaso    tp ON tp.Id_TipoPaso = ps.CodTipoPaso
+									   WHERE fp.CodFlujo = @id_flujo AND tp.Activo = @activo
+									   GROUP BY 
+									      ps.NomPaso
+									      ,ps.Descripcion
+									      ,ps.Id_Paso
+									      ,tp.Id_TipoPaso
+									      ,tp.NomTipoPaso
+									      ,ps.Sigla
+									   FOR JSON PATH
+									  ) AS Pasos
 
 									,( SELECT 
-									         fp.Id_FlujoPaso 
-									        ,fp.CodFlujo 
-									        ,fp.CodPaso_Origen 
-									        ,fp.CodPaso_Destino 
-									        ,fp.Orden
-									        ,fp.ExpresionEjecucion
-									        ,fp.finaliza 
+									     fp.Id_FlujoPaso 
+									    ,fp.CodFlujo 
+									    ,fp.CodPaso_Origen 
+									    ,fp.CodPaso_Destino 
+									    ,fp.Orden
+									    ,fp.ExpresionEjecucion
+									    ,fp.finaliza 
 									  FROM FlujoPaso fp 
 									  WHERE CodFlujo = @id_flujo AND fp.Activo = @activo
 									  FOR JSON PATH
 									) AS FlujoPasos 
 
 									,( SELECT
-									         ct.Id_Cuestionario  
-									        ,ct.NomCuestionario 
-									        ,ct.Descripcion 
+									     ct.Id_Cuestionario  
+									    ,ct.NomCuestionario 
+									    ,ct.Descripcion 
 									        ,cc.Id_CuestionarioCampo
 									        ,cc.NomCuestionarioCampo
 									        ,cc.Sigla 
