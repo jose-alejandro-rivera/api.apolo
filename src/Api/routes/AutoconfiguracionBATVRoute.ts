@@ -8,15 +8,18 @@ export default class AutoconfiguracionBATVRouter {
 	constructor(router: Router){
 		this.app = router
 	}
-
+	/**
+	@parms rest = 'tipo de servicio rest soap'
+	@parms n_orden_activity = 'numero de orden registra en TOA'
+	@parms parametro_config = 'parametro de busqueda configuracion TV o BA' 
+	**/
 	router(): void {
 		this.app.get(
-			'/autoconfiguracion/:n_orden_activity/:parametro_config',
+			'/autoconfiguracion/:rest/:n_orden_activity/:parametro_config',
+			//'/autoconfiguracion/:rest/:n_orden_activity/:parametro_config/:Cod_atencion_paso/:cod_proceso',
 			async (req:Request, res:Response, next: NextFunction) => {
-				const { n_orden_activity, parametro_config } = req.params
 				const integracionToa:IntegracionToa = Container.get(IntegracionToa)
-				let resIntegra = await integracionToa.obtenerConfiguracion(n_orden_activity,parametro_config)	
-				console.log('*************',resIntegra,'**********')
+				let resIntegra = await integracionToa.obtenerConfiguracion(req)	
 				res.status(200).json(resIntegra)
 		})
 	}

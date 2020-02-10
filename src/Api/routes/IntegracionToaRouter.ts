@@ -8,6 +8,11 @@ export default class IntegracionToaRouter {
 		this.app = router
 	}
 
+	/**
+		@parms tipo_orden = 'Primer parametro de busqueda orden en TOA'
+		@parms n_orden = 'Segundo parametro de busqueda orden en TOA'
+		@parms valor = 'Busqueda especifica Factory Class'
+	**/
 	router() : void {
 		this.app.get(
 			'/integracion/apolo/toa/:tipo_orden/:n_orden/:valor',

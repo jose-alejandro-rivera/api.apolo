@@ -20,6 +20,7 @@ export default class RemotaController {
 	async consultarFlujosRetoma(request:string): Promise<Object> {
 		let NumOrden = await this.setValuesAtencion(request)
 		let atencionSql:Object|any = await this.retomaChatDao.retomaChatFlujos(NumOrden)
+		
 		if(atencionSql.rowsAffected[0] == 'RequestError'){
 			this.response = []
 			this.response = this.responseStatus.stateSelect(500)
