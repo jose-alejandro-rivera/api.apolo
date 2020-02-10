@@ -6,11 +6,13 @@ import ResponseIntegracion from '../ModelsIntegraciones/responseIntegracion'
 import IntegracionToaInterface from '../InterfaceIntegracion/IntegracionToaInterface'
 
 export default class IntegracionToaTecnico implements IntegracionToaInterface {
-	constructor(@Inject private responseIntegracion:ResponseIntegracion){}
+  private integracionResponseToaTecnico:IntegracionResponseToaTecnico
+	constructor(@Inject private responseIntegracion:ResponseIntegracion){
+    this.integracionResponseToaTecnico = Container.get(IntegracionResponseToaTecnico)
+    this.responseIntegracion = Container.get(ResponseIntegracion)
+  }
 
 	async serviceIntegrationToa(resourceId:number):Promise<any> {
-    const integracionResponseToaTecnico:IntegracionResponseToaTecnico = Container.get(IntegracionResponseToaTecnico)
-    const responseIntegracion:ResponseIntegracion = Container.get(ResponseIntegracion)
     const configIntegraciones = Container.get(ConfigIntegraciones)
 		let url = `${configIntegraciones.urlToa}/resources/${resourceId}`
   
@@ -22,9 +24,9 @@ export default class IntegracionToaTecnico implements IntegracionToaInterface {
         password: configIntegraciones.contrasena
       }
     })
-    responseIntegracion.setResponseIntegracion(resp.data)
-    integracionResponseToaTecnico.responseToa = {resourceId: resp.data.resourceId, status: resp.data.status, name : resp.data.name}
+    this.responseIntegracion.setResponseIntegracion(resp.data)
+    this.integracionResponseToaTecnico.responseToa = {resourceId: resp.data.resourceId, status: resp.data.status, name : resp.data.name}
     
-    return [integracionResponseToaTecnico,responseIntegracion]
+    return [this.integracionResponseToaTecnico,this.responseIntegracion]
 	}
 }

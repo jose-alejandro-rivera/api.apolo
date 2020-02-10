@@ -7,13 +7,13 @@ import AtencionPasoModel from '../Models/AtencionPasoModel'
 
 
 export class RetomaChatDao {
+	private responseTable:ResponseTable
 	private result:any
 	constructor(@Inject private databaseConnection:DatabaseConnection){
-		
+		this.responseTable = Container.get(ResponseTable)
 	}
 
 	async retomaChatFlujos(atencionModel:AtencionModel): Promise<Object> {
-		const responseTable = Container.get(ResponseTable)
 		try {
 		const connect = await this.databaseConnection.getPool()
 		this.result = await connect.request()
@@ -29,23 +29,25 @@ export class RetomaChatDao {
 								Atencion a
 							INNER JOIN Login as l ON  a.CodLogin = l.Id_Login
 							WHERE NumOrden = @NumOrden`)
-    return responseTable.response = this.result
+    return this.responseTable.response = this.result
 		}catch(error){
-			 return responseTable.response = error.name
+			 return this.responseTable.response = error.name
 		}
 	}
 
 	async retomachatAtencionPaso(atencionPasoPasoModel:AtencionPasoModel): Promise<Object> {
-		const responseTable = Container.get(ResponseTable)
 		try{
 			const connect = await this.databaseConnection.getPool()
 			this.result = await connect.request()
         .input('CodAtencion',sql.Int,atencionPasoPasoModel.CodAtencion)
-        .query(`SELECT TOP (1) CodAtencion,CodPaso,CodPasoDestino FROM AtencionPaso WHERE CodAtencion = @CodAtencion ORDER BY Id_AtencionPaso DESC`)
-    return responseTable.response = this.result
+        .query(`SELECT TOP (1) CodAtencion,CodPaso,CodPasoDestino 
+        				FROM AtencionPaso 
+        				WHERE CodAtencion = @CodAtencion 
+        				ORDER BY Id_AtencionPaso DESC`)
+    	return this.responseTable.response = this.result
 
 		}catch(error){
-			return responseTable.response = error.name
+			return this.responseTable.response = error.name
 		}
 	}
 }

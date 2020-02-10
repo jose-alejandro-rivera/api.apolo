@@ -8,7 +8,9 @@ export default class RemotaRouter {
 	constructor(router: Router){
 		this.app =router
 	}
-
+	/**
+		@parms num_orden = 'numero que se consulta en la base de datos'
+	**/
 	router(): void {
 		this.app.get(
 			'/retoma/apolo/:num_orden',

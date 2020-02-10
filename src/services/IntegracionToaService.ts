@@ -7,32 +7,40 @@ import ConfigIntegraciones from '../Config/configIntegraciones'
 import ResponseIntegracion from '../ModelsIntegraciones/ResponseIntegracion'
 
 export default class IntegracionToaService {
+  integracionToaModels:IntegracionToaModels
+  configIntegraciones:ConfigIntegraciones
 
 	constructor(@Inject private responseIntegracion:ResponseIntegracion){
+    this.integracionToaModels = Container.get(IntegracionToaModels)
+    this.configIntegraciones = Container.get(ConfigIntegraciones)
   }
 
 	async serviceIntegrationToa(tipo_orden:string,n_orden:string,fechaFin:string,fechaHasta:string): Promise<Object> {
-    const integracionToaModels:IntegracionToaModels = Container.get(IntegracionToaModels)
-    const configIntegraciones:ConfigIntegraciones = Container.get(ConfigIntegraciones)
-
-    this.responseIntegracion = Container.get(ResponseIntegracion)
-    let url = `${configIntegraciones.urlToa}/activities/custom-actions/search?searchInField=${tipo_orden}&searchForValue=${n_orden}&dateFrom=${fechaHasta}&dateTo=${fechaFin}`
-  
-    let resp:any = await axios({
-      method:'get',
-      url,
-      auth: {
-        username: configIntegraciones.usuarioToa,
-        password: configIntegraciones.contrasena
+    try{
+      this.responseIntegracion = Container.get(ResponseIntegracion)
+      let url = `${this.configIntegraciones.urlToa}/activities/custom-actions/search?searchInField=${tipo_orden}&searchForValue=${n_orden}&dateFrom=${fechaHasta}&dateTo=${fechaFin}`
+    
+      let resp:any = await axios({
+        method:'get',
+        url,
+        auth: {
+          username: this.configIntegraciones.usuarioToa,
+          password: this.configIntegraciones.contrasena
+        }
+      })
+      console.log('res-', resp, '-res')
+      this.responseIntegracion.setResponseIntegracion(resp) 
+      if(resp.data.totalResults == 0){
+        this.integracionToaModels.responseToa = {status: null, activityType: null, statusOrden:'no encontrada'}
+        return [this.integracionToaModels,this.responseIntegracion]
       }
-    })
-    this.responseIntegracion.setResponseIntegracion(resp) 
-    if(resp.data.totalResults == 0){
-      integracionToaModels.responseToa = {status: null, activityType: null, statusOrden:'no encontrada'}
-      return [integracionToaModels,this.responseIntegracion]
+      let n_orden_activity:number = resp.data.items[0].activityId
+      this.integracionToaModels.responseToa = { orden : n_orden_activity, statusOrden:'encontrada' }
+      return [this.integracionToaModels,this.responseIntegracion]
+    }catch(error){
+      console.log('errp',error,'errp')
+      return error
     }
-    let n_orden_activity:number = resp.data.items[0].activityId
-    integracionToaModels.responseToa = { orden : n_orden_activity, statusOrden:'encontrada' }
-    return [integracionToaModels,this.responseIntegracion]
+   
 	}
 }

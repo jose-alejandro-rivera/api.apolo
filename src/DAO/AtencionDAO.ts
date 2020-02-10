@@ -14,9 +14,7 @@ export class AtencionDAO {
 	private result: any;
 
 
-	constructor(@Inject private databaseConnection: Conection) {
-		// code...
-	}
+	constructor(@Inject private databaseConnection: Conection) {}
 
 	public async createAtencion(data: any) {
 		let result:any
@@ -28,10 +26,11 @@ export class AtencionDAO {
 				.input('CodLogin', sql.Int, CodLogin)
 				.input('CodFlujo', sql.Int, CodFlujo)
 				.input('NumOrden', sql.VarChar, NumOrden)
-				.query(`INSERT INTO Atencion (CodLogin, CodFlujo, NumOrden, Fecha) VALUES (@CodLogin,@CodFlujo,@NumOrden, getdate()); SELECT SCOPE_IDENTITY() as Id_Atencion;`);
+				.query(`INSERT INTO Atencion (CodLogin, CodFlujo, NumOrden, Fecha) 
+					      VALUES (@CodLogin,@CodFlujo,@NumOrden, getdate()); 
+					      SELECT SCOPE_IDENTITY() as Id_Atencion;`);
 			return atencionPostModels.atencionPost = result;
 		} catch (error) {
-			console.log("error reported");
 			return atencionPostModels.atencionPost = error.name;
 		}
 	}
@@ -43,7 +42,9 @@ export class AtencionDAO {
 			let validation = await sqlGetSteps.request()
 				.input('CodLogin', sql.Int, CodLogin)
 				.input('CodFlujo', sql.Int, CodFlujo)
-				.query`SELECT l.Id_Login,f.Id_Flujo FROM (SELECT * FROM Login WHERE Id_Login=@CodLogin) AS l,(SELECT * FROM Flujo WHERE Id_Flujo=@CodFlujo) AS f`;
+				.query`SELECT l.Id_Login,f.Id_Flujo FROM 
+							(SELECT * FROM Login WHERE Id_Login=@CodLogin) AS l,
+							(SELECT * FROM Flujo WHERE Id_Flujo=@CodFlujo) AS f`;
 			if (validation.recordsets) {
 				return validationModels.validation = true;
 			} else {
@@ -80,7 +81,7 @@ export class AtencionDAO {
 			const sqlGetSteps = await this.databaseConnection.getPool();
 			this.result = await sqlGetSteps.request()
 				.input('codPas', sql.Int, CodPaso)
-				.query('SELECT p.id_Paso FROM Paso p where p.id_Paso = @codPas');
+				.query(`SELECT p.id_Paso FROM Paso p where p.id_Paso = @codPas`);
 			let cPaso = this.result;
 			return cPaso;
 		} catch (error) {
@@ -106,7 +107,9 @@ export class AtencionDAO {
 				.input('secu', sql.Int, SecuenciaC)
 				.input('solu', sql.Int, Soluciona)
 				.input('codPasDest', sql.Int, CodPasoDestino)
-				.query('INSERT INTO AtencionPaso (CodAtencion,CodPaso,Secuencia,Soluciona,Fecha,CodPasoDestino) VALUES (@codAt,@codPas,@secu,@solu,getdate(),@codPasDest); SELECT SCOPE_IDENTITY() as Id_AtencionPaso;');
+				.query(`INSERT INTO AtencionPaso (CodAtencion,CodPaso,Secuencia,Soluciona,Fecha,CodPasoDestino) 
+								VALUES (@codAt,@codPas,@secu,@solu,getdate(),@codPasDest); 
+								SELECT SCOPE_IDENTITY() as Id_AtencionPaso;`);
 			let CodAtencionpaso = result;
 			return CodAtencionpaso;
 		} catch (error) {
@@ -145,7 +148,8 @@ export class AtencionDAO {
 					.input('codAtPas', sql.Int, CodAtencionpaso)
 					.input('codCuest', sql.Int, CodCuestionarioCampo)
 					.input('valCam', sql.VarChar, ValorCampo)
-					.query('INSERT INTO AtencionCampo (CodAtencionPaso,CodCuestionarioCampo,ValorCampo,Fecha) VALUES (@codAtPas,@codCuest,@valCam,getdate());');
+					.query(`INSERT INTO AtencionCampo (CodAtencionPaso,CodCuestionarioCampo,ValorCampo,Fecha) 
+									VALUES (@codAtPas,@codCuest,@valCam,getdate());`);
 			}
 			return result;
 		} catch (error) {
@@ -165,7 +169,9 @@ export class AtencionDAO {
 				.input('req', sql.VarChar, Request)
 				.input('res', sql.VarChar, Response)
 				.input('NumOrden', sql.VarChar, NumOrden)
-				.query('INSERT INTO AtencionProceso (CodAtencionPaso,CodProceso,TipoServicio,Servicio,Request,Response,Fecha,NumOrden) VALUES (@codAtPas,@codProces,@tipoServ,@serv,@req,@res,getdate(),@NumOrden); SELECT SCOPE_IDENTITY() as Id_AtencionProceso;');
+				.query(`INSERT INTO AtencionProceso (CodAtencionPaso,CodProceso,TipoServicio,Servicio,Request,Response,Fecha,NumOrden) 
+								VALUES (@codAtPas,@codProces,@tipoServ,@serv,@req,@res,getdate(),@NumOrden); 
+								SELECT SCOPE_IDENTITY() as Id_AtencionProceso;`);
 			this.createAtencionProcesoSalida(atencionProcesoSalida, result)
 			return result; 
 		} catch (error) {
@@ -182,8 +188,9 @@ export class AtencionDAO {
 				.input('codAtProces', sql.Int, Id_AtencionProceso)
 				.input('codProceSalida', sql.Int, CodProcesoSalida)
 				.input('valCam', sql.VarChar, Valor)
-				.query('INSERT INTO AtencionProcesoSalida (CodAtencionProceso,CodProcesoSalida,Valor,Fecha) VALUES (@codAtProces,@codProceSalida,@valCam,getdate());');
-				return result;
+				.query(`INSERT INTO AtencionProcesoSalida (CodAtencionProceso,CodProcesoSalida,Valor,Fecha) 
+								VALUES (@codAtProces,@codProceSalida,@valCam,getdate());`);
+			return result;
 		} catch (error) {
 			return error;
 		}
@@ -195,8 +202,9 @@ export class AtencionDAO {
 			const sqlGetSteps = await this.databaseConnection.getPool();
 			let result = await sqlGetSteps.request()
 				.input('CodAtencion', sql.Int, CodAtencion)
-				.query('SELECT Id_AtencionPaso,CodPaso FROM AtencionPaso WHERE CodAtencion=@CodAtencion ORDER BY Id_AtencionPaso DESC');
-				return result;
+				.query(`SELECT Id_AtencionPaso,CodPaso 
+								FROM AtencionPaso WHERE CodAtencion=@CodAtencion ORDER BY Id_AtencionPaso DESC`);
+			return result;
 		} catch (error) {
 			return error;
 		}
