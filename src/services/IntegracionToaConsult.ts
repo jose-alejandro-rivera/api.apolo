@@ -34,12 +34,13 @@ export default class IntegracionToaConsul implements IntegracionToaInterface {
       }
       return [this.integracionToaResponseModels,this.responseIntegracion]
     }catch(error){
+      this.responseIntegracion.setResponseIntegracion(error) 
       this.integracionToaResponseModels.responseToa = { 
         status: null, 
         activityType: null, 
         statusOrden:'no_encontrada'
       }
-      return this.integracionToaResponseModels
+      return [this.integracionToaResponseModels,this.responseIntegracion]
     }
   }
 
