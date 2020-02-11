@@ -11,7 +11,8 @@ export default class AutoconfiguracionBATVController {
 	private toaFactory:ToaFactory
 	private registrarToaFactory:IntegracionesFactory
 	private integracionToaResponse:IntegracionToaResponse
-	private  atencionPostModels:AtencionProcesoModel
+	private atencionPostModels:AtencionProcesoModel
+	private toaInfo:Object|any
 
 	constructor(@Inject private responseIntegracion:ResponseIntegracion){
 		this.atencionProcesoDao = Container.get(AtencionProcesoGeneralDAO)
@@ -25,24 +26,17 @@ export default class AutoconfiguracionBATVController {
 		const { n_orden_activity, parametro_config } = request.params
 		let parametroValue:Object|string
 		let parametroKey:Object|string
-		let toaInfo:any = await this.toaFactory.factoryIntegracionToa('orden',n_orden_activity)
-		/*if(toaInfo.responseToa) {
-
-		}*/
-		let insertData:Object|any = await this.setModelSave(request,toaInfo)
-
-		parametroValue = (parametro_config == 'BA') ? toaInfo[1].responseIntegracion.A_ACS_RESULT_CODE : toaInfo[1].responseIntegracion.A_HC_RESULT_CODE
-		parametroKey = (parametro_config == 'BA') ? 'A_ACS_RESULT_CODE' : 'A_HC_RESULT_CODE'
-		this.integracionToaResponse.responseToa = {
-			activityId : toaInfo[1].responseIntegracion.activityId,
-			propiedad_key  : parametroKey,
-			propiedad_value : parametroValue,
-			response : insertData.Response, 
-			request : insertData.Request,
-			Servicio : insertData.Servicio,
-			TipoServicio : insertData.TipoServicio
+		this.toaInfo = await this.toaFactory.factoryIntegracionToa('orden',n_orden_activity)
+		console.log('nnn',this.toaInfo[0].responseToa.statusOrden,'nnn')
+		if(this.toaInfo[0].responseToa.statusOrden == 'no_encontrada') {
+			await this.setResponse()
+			return this.integracionToaResponse
 		}
+		let insertData:Object|any = await this.setModelSave(request,this.toaInfo)
 
+		parametroValue = (parametro_config == 'BA') ? this.toaInfo[1].responseIntegracion.A_ACS_RESULT_CODE : this.toaInfo[1].responseIntegracion.A_HC_RESULT_CODE
+		parametroKey = (parametro_config == 'BA') ? 'A_ACS_RESULT_CODE' : 'A_HC_RESULT_CODE'
+		await this.setResponse(parametroValue,parametroKey)
 		return this.integracionToaResponse
 	}
 	/**
@@ -61,6 +55,19 @@ export default class AutoconfiguracionBATVController {
 		this.atencionPostModels.Response = JSON.stringify(response[1].responseIntegracion)
 
 		return this.atencionPostModels
+	}
+
+	async setResponse(parametroKey:string|any = '', parametroValue:string|any = ''): Promise<void>{
+		this.integracionToaResponse.responseToa = {
+			statusOrden : this.toaInfo[0].responseToa.statusOrden,
+			activityId : this.toaInfo[0].responseToa.activityId,
+			propiedad_key  : (parametroKey=='') ? 'NULL' : parametroKey,
+			propiedad_value : (parametroValue=='') ? 'NULL' : parametroValue,
+			response : (this.atencionPostModels.Response) ? this.atencionPostModels.Response : 'NULL', 
+			request : (this.atencionPostModels.Request) ? this.atencionPostModels.Request : 'NULL',
+			Servicio : (this.atencionPostModels.Servicio) ? this.atencionPostModels.Servicio : 'NULL',
+			TipoServicio : (this.atencionPostModels.TipoServicio) ? this.atencionPostModels.TipoServicio : 'NULL'
+		}
 	}
 
 }
