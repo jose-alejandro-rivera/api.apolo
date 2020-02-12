@@ -28,16 +28,16 @@ export default class AutoconfiguracionBATVController {
 		let parametroKey:Object|string
 		let label:string
 		this.toaInfo = await this.toaFactory.factoryIntegracionToa('orden',n_orden_activity)
+		label = (parametro_config == 'BA') ? 'Autoconfiguración BA' : 'Activación TV'
 		console.log('nnn',this.toaInfo[0].responseToa.statusOrden,'nnn')
 		if(this.toaInfo[0].responseToa.statusOrden == 'no_encontrada') {
-			await this.setResponse()
+			await this.setResponse('','',label)
 			return this.integracionToaResponse
 		}
 		let insertData:Object|any = await this.setModelSave(request,this.toaInfo)
 
 		parametroValue = (parametro_config == 'BA') ? this.toaInfo[1].responseIntegracion.A_ACS_RESULT_CODE : this.toaInfo[1].responseIntegracion.A_HC_RESULT_CODE
 		parametroKey = (parametro_config == 'BA') ? 'A_ACS_RESULT_CODE' : 'A_HC_RESULT_CODE'
-		label = (parametro_config == 'BA') ? 'Autoconfiguración BA' : 'Activación TV'
 		await this.setResponse(parametroValue,parametroKey,label)
 		return this.integracionToaResponse
 	}
