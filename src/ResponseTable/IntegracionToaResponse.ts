@@ -1,8 +1,8 @@
 export default class IntegracionToaResponse {
 
-	public responseToa:Object
+	public response:Object
 
 	constructor(){
-		this.responseToa = {}
+		this.response = {}
 	}
 }

@@ -19,7 +19,7 @@ export default class AutoconfiguracionBATVRouter {
 			//'/autoconfiguracion/:rest/:n_orden_activity/:parametro_config/:Cod_atencion_paso/:cod_proceso',
 			async (req:Request, res:Response, next: NextFunction) => {
 				const integracionToa:IntegracionToa = Container.get(IntegracionToa)
-				let resIntegra = await integracionToa.obtenerConfiguracion(req)	
+				let resIntegra:Object|any = await integracionToa.obtenerConfiguracion(req)	
 				res.status(200).json(resIntegra)
 		})
 	}

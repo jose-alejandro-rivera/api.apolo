@@ -75,7 +75,7 @@ export default class IntegracionToaController {
 			Id_Login = loguinRegister.response.recordset[0].Id_Login
 		}
 
-		this.integracionToaResponse.responseToa = {
+		this.integracionToaResponse.response = {
 			status : toaInfo[0].responseToa.status,
 			activityType : toaInfo[0].responseToa.activityType,
 			statusOrden : toaInfo[0].responseToa.statusOrden,
