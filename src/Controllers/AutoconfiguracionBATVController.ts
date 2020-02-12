@@ -26,6 +26,7 @@ export default class AutoconfiguracionBATVController {
 		const { n_orden_activity, parametro_config } = request.params
 		let parametroValue:Object|string
 		let parametroKey:Object|string
+		let label:string
 		this.toaInfo = await this.toaFactory.factoryIntegracionToa('orden',n_orden_activity)
 		console.log('nnn',this.toaInfo[0].responseToa.statusOrden,'nnn')
 		if(this.toaInfo[0].responseToa.statusOrden == 'no_encontrada') {
@@ -36,7 +37,8 @@ export default class AutoconfiguracionBATVController {
 
 		parametroValue = (parametro_config == 'BA') ? this.toaInfo[1].responseIntegracion.A_ACS_RESULT_CODE : this.toaInfo[1].responseIntegracion.A_HC_RESULT_CODE
 		parametroKey = (parametro_config == 'BA') ? 'A_ACS_RESULT_CODE' : 'A_HC_RESULT_CODE'
-		await this.setResponse(parametroValue,parametroKey)
+		label = (parametro_config == 'BA') ? 'Autoconfiguración BA' : 'Activación TV'
+		await this.setResponse(parametroValue,parametroKey,label)
 		return this.integracionToaResponse
 	}
 	/**
@@ -57,12 +59,13 @@ export default class AutoconfiguracionBATVController {
 		return this.atencionPostModels
 	}
 
-	async setResponse(parametroKey:string|any = '', parametroValue:string|any = ''): Promise<void>{
-		this.integracionToaResponse.responseToa = {
+	async setResponse(parametroKey:string|any = '', parametroValue:string|any = '', label:string|any = ''): Promise<void>{
+		this.integracionToaResponse.response = {
 			statusOrden : this.toaInfo[0].responseToa.statusOrden,
 			activityId : this.toaInfo[0].responseToa.activityId,
 			propiedad_key  : (parametroKey=='') ? 'NULL' : parametroKey,
 			propiedad_value : (parametroValue=='') ? 'NULL' : parametroValue,
+			label: (label=='') ? 'NULL' : label, 
 			response : (this.atencionPostModels.Response) ? this.atencionPostModels.Response : 'NULL', 
 			request : (this.atencionPostModels.Request) ? this.atencionPostModels.Request : 'NULL',
 			Servicio : (this.atencionPostModels.Servicio) ? this.atencionPostModels.Servicio : 'NULL',

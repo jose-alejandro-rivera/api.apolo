@@ -19,8 +19,13 @@ export default class IntegracionToaService {
     try{
       this.responseIntegracion = Container.get(ResponseIntegracion)
       let url = `${this.configIntegraciones.urlToa}/activities/custom-actions/search?searchInField=${tipo_orden}&searchForValue=${n_orden}&dateFrom=${fechaHasta}&dateTo=${fechaFin}`
-    
+      
       let resp:any = await axios({
+        withCredentials: true,
+        headers: {
+          "Accept": "application/json",
+          "Content-Type": "application/json"
+        },
         method:'get',
         url,
         auth: {
