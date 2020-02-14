@@ -1,4 +1,5 @@
 import axios from 'axios'
+import requests from 'request-promise'
 import IntegracionToaResponseModels from '../ModelsIntegraciones/integracionToaResponseModels'
 import { Inject, Container } from "typescript-ioc"
 import ConfigIntegraciones from '../Config/configIntegraciones'
@@ -18,18 +19,20 @@ export default class IntegracionToaConsul implements IntegracionToaInterface {
     try{
       this.responseIntegracion = Container.get(ResponseIntegracion)
       let url = `${this.configIntegraciones.urlToa}/activities/${n_orden_activity}`
-      let resp:any = await axios({
-        method:'get',
-        url,
+      let resp:any = await requests.get(url,{
+        //proxy: 'http://10.200.105.145:80/',
+        json: true,
+        method: 'GET',
         auth: {
-          username: this.configIntegraciones.usuarioToa,
-          password: this.configIntegraciones.contrasena
+          'user': this.configIntegraciones.usuarioToa,
+          'pass': this.configIntegraciones.contrasena
         }
       })
-      this.responseIntegracion.setResponseIntegracion(resp.data) 
+      console.log('--',resp,'--')
+      this.responseIntegracion.setResponseIntegracion(resp) 
       this.integracionToaResponseModels.responseToa = {
-        status: resp.data.status, 
-        activityType: resp.data.activityType, 
+        status: resp.status, 
+        activityType: resp.activityType, 
         statusOrden:'encontrada'
       }
       return [this.integracionToaResponseModels,this.responseIntegracion]
@@ -38,7 +41,7 @@ export default class IntegracionToaConsul implements IntegracionToaInterface {
       this.integracionToaResponseModels.responseToa = { 
         status: null, 
         activityType: null, 
-        statusOrden:'no_encontrada'
+        statusOrden:'error_request'
       }
       return [this.integracionToaResponseModels,this.responseIntegracion]
     }

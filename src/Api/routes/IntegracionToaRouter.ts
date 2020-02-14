@@ -1,6 +1,8 @@
 import {Router, Request, Response, NextFunction} from 'express'
 import { Container } from "typescript-ioc";
 import IntegracionToa  from '../../Controllers/IntegracionToaController'
+import OrdenFinalizaToaController  from '../../Controllers/OrdenFinalizaToaController'
+import IntegracionActualizarPropiedadToa from '../../Controllers/OrdenFinalizaToaController'
 
 export default class IntegracionToaRouter {
 	public app: Router
@@ -21,6 +23,17 @@ export default class IntegracionToaRouter {
 				const integracionToa:IntegracionToa = Container.get(IntegracionToa)
 				let resIntegra:Object|any = await integracionToa.getIntegracionToa(tipo_orden,n_orden,valor)	
 				res.status(200).json(resIntegra)
+		})
+		/**
+		@parms n_orden = 'Segundo parametro de busqueda orden en TOA'
+	**/
+		this.app.put(
+			'/integracion/toa/finaliza/:tipo_servicio/:num_orden',
+			async (req:Request, res:Response, next:NextFunction) =>{
+				console.log(req.params)
+				const ordenFinalizaToaController:OrdenFinalizaToaController = Container.get(OrdenFinalizaToaController)
+        let responseModel = await ordenFinalizaToaController.ordenFinalizaToa(req)
+				res.status(200).json(responseModel)
 		})
 	}
 }

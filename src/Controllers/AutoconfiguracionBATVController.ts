@@ -27,9 +27,14 @@ export default class AutoconfiguracionBATVController {
 		let parametroValue:Object|string
 		let parametroKey:Object|string
 		let label:string
+
 		this.toaInfo = await this.toaFactory.factoryIntegracionToa('orden',n_orden_activity)
 		label = (parametro_config == 'BA') ? 'Autoconfiguración BA' : 'Activación TV'
 		console.log('nnn',this.toaInfo[0].responseToa.statusOrden,'nnn')
+		if(this.toaInfo[0].responseToa.statusOrden == 'error_request') {
+			await this.setResponse('','',label)
+			return this.integracionToaResponse
+		}
 		if(this.toaInfo[0].responseToa.statusOrden == 'no_encontrada') {
 			await this.setResponse('','',label)
 			return this.integracionToaResponse
@@ -61,7 +66,8 @@ export default class AutoconfiguracionBATVController {
 
 	async setResponse(parametroKey:string|any = '', parametroValue:string|any = '', label:string|any = ''): Promise<void>{
 		this.integracionToaResponse.response = {
-			statusOrden : this.toaInfo[0].responseToa.statusOrden,
+			statusOrden : (this.toaInfo[0].responseToa.statusOrden=='encontrada') ? 'encontrada' : 'no encontrada',
+			//statusOrden : this.toaInfo[0].responseToa.statusOrden,
 			activityId : this.toaInfo[0].responseToa.activityId,
 			propiedad_key  : (parametroKey=='') ? 'NULL' : parametroKey,
 			propiedad_value : (parametroValue=='') ? 'NULL' : parametroValue,
@@ -69,7 +75,8 @@ export default class AutoconfiguracionBATVController {
 			response : (this.atencionPostModels.Response) ? this.atencionPostModels.Response : 'NULL', 
 			request : (this.atencionPostModels.Request) ? this.atencionPostModels.Request : 'NULL',
 			Servicio : (this.atencionPostModels.Servicio) ? this.atencionPostModels.Servicio : 'NULL',
-			TipoServicio : (this.atencionPostModels.TipoServicio) ? this.atencionPostModels.TipoServicio : 'NULL'
+			TipoServicio : (this.atencionPostModels.TipoServicio) ? this.atencionPostModels.TipoServicio : 'NULL',
+			error : (this.atencionPostModels.Response) ? 'NULL' : 'Bad Request'
 		}
 	}
 
