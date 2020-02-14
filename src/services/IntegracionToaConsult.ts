@@ -3,7 +3,7 @@ import requests from 'request-promise'
 import IntegracionToaResponseModels from '../ModelsIntegraciones/integracionToaResponseModels'
 import { Inject, Container } from "typescript-ioc"
 import ConfigIntegraciones from '../Config/configIntegraciones'
-import ResponseIntegracion from '../ModelsIntegraciones/responseIntegracion'
+import ResponseIntegracion from '../ModelsIntegraciones/ResponseIntegracion'
 import IntegracionToaInterface from '../InterfaceIntegracion/IntegracionToaInterface'
 
 export default class IntegracionToaConsul implements IntegracionToaInterface {
