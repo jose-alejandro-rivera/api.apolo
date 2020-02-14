@@ -26,6 +26,7 @@ export default class IntegracionToaRouter {
 		})
 		/**
 		@parms n_orden = 'Segundo parametro de busqueda orden en TOA'
+		@parms tipo_servicio = 'tipo de arquitectura api REST/SOAP'
 	**/
 		this.app.patch(
 			'/integracion/toa/finaliza/:tipo_servicio/:num_orden',

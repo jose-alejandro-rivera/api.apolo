@@ -40,6 +40,6 @@ export default class OrdenFinalizaToaController {
     	"TipoServicio" : (tipo_servicio == 'rest') ? `rest|${request.method.toLowerCase()}` :'soap',
     	"request": num_orden
 		}
-		return this.integracionToaResponse.response
+		return this.integracionToaResponse
 	}
 }
