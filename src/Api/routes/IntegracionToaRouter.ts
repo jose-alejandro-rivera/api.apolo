@@ -27,7 +27,7 @@ export default class IntegracionToaRouter {
 		/**
 		@parms n_orden = 'Segundo parametro de busqueda orden en TOA'
 	**/
-		this.app.put(
+		this.app.patch(
 			'/integracion/toa/finaliza/:tipo_servicio/:num_orden',
 			async (req:Request, res:Response, next:NextFunction) =>{
 				console.log(req.params)

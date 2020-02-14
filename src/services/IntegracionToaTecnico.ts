@@ -3,7 +3,7 @@ import requests from 'request-promise'
 import { Inject, Container } from "typescript-ioc"
 import ConfigIntegraciones from '../Config/configIntegraciones'
 import IntegracionResponseToaTecnico from '../ModelsIntegraciones/IntegracionResponseToaTecnico'
-import ResponseIntegracion from '../ModelsIntegraciones/responseIntegracion'
+import ResponseIntegracion from '../ModelsIntegraciones/ResponseIntegracion'
 import IntegracionToaInterface from '../InterfaceIntegracion/IntegracionToaInterface'
 
 export default class IntegracionToaTecnico implements IntegracionToaInterface {
@@ -27,7 +27,6 @@ export default class IntegracionToaTecnico implements IntegracionToaInterface {
           'pass': this.configIntegraciones.contrasena
         }
       })
-      //console.log(',,',resp,',,')
       this.responseIntegracion.setResponseIntegracion(resp)
       this.integracionResponseToaTecnico.responseToa = {resourceId: resp.resourceId, status: resp.status, name : resp.name}
     
