@@ -19,13 +19,5 @@ export default class RemotaRouter {
         let responseModel = await remotaController.consultarFlujosRetoma(req.params.num_orden)
 				res.status(200).json(responseModel)
 		})
-
-		this.app.get(
-			'/integracion/toa/finaliza/:activityId',
-			async (req:Request, res:Response, next:NextFunction) =>{
-				const PropiedadToa:IntegracionActualizarPropiedadToa = Container.get(IntegracionActualizarPropiedadToa)
-        let responseModel = await PropiedadToa.actualizarPropiedadToa(req.params.activityId)
-				res.status(200).json(responseModel)
-		})
 	}
 }

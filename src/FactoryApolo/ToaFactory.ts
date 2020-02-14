@@ -1,5 +1,6 @@
 import IntegracionToaConsult from '../services/IntegracionToaConsult'
 import IntegracionToaTecnico from '../services/IntegracionToaTecnico'
+import IntegracionToaFinaliza from '../services/IntegracionActualizarPropiedadToa'
 import IntegracionToaInterface from '../InterfaceIntegracion/IntegracionToaInterface'
 import { Inject, Container } from "typescript-ioc"
 
@@ -11,11 +12,16 @@ export default class ToaFactory {
 		let resToaIntegrate:Object
 		switch (peticionToa) {
 			case "tecnico":
-
 				integracionToa = Container.get(IntegracionToaTecnico)
 				resToaIntegrate = await integracionToa.serviceIntegrationToa(request)
 				return resToaIntegrate
 
+			break
+
+			case "finaliza":
+			  integracionToa = Container.get(IntegracionToaFinaliza)
+				resToaIntegrate = await integracionToa.serviceIntegrationToa(request)
+				return resToaIntegrate
 			break
 
 			default:

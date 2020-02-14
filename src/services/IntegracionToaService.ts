@@ -1,4 +1,6 @@
 import axios from 'axios'
+import request from 'request'
+import requests from 'request-promise'
 import IntegracionToaModels from '../ModelsIntegraciones/integracionToaModels'
 import IntegracionToaResponseModels from '../ModelsIntegraciones/integracionToaResponseModels'
 import { Inject, Container } from "typescript-ioc"
@@ -19,32 +21,32 @@ export default class IntegracionToaService {
     try{
       this.responseIntegracion = Container.get(ResponseIntegracion)
       let url = `${this.configIntegraciones.urlToa}/activities/custom-actions/search?searchInField=${tipo_orden}&searchForValue=${n_orden}&dateFrom=${fechaHasta}&dateTo=${fechaFin}`
-      
-      let resp:any = await axios({
-        withCredentials: true,
-        headers: {
-          "Accept": "application/json",
-          "Content-Type": "application/json"
-        },
-        method:'get',
-        url,
+      let resp:any = await requests.get(url,{
+        //proxy: 'http://10.200.105.145:80/',
+        json: true,
+        method: 'GET',
         auth: {
-          username: this.configIntegraciones.usuarioToa,
-          password: this.configIntegraciones.contrasena
+          'user': this.configIntegraciones.usuarioToa,
+          'pass': this.configIntegraciones.contrasena
         }
       })
-      console.log('res-', resp, '-res')
+      //console.log('***',resp,'*****')
       this.responseIntegracion.setResponseIntegracion(resp) 
-      if(resp.data.totalResults == 0){
+      if(resp.totalResults == 0){
         this.integracionToaModels.responseToa = {status: null, activityType: null, statusOrden:'no encontrada'}
         return [this.integracionToaModels,this.responseIntegracion]
       }
-      let n_orden_activity:number = resp.data.items[0].activityId
+      let n_orden_activity:number = resp.items[0].activityId
       this.integracionToaModels.responseToa = { orden : n_orden_activity, statusOrden:'encontrada' }
       return [this.integracionToaModels,this.responseIntegracion]
     }catch(error){
-      console.log('errp',error,'errp')
-      return error
+      this.responseIntegracion.setResponseIntegracion(error) 
+      this.integracionToaModels.responseToa = { 
+        status: null, 
+        activityType: null, 
+        statusOrden:'error_request'
+      }
+      return [this.integracionToaModels,this.responseIntegracion]
     }
    
 	}
