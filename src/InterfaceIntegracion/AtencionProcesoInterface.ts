@@ -8,5 +8,7 @@ export default interface AtencionProcesoInterface {
 	registerLoguin(request:LoguinModel):Promise<Object>
 
 	consultLoguin(request:LoguinModel):Promise<Object>
+
+	validarNumOrden(request:string|any):Promise<Object>
 	
 }

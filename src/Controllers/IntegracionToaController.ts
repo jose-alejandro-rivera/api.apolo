@@ -40,6 +40,21 @@ export default class IntegracionToaController {
 	 async getIntegracionToa(tipo_orden:string,n_orden:string,valor:string):Promise<Object> {
 		let Id_Login:number|any = null
 
+		let validarOrden = await this.registrarToaFactory.registraIntegracion('validar_orden',n_orden)
+		//console.log('validarOrden',validarOrden.response,'validarOrden')
+		if(validarOrden.response.rowsAffected[0] > 0){
+			let response:Object|any = 
+			{ 
+				response : 
+				{ 
+					status: 'retoma', 
+					activityType: null,  
+					statusOrden: 'encontrada', 
+					error: null
+				}
+			}
+			return response
+		}
 		let fechaFin   = await this.fechaConsulta.getDateCurrent()
 		let fechaHasta = await this.fechaConsulta.getDatePass()
 

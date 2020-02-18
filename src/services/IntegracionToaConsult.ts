@@ -28,7 +28,6 @@ export default class IntegracionToaConsul implements IntegracionToaInterface {
           'pass': this.configIntegraciones.contrasena
         }
       })
-      console.log('--',resp,'--')
       this.responseIntegracion.setResponseIntegracion(resp) 
       this.integracionToaResponseModels.responseToa = {
         status: resp.status, 
