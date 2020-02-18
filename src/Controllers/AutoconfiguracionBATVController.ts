@@ -30,7 +30,6 @@ export default class AutoconfiguracionBATVController {
 
 		this.toaInfo = await this.toaFactory.factoryIntegracionToa('orden',n_orden_activity)
 		label = (parametro_config == 'BA') ? 'Autoconfiguración BA' : 'Activación TV'
-		console.log('nnn',this.toaInfo[0].responseToa.statusOrden,'nnn')
 		if(this.toaInfo[0].responseToa.statusOrden == 'error_request') {
 			await this.setResponse('','',label)
 			return this.integracionToaResponse

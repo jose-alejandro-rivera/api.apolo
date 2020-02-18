@@ -8,7 +8,6 @@ import atencionRouter from './routes/AtencionRouter'
 import DocRouter from './routes/DocumentationRoute'
 import IntegracionToaRouter from './routes/IntegracionToaRouter'
 import RemotaRouter from './routes/RemotaRouter'
-import AutoconfiguracionBATVRouter from './routes/AutoconfiguracionBATVRoute'
 
 class GeneralRouter {
   public router:Router
@@ -32,7 +31,6 @@ class GeneralRouter {
     this.routeDocSwagger.router()
     this.routeIntegracionToa.router()
     this.routeRemotaRouter.router()
-    this.routeAutoConfBATV.router()
   }
   config(){
     this.router.use(bodyParser.json());
@@ -51,7 +49,6 @@ class GeneralRouter {
     this.routeDocSwagger = new DocRouter(this.router)
     this.routeIntegracionToa  = new IntegracionToaRouter(this.router)
     this.routeRemotaRouter = new RemotaRouter(this.router)
-    this.routeAutoConfBATV = new AutoconfiguracionBATVRouter(this.router)
   }
 }
 const GeneralRouters =  new GeneralRouter

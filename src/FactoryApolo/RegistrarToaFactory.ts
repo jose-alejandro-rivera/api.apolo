@@ -34,6 +34,11 @@ export default class RegistrarToaFactory {
 				resToaIntegrate = await atencionProcesoDao.registerLoguin(body)
 				return resToaIntegrate
 			break
+
+			case "validar_orden":
+				resToaIntegrate = await atencionProcesoDao.validarNumOrden(body)
+				return resToaIntegrate
+			break
 			
 			default:
 				resToaIntegrate = await atencionProcesoDao.registerAtencionProceso(body)

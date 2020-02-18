@@ -3,6 +3,7 @@ import { Container } from "typescript-ioc";
 import IntegracionToa  from '../../Controllers/IntegracionToaController'
 import OrdenFinalizaToaController  from '../../Controllers/OrdenFinalizaToaController'
 import IntegracionActualizarPropiedadToa from '../../Controllers/OrdenFinalizaToaController'
+import IntegracionToaAutoConfig  from '../../Controllers/AutoconfiguracionBATVController'
 
 export default class IntegracionToaRouter {
 	public app: Router
@@ -35,6 +36,19 @@ export default class IntegracionToaRouter {
 				const ordenFinalizaToaController:OrdenFinalizaToaController = Container.get(OrdenFinalizaToaController)
         let responseModel = await ordenFinalizaToaController.ordenFinalizaToa(req)
 				res.status(200).json(responseModel)
+		})
+			/**
+			@parms rest = 'tipo de servicio rest soap'
+			@parms n_orden_activity = 'numero de orden registra en TOA'
+			@parms parametro_config = 'parametro de busqueda configuracion TV o BA' 
+			**/
+				this.app.get(
+			'/autoconfiguracion/:rest/:n_orden_activity/:parametro_config',
+			//'/autoconfiguracion/:rest/:n_orden_activity/:parametro_config/:Cod_atencion_paso/:cod_proceso',
+			async (req:Request, res:Response, next: NextFunction) => {
+				const integracionToaAutoConfig:IntegracionToaAutoConfig = Container.get(IntegracionToaAutoConfig)
+				let resIntegra:Object|any = await integracionToaAutoConfig.obtenerConfiguracion(req)	
+				res.status(200).json(resIntegra)
 		})
 	}
 }

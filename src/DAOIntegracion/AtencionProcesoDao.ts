@@ -27,9 +27,18 @@ export default class AtencionProcesoDao implements AtencionProcesoInterface {
 		return this.result
 	}
 
+	async validarNumOrden(request:string|any): Promise<Object> {
+		this.result = {}
+		this.sqlConnect = await this.databaseConnection.getPool()
+		this.result = await this.sqlConnect.request()
+		.input('NumOrden',sql.VarChar,request)
+		.query(`SELECT NumOrden,CodFlujo,CodLogin FROM Atencion WHERE NumOrden = @NumOrden`)
+		this.responseTable.response = this.result
+		return this.responseTable
+	}
+
 	async registerAtencionProceso(atencionProcesoModel: AtencionProcesoModel):Promise<Object> {
 		this.result = {}
-		//const sqlConnect = await this.databaseConnection.getPool()
 		this.sqlConnect = await this.databaseConnection.getPool()
 		this.result = await this.sqlConnect.request()
 		.input('NumOrden',sql.VarChar,atencionProcesoModel.NumOrden)

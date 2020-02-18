@@ -13,10 +13,10 @@ export default class RemotaRouter {
 	**/
 	router(): void {
 		this.app.get(
-			'/retoma/apolo/:num_orden',
+			'/retoma/apolo/:num_orden/:tipo_orden',
 			async (req:Request, res:Response, next:NextFunction) =>{
 				const remotaController:RemotaController = Container.get(RemotaController)
-        let responseModel = await remotaController.consultarFlujosRetoma(req.params.num_orden)
+        let responseModel = await remotaController.consultarFlujosRetoma(req.params.num_orden,req.params.tipo_orden)
 				res.status(200).json(responseModel)
 		})
 	}

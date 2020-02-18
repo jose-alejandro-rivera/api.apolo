@@ -30,7 +30,6 @@ export default class IntegracionToaService {
           'pass': this.configIntegraciones.contrasena
         }
       })
-      //console.log('***',resp,'*****')
       this.responseIntegracion.setResponseIntegracion(resp) 
       if(resp.totalResults == 0){
         this.integracionToaModels.responseToa = {status: null, activityType: null, statusOrden:'no encontrada'}

@@ -18,7 +18,6 @@ export default class IntegracionActualizarPropiedadToa implements IntegracionToa
 
 	async serviceIntegrationToa(activityId:string): Promise<Object> {
 		try{
-      console.log('...',activityId,'..')
       let url = `${this.configIntegraciones.urlToa}/activities/${activityId}`  
       let resp:any = await requests.patch(url,{
         //proxy: 'http://10.200.105.145:80/',
@@ -32,7 +31,6 @@ export default class IntegracionActualizarPropiedadToa implements IntegracionToa
           'pass': this.configIntegraciones.contrasena
         }
       })
-      console.log(resp)
       this.responseIntegracion.setResponseIntegracion(resp) 
       if(!resp.XA_LINEAMIENTO_ACT || resp.XA_LINEAMIENTO_ACT!=1){ //|| 
         //TENER EN CUNETA LA PROPIEDDAD AUN NO EXISTE EN ALGUNAS ORDENES
@@ -44,10 +42,8 @@ export default class IntegracionActualizarPropiedadToa implements IntegracionToa
         XA_LINEAMIENTO_ACT: resp.XA_LINEAMIENTO_ACT, 
         statusOrden:'actulizada'
       }
-      console.log(resp)
       return [this.integracionToaResponseModels,this.responseIntegracion]
     }catch(error){
-      console.log('error',error,'error')
       this.responseIntegracion.setResponseIntegracion(error) 
       this.integracionToaResponseModels.responseToa = { 
         status: 404, 
