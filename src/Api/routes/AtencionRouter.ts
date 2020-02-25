@@ -173,11 +173,12 @@ export default class AtencionRoute {
             }
         )
 
-        this.app.get('/atencion/paso/atras/:idAtencion',
+        this.app.get('/atencion/paso/atras/:idAtencion/:idPaso',
           async (req: Request, res: Response, next: NextFunction) => {
             try {
+                const { idAtencion,idPaso } = req.params
               const atencionController: AtencionController = Container.get(AtencionController);
-              let responseModel = await atencionController.atencionPasoAtras(req.params.idAtencion);
+              let responseModel = await atencionController.atencionPasoAtras(idAtencion,idPaso);
               res.status(200).json(responseModel);
             } catch (error) {
               console.log(error)

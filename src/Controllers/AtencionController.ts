@@ -165,9 +165,9 @@ export default class AtencionController {
 		}
 	}
 
-	async atencionPasoAtras(CodAtencion: any): Promise<void> {
+	async atencionPasoAtras(idAtencion:any,idPaso:any): Promise<void> {
 		try {
-			const result = await this.AtencionDAO.atencionPasoAtras(CodAtencion);
+			const result = await this.AtencionDAO.atencionPasoAtras(idAtencion,idPaso);
 			return result;
 		} catch (error) {
 			let res = this.responseStatus.stateSelect(500)

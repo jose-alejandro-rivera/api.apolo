@@ -210,17 +210,60 @@ export class AtencionDAO {
 		}
 	}
 
-	public async atencionPasoAtras(CodAtencion: number) {
+	public async atencionPasoAtras(idAtencion:number,idPaso:number) {
 		try {
+			/*
+
+				SELECT 
+					Id_AtencionPaso,
+					CodPaso,
+					CodPasoDestino 
+				FROM AtencionPaso 
+				WHERE CodAtencion=@CodAtencion 
+				ORDER BY Id_AtencionPaso DESC
+
+				SELECT TOP 1
+				  CodAtencion,
+				  Id_AtencionPaso,
+				  (SELECT TOP 1  CodPaso FROM AtencionPaso WHERE CodAtencion=794 AND CodPasoDestino = 6 ORDER BY CodPaso DESC) AS CodPasoAtras,
+				  CodPaso,
+				  CodPasoDestino 
+				FROM AtencionPaso 
+				WHERE CodAtencion=794 AND CodPaso = 6 -- OR CodPasoDestino = 5) 
+				ORDER BY Id_AtencionPaso DESC
+
+			//ANTERIOR ---SELECT
+				SELECT TOP 1
+								  CodAtencion,
+								  Id_AtencionPaso,
+				  				(	SELECT TOP 1  
+				  						CodPaso 
+				  					FROM AtencionPaso 
+				  					WHERE CodAtencion = @CodAtencion AND CodPasoDestino = @idPaso ORDER BY CodPaso DESC) AS CodPasoAtras,
+				  				CodPaso,
+				  				CodPasoDestino 
+								FROM AtencionPaso 
+								WHERE CodAtencion = @CodAtencion AND CodPaso = @idPaso
+								ORDER BY Id_AtencionPaso DESC
+
+			*/
 			const atencioPasoSql = await this.databaseConnection.getPool();
 			let result = await atencioPasoSql.request()
-				.input('CodAtencion', sql.Int, CodAtencion)
-				.query(`SELECT 
+				.input('CodAtencion', sql.Int, idAtencion)
+				.input('idPaso', sql.Int, idPaso)
+				.query(`SELECT TOP 1
+									CodAtencion,
 									Id_AtencionPaso,
-									CodPaso,
-									CodPasoDestino 
+									(SELECT TOP 1  
+										CodPaso 
+									FROM AtencionPaso 
+									WHERE CodAtencion = @CodAtencion AND CodPasoDestino = (SELECT TOP 1 CodPaso FROM AtencionPaso WHERE CodPasoDestino = @idPaso ORDER BY Id_AtencionPaso DESC)
+								    ORDER BY CodPaso DESC
+									) AS CodPasoAtras,
+								CodPaso,
+								CodPasoDestino 
 								FROM AtencionPaso 
-								WHERE CodAtencion=@CodAtencion 
+								WHERE CodAtencion = @CodAtencion AND CodPaso = (SELECT TOP 1 CodPaso FROM AtencionPaso WHERE CodPasoDestino = @idPaso ORDER BY Id_AtencionPaso DESC)
 								ORDER BY Id_AtencionPaso DESC`);
 			return result;
 		} catch (error) {
