@@ -16,6 +16,7 @@
   "license": "ISC",
   "dependencies": {
     "@types/app-root-path": "^1.2.4",
+    "@types/express-fileupload": "^1.1.2",
     "@types/node": "^12.12.18",
     "@types/request": "^2.48.4",
     "@types/request-promise": "^4.1.45",
@@ -29,6 +30,7 @@
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "express-fileupload": "^1.1.6",
     "express-validator": "^3.2.1",
     "fs-extra": "^8.1.0",
     "moment": "^2.24.0",

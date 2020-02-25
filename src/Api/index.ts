@@ -1,5 +1,6 @@
 import { Router } from 'express'
 import bodyParser from 'body-parser'
+import fileUpload from 'express-fileupload'
 import morgan from 'morgan'
 import cors from 'cors'
 import flujoRouter from './routes/FlujoRouter'
@@ -8,6 +9,8 @@ import atencionRouter from './routes/AtencionRouter'
 import DocRouter from './routes/DocumentationRoute'
 import IntegracionToaRouter from './routes/IntegracionToaRouter'
 import RemotaRouter from './routes/RemotaRouter'
+import RegistroFotograficoRouter from './routes/RegistroFotograficoRouter'
+
 
 class GeneralRouter {
   public router:Router
@@ -18,6 +21,7 @@ class GeneralRouter {
   private routeIntegracionToa:any
   private routeRemotaRouter:any
   private routeAutoConfBATV:any
+  private registroFotograficoRouter:any
 
   constructor() {
     this.router = Router()
@@ -31,10 +35,13 @@ class GeneralRouter {
     this.routeDocSwagger.router()
     this.routeIntegracionToa.router()
     this.routeRemotaRouter.router()
+    this.registroFotograficoRouter.router()
   }
   config(){
     this.router.use(bodyParser.json());
     this.router.use(bodyParser.urlencoded({ extended: true }));
+    this.router.use(fileUpload())
+    //app.use(bodyParser.urlencoded({ extended: true }));
     this.router.use(morgan('dev'))
     this.router.use(cors({
       'allowedHeaders': ['sessionId', 'Content-Type'],
@@ -49,6 +56,7 @@ class GeneralRouter {
     this.routeDocSwagger = new DocRouter(this.router)
     this.routeIntegracionToa  = new IntegracionToaRouter(this.router)
     this.routeRemotaRouter = new RemotaRouter(this.router)
+    this.registroFotograficoRouter = new RegistroFotograficoRouter(this.router)
   }
 }
 const GeneralRouters =  new GeneralRouter

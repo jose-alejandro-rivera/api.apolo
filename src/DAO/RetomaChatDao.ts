@@ -37,6 +37,7 @@ export class RetomaChatDao {
 
 	async retomachatAtencionPaso(atencionPasoPasoModel:AtencionPasoModel): Promise<Object> {
 		try{
+			//console.log(atencionPasoPasoModel.CodAtencion)
 			const connect = await this.databaseConnection.getPool()
 			this.result = await connect.request()
         .input('CodAtencion',sql.Int,atencionPasoPasoModel.CodAtencion)

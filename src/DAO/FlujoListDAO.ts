@@ -9,27 +9,36 @@ import CategoriaFlujoModel from "../Models/CategoriaFlujoModels";
  * @category DAO
  */
 export class FlujoListDAO {
-    constructor(@Inject 
-    	private databaseConnection: DatabaseConnection
-    ) {
+  constructor(@Inject 
+  	private databaseConnection: DatabaseConnection
+  ) {
 
-    }
+  }
 
-    public async getFlujosPorCategoria(Id_CategoriaFlujo: number): Promise<void> {
+  public async getFlujosPorCategoria(Id_CategoriaFlujo: number): Promise<void> {
 		let result: any;
 		let flujoGetModels: FlujoGetModels = Container.get(FlujoGetModels);
-      try {
-		const sqlGetSteps = await this.databaseConnection.getPool();
-        result = await sqlGetSteps.request()
-            .input('Id_CategoriaFlujo', sql.Int, Id_CategoriaFlujo)
-            .query(`SELECT Id_Flujo, NomFlujo, CodCategoriaFlujo, CodPaso_Inicial, Descripcion, Orden, Activo, Fecha, Usuario 
-            				FROM Flujo 
-            				where Activo=1 AND CodCategoriaFlujo=@Id_CategoriaFlujo`);
-		return flujoGetModels.flujoGet = result;
-      } catch (error) {
-        return error
-      }
-    }
+	    try {
+				const sqlGetSteps = await this.databaseConnection.getPool();
+			  result = await sqlGetSteps.request()
+			    .input('Id_CategoriaFlujo', sql.Int, Id_CategoriaFlujo)
+			    .query(`SELECT 
+			            	Id_Flujo, 
+			              NomFlujo, 
+			            	CodCategoriaFlujo, 
+			            	CodPaso_Inicial, 
+			            	Descripcion, 
+			            	Orden, 
+			            	Activo, 
+			              Fecha, 
+			            	Usuario 
+			          	FROM Flujo 
+			          	WHERE Activo=1 AND CodCategoriaFlujo=@Id_CategoriaFlujo`);
+				return flujoGetModels.flujoGet = result;
+	    } catch (error) {
+	      return error
+	    }
+  }
 
     /**
      * Método que invoca a consultar 
@@ -176,30 +185,45 @@ export class FlujoListDAO {
       }
     }
 
-    public async getCategoriaFlujoList() {
+   public async getCategoriaFlujoList() {
 		let result: any;
 		let categoriasGetModels: CategoriaFlujoModel = Container.get(CategoriaFlujoModel);
 		try{	
 			const sqlGetSteps = await this.databaseConnection.getPool();
-			result = await sqlGetSteps.request().query(`SELECT Id_CategoriaFlujo,NomCategoriaFlujo,Activo,Fecha,Usuario FROM categoriaFlujo where Activo=1`);
+			result = await sqlGetSteps.request()
+				.query(`SELECT Id_CategoriaFlujo,NomCategoriaFlujo,Activo,Fecha,Usuario 
+								FROM categoriaFlujo 
+								where Activo=1`);
 			return categoriasGetModels.categoriaGet = result;
 		} catch (error) {
-		return categoriasGetModels.categoriaGet = error.name;
+			return categoriasGetModels.categoriaGet = error.name;
 		}
-    }
+  }
 
     public async validateFlujoExist(Id_Flujo: number): Promise<boolean> {
       try {
         var sqlGetSteps = await this.databaseConnection.getPool();
         var result = await sqlGetSteps.request()
             .input('Id_Flujo', sql.Int, Id_Flujo)
-            .query(`SELECT Id_Flujo,NomFlujo,CodCategoriaFlujo,CodPaso_Inicial,Descripcion,Orden,Activo,Fecha,Usuario FROM Flujo where Activo=1 AND Id_Flujo=@Id_Flujo`);
+            .query(`SELECT 
+            					Id_Flujo,
+            					NomFlujo,
+            					CodCategoriaFlujo,
+            					CodPaso_Inicial,
+            					Descripcion,
+            					Orden,
+            					Activo,
+            					Fecha,
+            					Usuario 
+            				FROM 
+            					Flujo 
+            				where Activo=1 AND Id_Flujo=@Id_Flujo`);
+      	//return (result.rowsAffected[0] > 0) ? true : false
         if (result.rowsAffected[0] > 0) {
             return true;
         } else {
             return false;
         }
-
       } catch (error) {
         return error
       }

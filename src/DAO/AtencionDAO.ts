@@ -210,4 +210,22 @@ export class AtencionDAO {
 		}
 	}
 
+	public async atencionPasoAtras(CodAtencion: number) {
+		try {
+			const atencioPasoSql = await this.databaseConnection.getPool();
+			let result = await atencioPasoSql.request()
+				.input('CodAtencion', sql.Int, CodAtencion)
+				.query(`SELECT 
+									Id_AtencionPaso,
+									CodPaso,
+									CodPasoDestino 
+								FROM AtencionPaso 
+								WHERE CodAtencion=@CodAtencion 
+								ORDER BY Id_AtencionPaso DESC`);
+			return result;
+		} catch (error) {
+			return error;
+		}
+	}
+
 }

@@ -94,6 +94,7 @@ export default class RemotaController {
 			let idFlujo = this.atencionSql.recordset[0].CodFlujo
 			let CodAtencion = this.atencionSql.recordset[0].Id_Atencion
 			let codAtencionSet = await this.setValuesAtencionPaso(CodAtencion)
+			//console.log(codAtencionSet)
 			this.atencionConsultSql = await this.retomaChatDao.retomachatAtencionPaso(codAtencionSet)
 			await this.respuestaIntegracion()
 			this.response = []
@@ -121,7 +122,8 @@ export default class RemotaController {
 	}
 
 	respuestaIntegracion(error:any = ''): void {
-
+		//console.log(this.atencionConsultSql.rowsAffected[0])
+		//console.log(this.atencionConsultSql.recordset[0])
 		if(error == 'error'){
 			this.jsonResponse = {	response : { status: null, activityType: null, statusOrden: 'no encontrada', error: 'Bad Request' } }
 		}else{

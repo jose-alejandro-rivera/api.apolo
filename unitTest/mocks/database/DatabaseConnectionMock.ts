@@ -10,7 +10,7 @@ export default class DatabaseConnectionMock {
     private pool: Promise<sql.ConnectionPool>;
 
     constructor() {
-        LoggerInstance.info('configuración base de datos' + JSON.stringify(config.database));
+        //LoggerInstance.info('configuración base de datos' + JSON.stringify(config.database));
         this.pool = new Promise(resolve => {
             resolve(new sql.ConnectionPool());
         });

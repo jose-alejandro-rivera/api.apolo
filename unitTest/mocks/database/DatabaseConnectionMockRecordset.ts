@@ -1,11 +1,11 @@
-import * as sql from './mssqlCatchMoks';
+import * as sql from './mssqlMoksRecordset';
 import config from '../../../src/Config';
 import { Singleton } from 'typescript-ioc';
 import LoggerInstance from '../../../src/Loaders/loggerLoader';
 
 @Singleton
 
-export default class DatabaseConnectionCatchMock {
+export default class DatabaseConnectionMock {
 
     private pool: Promise<sql.ConnectionPool>;
 
@@ -26,5 +26,15 @@ export default class DatabaseConnectionCatchMock {
         } else {
             (await this.pool).request().resultProcedure.setRecordSet(data);
         }
+    }
+
+    public async setProcedureResponses(data: any, isRowsAffected: boolean = false) {
+        if(!isRowsAffected) {
+            (await this.pool).request().resultProcedure.setRecordSet(data);
+            (await this.pool).request().resultProcedure.setRowsAffecteds();
+        } else {
+            (await this.pool).request().resultProcedure.setRecordSet(data);
+            (await this.pool).request().resultProcedure.setRowsAffected();
+        } 
     }
 }

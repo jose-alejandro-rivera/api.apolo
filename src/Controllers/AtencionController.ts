@@ -165,5 +165,15 @@ export default class AtencionController {
 		}
 	}
 
+	async atencionPasoAtras(CodAtencion: any): Promise<void> {
+		try {
+			const result = await this.AtencionDAO.atencionPasoAtras(CodAtencion);
+			return result;
+		} catch (error) {
+			let res = this.responseStatus.stateSelect(500)
+			return res;
+		}
+	}
+
 }
 

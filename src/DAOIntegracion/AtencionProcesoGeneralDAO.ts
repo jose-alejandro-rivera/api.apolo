@@ -14,7 +14,7 @@ export default class AtencionProcesoGeneralDAO {
 	}
 
 	async registerAtencionProceso(atencionProcesoModel: AtencionProcesoModel):Promise<ResponseTable> {
-			console.log(atencionProcesoModel)
+		//console.log(atencionProcesoModel)
 		this.result = {}
 		this.sqlConnect = await this.databaseConnection.getPool()
 		this.result = await this.sqlConnect.request()

@@ -24,6 +24,7 @@ export default class AtencionProcesoDao implements AtencionProcesoInterface {
 		.input('NomProceso',sql.VarChar,NomProceso)
 		.query('SELECT Id_Proceso FROM Proceso WHERE NomProceso  = @NomProceso')
 		atencionPostModels.CodProceso = this.result.recordset[0].Id_Proceso
+		//atencionPostModels.CodProceso = (this.result.recordset) ?  this.result.recordset[0].Id_Proceso : this.result
 		return this.result
 	}
 
