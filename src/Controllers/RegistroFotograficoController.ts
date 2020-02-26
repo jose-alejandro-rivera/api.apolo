@@ -34,8 +34,15 @@ export default class RegistroFotograficoController {
 		this.validarRegSql = await this.registroFotograficoDAO.validarRegistroFotografico(this.registroFotograficoModel)
 		if(this.validarRegSql.response.rowsAffected[0] > 0 ){
 			this.response = []
-			this.response = this.responseStatus.stateSelect(201)
-			return this.response
+			//this.response = this.responseStatus.stateSelect(201)
+			let methodResponse:object|any = {
+						"status": 201,
+						"method" : "PACTH",
+					  "msg": "Error de parametros",
+					  "rows": []
+					}
+			//this.response.push(method)
+			return this.response = methodResponse
 			/*await this.setIdRegistroFotografico(this.validarRegSql.response.recordset[0].Id_RegistroFoto)
 			this.actualizarRegSql = await this.registroFotograficoDAO.actualizarRegistroFotografico(this.registroFotograficoModel)
 			this.response = []
@@ -93,7 +100,14 @@ export default class RegistroFotograficoController {
 			this.response = this.responseStatus.stateSelect(200)
 			return this.response
 		}
-		this.response = this.responseStatus.stateSelect(201)
+		let methodResponse:object|any = {
+					"status": 201,
+					"method" : "POST",
+					"msg": "Error de parametros",
+					"rows": []
+				}
+		this.response = methodResponse
+		//this.response = this.responseStatus.stateSelect(201)
 		return this.response
 	}
 
