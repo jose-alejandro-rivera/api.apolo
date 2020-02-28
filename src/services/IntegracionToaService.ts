@@ -17,10 +17,10 @@ export default class IntegracionToaService {
     this.configIntegraciones = Container.get(ConfigIntegraciones)
   }
 
-	async serviceIntegrationToa(tipo_orden:string,n_orden:string,fechaFin:string,fechaHasta:string): Promise<Object> {
+	async serviceIntegrationToa(tipo_orden:string,n_orden:string,fechaFin:string,fechaHasta:string,fecha_desde:string|any='2018-12-18'): Promise<Object> {
     try{
       this.responseIntegracion = Container.get(ResponseIntegracion)
-      let url = `${this.configIntegraciones.urlToa}/activities/custom-actions/search?searchInField=${tipo_orden}&searchForValue=${n_orden}&dateFrom=${fechaHasta}&dateTo=${fechaFin}`
+      let url = `${this.configIntegraciones.urlToa}/activities/custom-actions/search?searchInField=${tipo_orden}&searchForValue=${n_orden}&dateFrom=${fecha_desde}&dateTo=${fechaFin}`
       let resp:any = await requests.get(url,{
         //proxy: 'http://10.200.105.145:80/',
         json: true,

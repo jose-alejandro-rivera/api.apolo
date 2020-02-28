@@ -54,12 +54,10 @@ export default class RemotaController {
 
 		let NumOrden = await this.setValuesAtencion(request)
 		this.atencionSql = await this.retomaChatDao.retomaChatFlujos(NumOrden)
-
 		if(this.atencionSql.rowsAffected[0] == 'RequestError'){
 			this.response = []
 			this.response = this.responseStatus.stateSelect(500)
 		}else if(this.atencionSql.rowsAffected[0] > 0) {
-			
 			this.response = []
 			const resulIdToa:any = await this.atencionProcesoDao.searchIdProcesoToa()
 			const fechaFin   = await this.fechaConsulta.getDateCurrent()
@@ -72,7 +70,7 @@ export default class RemotaController {
 			}
 
 			let insertData = await this.setDataModels(request,tipo_orden,fechaHasta,fechaFin,resulIdToa.recordset[0].Id_Proceso,resToa)
-
+			console.log(resToa[0].responseToa,'integracion')
 			if(resToa[0].responseToa.statusOrden == 'no encontrada'){
 				const responseInsertar = await this.registrarToaFactory.registraIntegracion('no_procesado',insertData)
 				let response:Object|any = { response : resToa[0].responseToa }
