@@ -21,6 +21,7 @@ export class RetomaChatDao {
         .query(`SELECT 
         				a.Id_Atencion
 								,a.CodFlujo
+								,a.ActivityId
 								,a.NumOrden 
 								,l.ResourceId
 								,l.Usuario

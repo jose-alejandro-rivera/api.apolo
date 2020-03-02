@@ -41,5 +41,6 @@ export default class OrdenFinalizaToaController {
     	"request": num_orden
 		}
 		return this.integracionToaResponse
+		//Action on past date is not allowed
 	}
 }

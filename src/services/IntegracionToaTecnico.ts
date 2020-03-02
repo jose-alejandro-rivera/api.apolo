@@ -27,12 +27,12 @@ export default class IntegracionToaTecnico implements IntegracionToaInterface {
           'pass': this.configIntegraciones.contrasena
         }
       })
-      this.responseIntegracion.setResponseIntegracion(resp)
+      this.responseIntegracion.responseIntegracion = resp
       this.integracionResponseToaTecnico.responseToa = {resourceId: resp.resourceId, status: resp.status, name : resp.name}
     
       return [this.integracionResponseToaTecnico,this.responseIntegracion]
     }catch(error){
-      this.responseIntegracion.setResponseIntegracion(error) 
+      this.responseIntegracion.responseIntegracion = error 
       this.integracionResponseToaTecnico.responseToa = { 
         status: null, 
         activityType: null, 

@@ -1,16 +1,9 @@
 
 export default class ResponseIntegracion {
 	
-	private responseIntegracion:Object = {}
+	public responseIntegracion:Object|any
 
 	constructor() {
-	}
-
-	setResponseIntegracion(response:Object){
-		this.responseIntegracion = response
-	}
-
-	getResponseIntegracion() {
-		return this.responseIntegracion
+		this.responseIntegracion = {}
 	}
 }

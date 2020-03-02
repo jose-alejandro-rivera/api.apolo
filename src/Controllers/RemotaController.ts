@@ -128,6 +128,7 @@ export default class RemotaController {
 			this.jsonResponse = {
 				"status": 200,
 				"msg": "Exitoso",
+				"ActivityId": (this.atencionSql.rowsAffected[0] > 0) ? this.atencionSql.recordset[0].ActivityId : 'NULL',
 				"rowsTecnico": {
 				//Id_Atencion : atencionSql.recordset[0].Id_Atencion,
 					ResourceId: this.toaTecnico[1].responseIntegracion.resourceId,

@@ -20,14 +20,15 @@ export class AtencionDAO {
 		let result:any
 		let atencionPostModels: AtencionModels = Container.get(AtencionModels);
 		try {
-			let { CodLogin, CodFlujo, NumOrden } = data;
+			let { CodLogin, CodFlujo, NumOrden, activityId } = data;
 			const sqlGetSteps = await this.databaseConnection.getPool();
 			result = await sqlGetSteps.request()
 				.input('CodLogin', sql.Int, CodLogin)
 				.input('CodFlujo', sql.Int, CodFlujo)
 				.input('NumOrden', sql.VarChar, NumOrden)
-				.query(`INSERT INTO Atencion (CodLogin, CodFlujo, NumOrden, Fecha) 
-					      VALUES (@CodLogin,@CodFlujo,@NumOrden, getdate()); 
+				.input('ActivityId', sql.VarChar, activityId)
+				.query(`INSERT INTO Atencion (CodLogin, CodFlujo, NumOrden, Fecha,ActivityId) 
+					      VALUES (@CodLogin,@CodFlujo,@NumOrden, getdate(),@ActivityId); 
 					      SELECT SCOPE_IDENTITY() as Id_Atencion;`);
 			return atencionPostModels.atencionPost = result;
 		} catch (error) {

@@ -31,7 +31,7 @@ export default class IntegracionActualizarPropiedadToa implements IntegracionToa
           'pass': this.configIntegraciones.contrasena
         }
       })
-      this.responseIntegracion.setResponseIntegracion(resp) 
+      this.responseIntegracion.responseIntegracion = resp 
       if(!resp.XA_LINEAMIENTO_ACT || resp.XA_LINEAMIENTO_ACT!=1){ //|| 
         //TENER EN CUNETA LA PROPIEDDAD AUN NO EXISTE EN ALGUNAS ORDENES
         this.integracionToaResponseModels.responseToa = {status: 300, XA_LINEAMIENTO_ACT: null, statusOrden:'error_request'}
@@ -44,7 +44,7 @@ export default class IntegracionActualizarPropiedadToa implements IntegracionToa
       }
       return [this.integracionToaResponseModels,this.responseIntegracion]
     }catch(error){
-      this.responseIntegracion.setResponseIntegracion(error) 
+      this.responseIntegracion.responseIntegracion = error 
       this.integracionToaResponseModels.responseToa = { 
         status: 404, 
         activityType: null, 

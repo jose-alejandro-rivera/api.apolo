@@ -19,7 +19,6 @@ export default class IntegracionToaConsul implements IntegracionToaInterface {
     try{
       this.responseIntegracion = Container.get(ResponseIntegracion)
       let url = `${this.configIntegraciones.urlToa}/activities/${n_orden_activity}`
-      console.log('url',url)
       let resp:any = await requests.get(url,{
         //proxy: 'http://10.200.105.145:80/',
         json: true,
@@ -29,7 +28,7 @@ export default class IntegracionToaConsul implements IntegracionToaInterface {
           'pass': this.configIntegraciones.contrasena
         }
       })
-      this.responseIntegracion.setResponseIntegracion(resp) 
+      this.responseIntegracion.responseIntegracion = resp 
       this.integracionToaResponseModels.responseToa = {
         status: resp.status, 
         activityType: resp.activityType, 
@@ -37,8 +36,7 @@ export default class IntegracionToaConsul implements IntegracionToaInterface {
       }
       return [this.integracionToaResponseModels,this.responseIntegracion]
     }catch(error){
-      console.log(error,'resp')
-      this.responseIntegracion.setResponseIntegracion(error) 
+      this.responseIntegracion.responseIntegracion = error 
       this.integracionToaResponseModels.responseToa = { 
         status: null, 
         activityType: null, 

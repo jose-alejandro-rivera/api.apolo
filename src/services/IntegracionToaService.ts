@@ -30,7 +30,7 @@ export default class IntegracionToaService {
           'pass': this.configIntegraciones.contrasena
         }
       })
-      this.responseIntegracion.setResponseIntegracion(resp) 
+      this.responseIntegracion.responseIntegracion = resp 
       if(resp.totalResults == 0){
         this.integracionToaModels.responseToa = {status: null, activityType: null, statusOrden:'no encontrada'}
         return [this.integracionToaModels,this.responseIntegracion]
@@ -39,7 +39,7 @@ export default class IntegracionToaService {
       this.integracionToaModels.responseToa = { orden : n_orden_activity, statusOrden:'encontrada' }
       return [this.integracionToaModels,this.responseIntegracion]
     }catch(error){
-      this.responseIntegracion.setResponseIntegracion(error) 
+      this.responseIntegracion.responseIntegracion = error 
       this.integracionToaModels.responseToa = { 
         status: null, 
         activityType: null, 
