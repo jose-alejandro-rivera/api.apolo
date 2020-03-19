@@ -1,6 +1,6 @@
 import IntegracionToaService from '../services/IntegracionToaService'
 import ToaFactory from '../FactoryApolo/ToaFactory'
-import { Container, Inject } from "typescript-ioc";
+import { Container, Inject } from "typescript-ioc"
 import moments  from 'moment'
 import FechaConsulta from '../ValidationParameters/FechaConsulta'
 import AtencionProcesoDao from '../DAOIntegracion/AtencionProcesoDao'
@@ -24,6 +24,10 @@ export default class IntegracionToaController {
 
 	private atencionPostModels:AtencionProcesoModel
 	private configIntegraciones:ConfigIntegraciones
+	private responseInsertarError:any
+	private responseInsertar:any
+	private reponseSql:any
+	private reponseSqlTecnico:any
 
 	constructor(@Inject private responseIntegracion:ResponseIntegracion){
 		this.integracionToaService = Container.get(IntegracionToaService)
@@ -39,6 +43,10 @@ export default class IntegracionToaController {
 
 	 async getIntegracionToa(tipo_orden:string,n_orden:string,valor:string):Promise<Object> {
 		let Id_Login:number|any = null
+		//let responseInsertarError:any = null
+		//let responseInsertar:any = null
+		//let reponseSql:any = null
+		//let reponseSqlTecnico:any = null
 
 		let validarOrden = await this.registrarToaFactory.registraIntegracion('validar_orden',n_orden)
 		//console.log('validarOrden',validarOrden.response,'validarOrden')
@@ -55,8 +63,8 @@ export default class IntegracionToaController {
 			}
 			return response
 		}
-		let fechaFin   = await this.fechaConsulta.getDateCurrent()
-		let fechaHasta = await this.fechaConsulta.getDatePass()
+		let fechaFin:any   = await this.fechaConsulta.getDateCurrent()
+		let fechaHasta:any = await this.fechaConsulta.getDatePass()
 
 		let resulIdToa:any = await this.atencionProcesoDao.searchIdProcesoToa()
 		/**
@@ -77,13 +85,13 @@ export default class IntegracionToaController {
 			}
 			return response
 		}
-		let insertData = await this.setDataModels(n_orden,tipo_orden,fechaHasta,fechaFin,resulIdToa.recordset[0].Id_Proceso,resToa)
+		let insertData:any = await this.setDataModels(n_orden,tipo_orden,fechaHasta,fechaFin,resulIdToa.recordset[0].Id_Proceso,resToa)
 		if(resToa[0].responseToa.statusOrden == 'no encontrada'){
-			const responseInsertar = this.registrarToaFactory.registraIntegracion('no_procesado',insertData)
+			this.responseInsertarError = this.registrarToaFactory.registraIntegracion('no_procesado',insertData)
 			let response:Object|any = { response : resToa[0].responseToa }
 			return response
 		}
-		const responseInsertar = this.registrarToaFactory.registraIntegracion('procesado',insertData)
+		this.responseInsertar = this.registrarToaFactory.registraIntegracion('procesado',insertData)
 		/**
 			Integracion  datos de orden
 		**/
@@ -102,8 +110,8 @@ export default class IntegracionToaController {
 			}
 			return response
 		}
-		let setModelsInsert = await this.setModelSave(n_orden,tipo_orden,resulIdToa.recordset[0].Id_Proceso,toaInfo)
-		let reponseSql:any = await this.registrarToaFactory.registraIntegracion('servicioStatus',setModelsInsert)
+		let setModelsInsert:any = await this.setModelSave(n_orden,tipo_orden,resulIdToa.recordset[0].Id_Proceso,toaInfo)
+		this.reponseSql = await this.registrarToaFactory.registraIntegracion('servicioStatus',setModelsInsert)
 		/**
 			Integracion datos Tecnico 
 		**/
@@ -124,8 +132,8 @@ export default class IntegracionToaController {
 		}
 		
 		let reponseTecnico:any = await this.setModelSaveTecnico(n_orden,tipo_orden,resulIdToa.recordset[0].Id_Proceso,toaTecnico)
-		let reponseSqlTecnico:any = await this.registrarToaFactory.registraIntegracion('servicioTecnico',reponseTecnico)
-		let loguinData = await this.setLoguinModel(toaTecnico)
+		this.reponseSqlTecnico = await this.registrarToaFactory.registraIntegracion('servicioTecnico',reponseTecnico)
+		let loguinData:any = await this.setLoguinModel(toaTecnico)
 		let loguinConsult:any = await this.registrarToaFactory.registraIntegracion('tecnicoLoguinConsult',loguinData)
 		if(loguinConsult.response.rowsAffected[0] > 0){
 			Id_Login = loguinConsult.response.recordset[0].Id_Login

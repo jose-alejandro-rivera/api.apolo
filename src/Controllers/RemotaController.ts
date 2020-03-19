@@ -51,10 +51,14 @@ export default class RemotaController {
 	}
 
 	async consultarFlujosRetoma(request:string, tipo_orden:string): Promise<Object> {
+		let responseInsertarError:Object|any
+		let responseInsertar:Object|any
+		let reponseSqlTecnico:Object|any
 
 		let NumOrden = await this.setValuesAtencion(request)
 		this.atencionSql = await this.retomaChatDao.retomaChatFlujos(NumOrden)
-		if(this.atencionSql.rowsAffected[0] == 'RequestError'){
+		//if(this.atencionSql.rowsAffected[0] == 'RequestError'){
+		if(this.atencionSql == 'RequestError'){
 			this.response = []
 			this.response = this.responseStatus.stateSelect(500)
 		}else if(this.atencionSql.rowsAffected[0] > 0) {
@@ -72,12 +76,12 @@ export default class RemotaController {
 			let insertData = await this.setDataModels(request,tipo_orden,fechaHasta,fechaFin,resulIdToa.recordset[0].Id_Proceso,resToa)
 			console.log(resToa[0].responseToa,'integracion')
 			if(resToa[0].responseToa.statusOrden == 'no encontrada'){
-				const responseInsertar = await this.registrarToaFactory.registraIntegracion('no_procesado',insertData)
+				responseInsertarError = await this.registrarToaFactory.registraIntegracion('no_procesado',insertData)
 				let response:Object|any = { response : resToa[0].responseToa }
 				return response
 			}
 
-			const responseInsertar = await this.registrarToaFactory.registraIntegracion('procesado',insertData)
+			responseInsertar = await this.registrarToaFactory.registraIntegracion('procesado',insertData)
 			const IdTecnico = resToa[1].responseIntegracion.items[0].resourceId
 		  this.toaTecnico = await this.toaFactory.factoryIntegracionToa('tecnico',IdTecnico)
 
@@ -87,7 +91,7 @@ export default class RemotaController {
 			}
 
 			const reponseTecnico:any = await this.setModelSaveTecnico(request,tipo_orden,resulIdToa.recordset[0].Id_Proceso,this.toaTecnico)
-			const reponseSqlTecnico:any = await this.registrarToaFactory.registraIntegracion('servicioTecnico',reponseTecnico)
+			reponseSqlTecnico = await this.registrarToaFactory.registraIntegracion('servicioTecnico',reponseTecnico)
 
 			let idFlujo = this.atencionSql.recordset[0].CodFlujo
 			let CodAtencion = this.atencionSql.recordset[0].Id_Atencion

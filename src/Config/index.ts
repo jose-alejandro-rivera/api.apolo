@@ -32,6 +32,19 @@ export default {
     database: process.env.DB_DATABASE || '',
     port: Number.parseInt(process.env.DB_PORT || '') || 0,
     parseJSON: true,
+    options : {
+      encrypt : false,
+      enableArithAbort: true
+    },
   },
 
 };
+
+/*
+
+npm config set proxy​ http://fevernova.nh.inet:80 
+
+npm config set http-proxy http://fevernova.nh.inet:80 
+npm config set https-proxy http://fevernova.nh.inet:80 
+
+*/

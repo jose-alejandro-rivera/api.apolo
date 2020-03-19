@@ -9,7 +9,6 @@ export default class FlujoRouter {
     this.app = router
   }
   router(): void {
-
     /**
 		* @swagger
 		* /api/flujo/list/:id:
@@ -92,7 +91,7 @@ export default class FlujoRouter {
         try {
           const flujoController: FlujoController = Container.get(FlujoController);
           let responseModel = await flujoController.getFlujoPorCategoria(req.params.id_categoriaFlujo);
-          res.status(200).send(responseModel);
+          res.status(200).json(responseModel);
         } catch (error) {
           console.log(error)
         }
@@ -130,7 +129,7 @@ export default class FlujoRouter {
         try {
           const flujoController: FlujoController = Container.get(FlujoController);
           let responseModel = await flujoController.getCategoriaFlujo(req, res, next);
-          res.status(200).send(responseModel);
+          res.status(200).json(responseModel);
         } catch (error) {
           console.log(error)
         }

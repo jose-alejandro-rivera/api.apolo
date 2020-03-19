@@ -13,6 +13,7 @@ export default class AutoconfiguracionBATVController {
 	private integracionToaResponse:IntegracionToaResponse
 	private atencionPostModels:AtencionProcesoModel
 	private toaInfo:Object|any
+	private insertData:any
 
 	constructor(@Inject private responseIntegracion:ResponseIntegracion){
 		this.atencionProcesoDao = Container.get(AtencionProcesoGeneralDAO)
@@ -38,7 +39,7 @@ export default class AutoconfiguracionBATVController {
 			await this.setResponse('','',label)
 			return this.integracionToaResponse
 		}
-		let insertData:Object|any = await this.setModelSave(request,this.toaInfo)
+		this.insertData = await this.setModelSave(request,this.toaInfo)
 
 		parametroValue = (parametro_config == 'BA') ? this.toaInfo[1].responseIntegracion.A_ACS_RESULT_CODE : this.toaInfo[1].responseIntegracion.A_HC_RESULT_CODE
 		parametroKey = (parametro_config == 'BA') ? 'A_ACS_RESULT_CODE' : 'A_HC_RESULT_CODE'

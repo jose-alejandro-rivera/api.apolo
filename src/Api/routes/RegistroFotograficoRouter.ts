@@ -18,6 +18,7 @@ export default class RegistroFotograficoRouter {
 		@body nombreImagen = 'nombre e la imagen como referencia'
 	**/
 	router(): void {
+		
 		this.app.post(
 			'/registro/fotografico/:NumOrden/:CodPaso',
 			async (req:Request, res:Response, next:NextFunction) => {

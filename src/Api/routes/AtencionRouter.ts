@@ -10,6 +10,7 @@ export default class AtencionRoute {
     }
 
     router(): void {
+        
         this.app.get('/testConnection',
             async (req: Request, res: Response, next: NextFunction) => {
                 try {

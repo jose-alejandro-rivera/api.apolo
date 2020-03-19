@@ -4,6 +4,7 @@ import IntegracionToa  from '../../Controllers/IntegracionToaController'
 import OrdenFinalizaToaController  from '../../Controllers/OrdenFinalizaToaController'
 import IntegracionActualizarPropiedadToa from '../../Controllers/OrdenFinalizaToaController'
 import IntegracionToaAutoConfig  from '../../Controllers/AutoconfiguracionBATVController'
+import ValidarTipoOrdenController from '../../Controllers/ValidarTipoOrdenController'
 
 export default class IntegracionToaRouter {
 	public app: Router
@@ -26,13 +27,13 @@ export default class IntegracionToaRouter {
 				res.status(200).json(resIntegra)
 		})
 		/**
-		@parms n_orden = 'Segundo parametro de busqueda orden en TOA'
-		@parms tipo_servicio = 'tipo de arquitectura api REST/SOAP'
+		@body n_orden = 'Segundo parametro de busqueda orden en TOA'
+		@body tipo_servicio = 'tipo de arquitectura api REST/SOAP'
 	**/
 		this.app.patch(
 			'/integracion/toa/finaliza/:tipo_servicio/:num_orden',
 			async (req:Request, res:Response, next:NextFunction) =>{
-				console.log(req.params)
+				//console.log(req.params)
 				const ordenFinalizaToaController:OrdenFinalizaToaController = Container.get(OrdenFinalizaToaController)
         let responseModel = await ordenFinalizaToaController.ordenFinalizaToa(req)
 				res.status(200).json(responseModel)
@@ -49,6 +50,17 @@ export default class IntegracionToaRouter {
 				const integracionToaAutoConfig:IntegracionToaAutoConfig = Container.get(IntegracionToaAutoConfig)
 				let resIntegra:Object|any = await integracionToaAutoConfig.obtenerConfiguracion(req)	
 				res.status(200).json(resIntegra)
+		})
+			/**
+			@parms n_orden_activity = 'numero de orden registra en TOA'
+			**/
+				this.app.get(
+			'/certificacion/servicio/validarar/tipo_orden/:n_orden_activity',
+			//'/autoconfiguracion/:rest/:n_orden_activity/:parametro_config/:Cod_atencion_paso/:cod_proceso',
+			async (req:Request, res:Response, next: NextFunction) => {
+				const validarTipoOrdenController:ValidarTipoOrdenController = Container.get(ValidarTipoOrdenController)
+				let resCertificacion:object|any = await validarTipoOrdenController.validarTipoOrdenParametros(req)
+				res.status(200).json(resCertificacion)
 		})
 	}
 }

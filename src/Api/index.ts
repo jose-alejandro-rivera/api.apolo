@@ -10,9 +10,10 @@ import DocRouter from './routes/DocumentationRoute'
 import IntegracionToaRouter from './routes/IntegracionToaRouter'
 import RemotaRouter from './routes/RemotaRouter'
 import RegistroFotograficoRouter from './routes/RegistroFotograficoRouter'
-
+import csrf from 'csurf' // Anti-CSRF module
 
 class GeneralRouter {
+  public csrfProtection:any
   public router:Router
   private routesFlujo:any
   private routesAtencion:any
@@ -27,6 +28,7 @@ class GeneralRouter {
     this.router = Router()
     this.config()
     this.routes()
+    //this.csrfProtection = csrf( {cookie: true} );
   }
   routes(){
     this.routesFlujo.router()
@@ -38,9 +40,11 @@ class GeneralRouter {
     this.registroFotograficoRouter.router()
   }
   config(){
+    //let csrfProtection = csrf( {cookie: true} );
     this.router.use(bodyParser.json());
     this.router.use(bodyParser.urlencoded({ extended: true }));
     this.router.use(fileUpload())
+    //this.router.use(this.csrfProtection);
     //app.use(bodyParser.urlencoded({ extended: true }));
     this.router.use(morgan('dev'))
     this.router.use(cors({

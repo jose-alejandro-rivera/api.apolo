@@ -27,7 +27,7 @@ export class AtencionDAO {
 				.input('CodFlujo', sql.Int, CodFlujo)
 				.input('NumOrden', sql.VarChar, NumOrden)
 				.input('ActivityId', sql.VarChar, activityId)
-				.query(`INSERT INTO Atencion (CodLogin, CodFlujo, NumOrden, Fecha,ActivityId) 
+				.query(`INSERT INTO Atencion (CodLogin, CodFlujo, NumOrden, Fecha, ActivityId) 
 					      VALUES (@CodLogin,@CodFlujo,@NumOrden, getdate(),@ActivityId); 
 					      SELECT SCOPE_IDENTITY() as Id_Atencion;`);
 			return atencionPostModels.atencionPost = result;

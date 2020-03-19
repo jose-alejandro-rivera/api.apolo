@@ -12,7 +12,7 @@ export default class OrdenFinalizaToaController {
 		this.toaFactory = Container.get(ToaFactory)
 	}
 	
-	async ordenFinalizaToa( request:Object|any ):Promise<Object|any>{
+	async ordenFinalizaToa(request:Object|any ):Promise<Object|any>{
 		const { num_orden, tipo_servicio } = request.params 
 		this.toaFinaliza = await this.toaFactory.factoryIntegracionToa('finaliza',num_orden)
 		if(this.toaFinaliza[0].responseToa.statusOrden =='error_request'){

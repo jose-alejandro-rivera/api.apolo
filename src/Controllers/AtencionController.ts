@@ -32,9 +32,10 @@ export default class AtencionController {
 	/* Metodo que recibe los datos del formulario */
 	async createAtencionPasoCampo(request: any): Promise<void> {
 		let validation: any; let idAtnPaso: any;
-		let data: any;
+		//let data: any;
 		let validacionCampos: any;
 		let valAtencionCampo: any;
+		let idProceso:any
 		try {
 			const { CodAtencion, CodPaso, Secuencia, Soluciona, CodPasoDestino } = request[0].atencionPaso;
 			const { CodAtencionPaso, CodProceso, TipoServicio, Servicio, Request, Response, NumOrden } = request[0].atencionProceso;
@@ -58,7 +59,7 @@ export default class AtencionController {
 					Response != '' &&
 					NumOrden != ''
 				) {
-					let idProceso = await this.AtencionDAO.createAtencionProceso(idAtnPaso, request[0].atencionProceso, request[0].atencionProcesoSalida);
+						idProceso = await this.AtencionDAO.createAtencionProceso(idAtnPaso, request[0].atencionProceso, request[0].atencionProcesoSalida);
 				} else if (
 					CodAtencionPaso == '' ||
 					CodProceso == '' ||
@@ -176,4 +177,3 @@ export default class AtencionController {
 	}
 
 }
-
