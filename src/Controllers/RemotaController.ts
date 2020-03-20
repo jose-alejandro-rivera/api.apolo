@@ -126,6 +126,7 @@ export default class RemotaController {
 	respuestaIntegracion(error:any = ''): void {
 		//console.log(this.atencionConsultSql.rowsAffected[0])
 		//console.log(this.atencionConsultSql.recordset[0])
+		console.log(this.atencionSql.recordset[0],'activity id')
 		if(error == 'error'){
 			this.jsonResponse = {	response : { status: null, activityType: null, statusOrden: 'no encontrada', error: 'Bad Request' } }
 		}else{
